@@ -1,7 +1,6 @@
 @import "variables.scss";
 
 .project-window {
-    margin-top: 6em;
     width: 30%;
 
     nav {
@@ -9,18 +8,23 @@
         position: relative;
         background-color: white;
     }
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
 .project-head {
     position: inherit;
-    margin-top: 10px;
-    margin-left: 30px;
+    height: 1em;
+    line-height: 1em;
+    white-space: nowrap;
+    margin-top: 15px;
+    margin-left: 15px;
     // width: 30%;
 
     .row {
         // margin-left: 0;
         // box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-        padding: 1em;
+        padding: 1em 0;
     }
 
     .title {
@@ -54,10 +58,6 @@
 
     a {
         color: material-color(grey, 600);
-
-        i {
-            width: 10%;
-        }
     }
 
     .row:nth-of-type(1) {
@@ -113,4 +113,18 @@ nav {
 
         }
     }
+}
+
+.i-nav-btn {
+  color: white;
+}
+
+.nav-ctrl-text {
+  position: absolute;
+  left: 50px;
+}
+
+.nav-list-item {
+  line-height: 3em;
+  white-space: nowrap;
 }

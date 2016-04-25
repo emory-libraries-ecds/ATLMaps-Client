@@ -1,82 +1,86 @@
-
 <div id="base-map" class="fullscreen-map">
 	<div id='map'></div>
 	<div class="base-layer-controls"></div>
 </div>
 
-
-
-<nav class="row">
-	{{#link-to 'projects' tagName='a' class="back-link" title="Back to All Projects"}}
-		<span class="back-button"><i class="material-icons">keyboard_backspace</i></span>
-	{{/link-to}}
-</nav>
-
-<div class="row project-window">
-	<div class="project-head col-md-12">
+<div class="project-window">
+	<div class="project-head">
 		<div class="row {{if isEditing 'project-edit' 'project-view'}}">
-	        <div class="col-md-10 title">
-				{{model.name}}
-	        </div>
-	        <div class="col-md-2">
-			{{#if model.may_edit}}
-	            <a {{action 'toggleEdit'}} title={{if isEditing 'Exit Edit Mode' 'Edit Project'}}>
-					<i class="material-icons">mode_edit</i>
-				</a>
-			{{/if}}
-	    </div>
-	</div>
-
-
-	<nav class="container project-nav">
-		<div class="project-pane">
-			{{liquid-outlet}}
+			<div class="col-md-10 title">
+				{{#link-to 'projects' tagName='a' title="Back to All Projects"}}
+					{{fa-icon "arrow-left" class="i-nav-btn"}}
+				{{/link-to}}
+				<span class="nav-ctrl-text">{{model.name}}</span>
+			</div>
+			<div class="col-md-2">
+				{{#if model.may_edit}}
+					<a {{action 'toggleEdit'}} title= {{if isEditing 'Exit Edit Mode' 'Edit Project'}}>
+						<i class="material-icons">mode_edit</i>
+					</a>
+				{{/if}}
+			</div>
 		</div>
-		<div class="project-nav-group">
-			<div class="row">
-			{{#link-to "project.info" class="" id='project-info' title="Project Description"}}
-				<i class="material-icons">info_outline</i> About this Project
-			{{/link-to}}
+
+		<nav class="container project-nav">
+			<div class="project-pane">
+				{{liquid-outlet}}
 			</div>
+
+			<ul class="list-unstyled project-nav-group">
+
+			<li class="nav-list-item">
+				{{#link-to "project.info" class="" id='project-info' title="Project Description" }}
+					<i class="material-icons">info_outline</i> <span class="nav-ctrl-text">About this Project</span>
+				{{/link-to}}
+			</li>
+
 			{{#if isEditing}}
-			<div class="row">
-				{{#link-to "project.browse-layers" class="" id='browse' title="Browse Layers"}}
-					<i class="material-icons">search</i> Find Maps
-				{{/link-to}}
-			</div>
+				<li class="nav-list-item">
+					{{#link-to "project.browse-layers" class="" id='browse' title="Browse Layers" }}
+						<i class="material-icons">search</i> <span class="nav-ctrl-text">Find Maps</span>
+					{{/link-to}}
+				</li>
 			{{/if}}
+
 			{{#if model.exploring}}
-			<div class="row">
-				{{#link-to "project.browse-layers" class="" id='browse' title="Browse Layers"}}
-					<i class="material-icons">search</i> Find Maps
+				<li class="nav-list-item">
+					{{#link-to "project.browse-layers" class="" id='browse' title="Browse Layers" }}
+						<i class="material-icons">search</i> <span class="nav-ctrl-text">Find Maps</span>
+					{{/link-to}}
+				</li>
+
+				<li class="nav-list-item">
+					{{#link-to "project.vector-layers" class="" id='vector-data' title="Pinpoint Layers" }}
+						<i class="material-icons atlmaps-ext database"></i> <span class="nav-ctrl-text">Data Maps</span>
+					{{/link-to}}
+				</li>
+
+				<li class="nav-list-item">
+				{{#link-to "project.raster-layers" class="" id='raster-layers' title="Archival Map Layers" }}
+					<i class="material-icons">layers</i> <span class="nav-ctrl-text">Paper Maps</span>
 				{{/link-to}}
-			</div>
+				</li>
+
+				<li class="nav-list-item">
+				{{#link-to "project.base-layers" class="" id='controls' title="Change Base Map" }}
+					<i class="material-icons">map</i> <span class="nav-ctrl-text">Select Base Maps</span>
+				{{/link-to}}
+				</li>
 			{{/if}}
-			<div class="row">
-			{{#link-to "project.vector-layers" class="" id='vector-data' title="Pinpoint Layers"}}
-				<i class="material-icons atlmaps-ext database"></i> Data Maps
-			{{/link-to}}
-			</div>
-			<div class="row">
-			{{#link-to "project.raster-layers" class="" id='raster-layers' title="Archival Map Layers"}}
-		    	<i class="material-icons">layers</i> Paper Maps
-		    {{/link-to}}
-			</div>
-			<div class="row">
-			{{#link-to "project.base-layers" class="" id='controls' title="Change Base Map"}}
-		    	<i class="material-icons">map</i> Select Base Maps
-		    {{/link-to}}
-			</div>
-			<!-- {{#link-to "project.help" class=" project-nav" id='help' title="Show Help Window"}}
+
+			</ul>
+
+
+
+				<!-- {{#link-to "project.help" class=" project-nav" id='help' title="Show Help Window"}}
 		    	<i class="material-icons">help_outline</i>
 		    {{/link-to}} -->
-		</div>
 
-	</nav>
-</div>
-<div class="col-md-8 pull-right">
-	{{outlet "browse-results"}}
-</div>
+		</nav>
+	</div>
+	<div class="col-md-8 pull-right">
+		{{outlet "browse-results"}}
+	</div>
 </div>
 
 <!-- <a class=" rotate -fab -sm toggle-results"><i class="material-icons">chevron_right</i></a> -->
