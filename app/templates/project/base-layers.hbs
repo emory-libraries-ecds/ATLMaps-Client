@@ -1,5 +1,5 @@
 {{outlet}}
-<div class="cotainer">
+<div class="project-container">
     {{partial 'close-button'}}
     {{#if isEditing}}
         {{#liquid-if editSuccess}}
@@ -17,7 +17,8 @@
         </a>
         <h1>Set Base Map</h1>
     {{else}}
-        <h1>Select Base Map</h1>
+
+    <h3 class="project-pane-title">Select Base Map</h3>
     {{/if}}
     <a {{action 'setBase' 'street' model isEditing}} title="Open Street Map" class="btn btn-default base-preview street"></a>
 
