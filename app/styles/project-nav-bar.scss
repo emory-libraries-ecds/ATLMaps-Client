@@ -1,32 +1,25 @@
 @import "variables.scss";
-
 .project-window {
     width: 30%;
-
     nav {
         width: 100%;
         position: relative;
         background-color: white;
     }
-
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
-
 .project-head {
     position: inherit;
     height: 1em;
     line-height: 1em;
-    white-space: nowrap;
     margin-top: 15px;
     margin-left: 15px;
     // width: 30%;
-
     .row {
         // margin-left: 0;
         // box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         padding: 1em 0;
     }
-
     .title {
         font-size: 1.75em;
         line-height: 1;
@@ -34,97 +27,95 @@
         font-weight: 500;
     }
 }
-.project-view, .project-edit {
+.project-edit,
+.project-view {
     // padding: 1em 0;
     position: relative;
     width: 100%;
     margin-left: initial;
-
 }
 .project-view {
-    background-color: material-color(blue, 500) ! important;
+    background-color: material-color(blue, 500) !important;
 }
 .project-edit {
     background-color: #4CAF50;
     color: white;
-
     a {
         color: whitesmoke;
     }
 }
+.project-nav {
+    padding: 0;
+}
 .project-nav-group {
-
-    // margin: 0;
-
+    margin: 0;
     a {
         color: material-color(grey, 600);
     }
-
     .row:nth-of-type(1) {
-    //   background-color: material-color(grey, 50);
-      &:hover {
-          background-color: material-color(blue, 50) ! important;
-      }
+        //   background-color: material-color(grey, 50);
+        &:hover {
+            background-color: material-color(blue, 50) !important;
+        }
     }
     .row:nth-of-type(2) {
-    //   background-color: material-color(grey, 100);
-      &:hover {
-          background-color: material-color(blue, 100) ! important;
-      }
+        //   background-color: material-color(grey, 100);
+        &:hover {
+            background-color: material-color(blue, 100) !important;
+        }
     }
     .row:nth-of-type(3) {
-    //   background-color: material-color(grey, 200);
-      &:hover {
-          background-color: material-color(blue, 200) ! important;
-      }
+        //   background-color: material-color(grey, 200);
+        &:hover {
+            background-color: material-color(blue, 200) !important;
+        }
     }
     .row:nth-of-type(4) {
-    //   background-color: material-color(grey, 300);
-      &:hover {
-          background-color: material-color(blue, 300) ! important;
-      }
+        //   background-color: material-color(grey, 300);
+        &:hover {
+            background-color: material-color(blue, 300) !important;
+        }
     }
     .row:nth-of-type(5) {
-    //   background-color: material-color(grey, 400);
-      &:hover {
-          background-color: material-color(blue, 400) ! important;
-      }
+        //   background-color: material-color(grey, 400);
+        &:hover {
+            background-color: material-color(blue, 400) !important;
+        }
     }
     .row:nth-of-type(6) {
-    //   background-color: material-color(grey, 500);
-      &:hover {
-          background-color: material-color(blue, 500) ! important;
-      }
+        //   background-color: material-color(grey, 500);
+        &:hover {
+            background-color: material-color(blue, 500) !important;
+        }
     }
     .row:nth-of-type(7) {
-    //   background-color: material-color(grey, 600);
-      &:hover {
-          background-color: material-color(blue, 600) ! important;
-      }
+        //   background-color: material-color(grey, 600);
+        &:hover {
+            background-color: material-color(blue, 600) !important;
+        }
     }
     .active {
         color: #03A9F4;
     }
 }
-
 nav {
     .row {
-        a {
-
-        }
+        a {}
     }
 }
-
 .i-nav-btn {
-  color: white;
+    color: white;
 }
-
 .nav-ctrl-text {
-  position: absolute;
-  left: 50px;
+    position: absolute;
+    left: 50px;
 }
-
 .nav-list-item {
-  line-height: 3em;
-  white-space: nowrap;
+    line-height: 3em;
+    padding: 0 15px;
+    white-space: nowrap;
+    &:hover {
+        background: #03A9F4;
+        color: white;
+    }
 }

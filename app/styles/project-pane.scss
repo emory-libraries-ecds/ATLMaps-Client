@@ -1,23 +1,20 @@
 @import 'layer-citation.scss';
 .project-pane {
+    z-index: 2;
     position: absolute;
     right: 0;
-    width: 88%;
-    box-shadow: -3px 0px 10px 0px rgba(0, 0, 0, 0.5);
-
-    .cotainer {
-        background-color: white;
-        padding: .5em;
+    width: calc(100% - 50px);
+    box-shadow: -3px 0 10px 0 rgba(0, 0, 0, 0.5);
+    background: white;
+    .project-pane-title {
+        margin: 0;
+        font-weight: 500;
+    }
+    .project-container {
+        padding: 1.5em;
         pointer-events: auto; // Allow the pane to respond to click.
-        border-left: 1px solid #adadad;
-        border-right: 1px solid #adadad;
-
         h1 {
             font-size: 2em;
-        }
-
-        article {
-            padding: 2em;
         }
         article.layer {
             padding: 0;
@@ -28,46 +25,37 @@
                 border-width: 1px;
                 border-style: solid;
                 border-color: lightgrey;
-                border-radius: .25em;
-                margin-bottom: .5em;
+                border-radius: 0.25em;
+                margin-bottom: 0.5em;
             }
-
             li.vector-layer {
-                padding-left: .5em;
+                padding-left: 0.5em;
             }
-
             article {
                 padding: 1em;
-                font-size: .75em;
+                font-size: 0.75em;
             }
         }
-
         // layer controls in edit view
         panel-footer.row {
             margin-bottom: 1px;
             pointer-events: all;
         }
-
         .layer-heading {
-            padding: 0 .75em;
+            padding: 0 0.75em;
         }
-
         // Raster Panel Toggle Stuff
         .reorder {
             padding: 0;
         }
-
         .handle {
             cursor: -webkit-grab;
             cursor: -moz-grab;
             margin-right: 10px;
             transform: rotate(90deg);
         }
-
         .opacity-slider {
             padding-left: 5px;
         }
-
     }
-
 }

@@ -7,7 +7,7 @@
 	<div class="project-head">
 		<div class="row {{if isEditing 'project-edit' 'project-view'}}">
 			<div class="col-md-10 title">
-				{{#link-to 'projects' tagName='a' title="Back to All Projects"}}
+				{{#link-to 'projects' tagName='a' title="Back to All Projects" }}
 					{{fa-icon "arrow-left" class="i-nav-btn"}}
 				{{/link-to}}
 				<span class="nav-ctrl-text">{{model.name}}</span>
@@ -28,51 +28,43 @@
 
 			<ul class="list-unstyled project-nav-group">
 
-			<li class="nav-list-item">
 				{{#link-to "project.info" class="" id='project-info' title="Project Description" }}
-					<i class="material-icons">info_outline</i> <span class="nav-ctrl-text">About this Project</span>
+					<li class="nav-list-item"><i class="material-icons">info_outline</i> <span class="nav-ctrl-text">About this Project</span></li>
 				{{/link-to}}
-			</li>
 
-			{{#if isEditing}}
-				<li class="nav-list-item">
+				{{#if isEditing}}
+					<li class="nav-list-item">
+						{{#link-to "project.browse-layers" class="" id='browse' title="Browse Layers" }}
+							<i class="material-icons">search</i> <span class="nav-ctrl-text">Find Maps</span>
+						{{/link-to}}
+					</li>
+				{{/if}}
+
+				{{#if model.exploring}}
+
 					{{#link-to "project.browse-layers" class="" id='browse' title="Browse Layers" }}
-						<i class="material-icons">search</i> <span class="nav-ctrl-text">Find Maps</span>
+						<li class="nav-list-item"><i class="material-icons">search</i> <span class="nav-ctrl-text">Find Maps</span></li>
 					{{/link-to}}
-				</li>
-			{{/if}}
 
-			{{#if model.exploring}}
-				<li class="nav-list-item">
-					{{#link-to "project.browse-layers" class="" id='browse' title="Browse Layers" }}
-						<i class="material-icons">search</i> <span class="nav-ctrl-text">Find Maps</span>
-					{{/link-to}}
-				</li>
-
-				<li class="nav-list-item">
 					{{#link-to "project.vector-layers" class="" id='vector-data' title="Pinpoint Layers" }}
-						<i class="material-icons atlmaps-ext database"></i> <span class="nav-ctrl-text">Data Maps</span>
+						<li class="nav-list-item"><i class="material-icons atlmaps-ext database"></i> <span class="nav-ctrl-text">Data Maps</span></li>
 					{{/link-to}}
-				</li>
 
-				<li class="nav-list-item">
-				{{#link-to "project.raster-layers" class="" id='raster-layers' title="Archival Map Layers" }}
-					<i class="material-icons">layers</i> <span class="nav-ctrl-text">Paper Maps</span>
-				{{/link-to}}
-				</li>
+					{{#link-to "project.raster-layers" class="" id='raster-layers' title="Archival Map Layers" }}
+						<li class="nav-list-item"><i class="material-icons">layers</i> <span class="nav-ctrl-text">Paper Maps</span></li>
+					{{/link-to}}
 
-				<li class="nav-list-item">
-				{{#link-to "project.base-layers" class="" id='controls' title="Change Base Map" }}
-					<i class="material-icons">map</i> <span class="nav-ctrl-text">Select Base Maps</span>
-				{{/link-to}}
-				</li>
-			{{/if}}
+					{{#link-to "project.base-layers" class="" id='controls' title="Change Base Map" }}
+						<li class="nav-list-item"><i class="material-icons">map</i> <span class="nav-ctrl-text">Select Base Maps</span></li>
+					{{/link-to}}
+
+				{{/if}}
 
 			</ul>
 
 
 
-				<!-- {{#link-to "project.help" class=" project-nav" id='help' title="Show Help Window"}}
+			<!-- {{#link-to "project.help" class=" project-nav" id='help' title="Show Help Window"}}
 		    	<i class="material-icons">help_outline</i>
 		    {{/link-to}} -->
 
