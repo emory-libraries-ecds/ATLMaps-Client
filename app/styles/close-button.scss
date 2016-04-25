@@ -1,7 +1,8 @@
 a.close-button {
     color: black;
     text-decoration: none;
-    margin-top: .5em;
+    position: relative;
+    right: 0;
     &:hover {
         background-color: lightcoral;
         border-radius: 50%;
