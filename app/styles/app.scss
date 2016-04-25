@@ -85,7 +85,11 @@ a {
   color: rgb(151, 153, 163);
 }
 
-
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
 body, .static_content{
   background-color:#f4f4f4;
   height: 100%;

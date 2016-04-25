@@ -3,8 +3,8 @@
     <h3 class="project-pane-title">Paper Maps</h3> {{ reorder-layers isEditing=isEditing model=model reorder='reorder'}}
 
     <div class="row layer-heading">
-
-        <div class="col-md-3">
+        <div class="col-md-9 vcenter toggle-all-label">Toggle all</div><!-- ... this cannot be omitted
+        --><div class="col-md-3 vcenter">
             <div class="togglebutton opacity toggle-all pull-right {{unless model.raster_layer_project_ids "disabled"}}">
                 <label>
                     <input id="toggle-layer-opacity" type="checkbox" checked="checked" />

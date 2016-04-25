@@ -1,12 +1,10 @@
 <div class="project-container">
     {{partial 'close-button'}}
-    <h3 class="project-pane-title">Paper Maps</h3>
+    <h3 class="project-pane-title">Data Maps</h3>
 
     <div class="row layer-heading">
-        <div class="col-md-9">
-        </div>
-        <div class="col-md-3">
-
+        <div class="col-md-9 vcenter toggle-all-label">Toggle all</div><!-- ... this cannot be omitted
+        --><div class="col-md-3 vcenter">
             <div class="togglebutton vector opacity toggle-all {{unless model.vector_layer_project_ids "disabled"}}">
                 <label class="pull-right">
                     <input id="toggle-all-vectors" type="checkbox" checked="checked" {{action 'toggleAllVectorLayers' checked on="change"}} />

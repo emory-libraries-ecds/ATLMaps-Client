@@ -6,6 +6,9 @@
     width: calc(100% - 50px);
     box-shadow: -3px 0 10px 0 rgba(0, 0, 0, 0.5);
     background: white;
+    .toggle-all-label {
+      font-weight: 500;
+    }
     .project-pane-title {
         margin: 0;
         font-weight: 500;
@@ -41,9 +44,7 @@
             margin-bottom: 1px;
             pointer-events: all;
         }
-        .layer-heading {
-            padding: 0 0.75em;
-        }
+
         // Raster Panel Toggle Stuff
         .reorder {
             padding: 0;
