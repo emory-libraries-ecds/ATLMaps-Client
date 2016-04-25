@@ -18,6 +18,7 @@
 @import 'extra-icons.scss';
 @import 'login-form.scss';
 @import 'tag-list';
+@import 'select-base-map';
 
 @import 'slider';
 @import 'vector-info';
@@ -27,6 +28,7 @@
 @import 'project-vector-list.scss';
 @import 'responsive.scss';
 @import 'gallery.scss';
+@import 'close-button';
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
   font-family: 'Roboto', 'Material Icons' sans-serif;
@@ -35,6 +37,14 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 
 .fullscreen-map {
   height: 100%;
+  top:0;
+  left:0;
+  position: absolute;
+  position: fixed;
+  width:100%;
+  height:100%;
+  display:block;
+  margin: 0;
 }
 
 // Allow click though to the map past the liquid-container
@@ -75,14 +85,14 @@ a {
   color: rgb(151, 153, 163);
 }
 
-
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
 body, .static_content{
   background-color:#f4f4f4;
   height: 100%;
-}
-
-.project-window {
-    margin-top: 6em;
 }
 
 .checkbox label {
@@ -105,16 +115,16 @@ body, .static_content{
   overflow-y: scroll;
 }
 
-#base-map{
-  top:0;
-  left:0;
-  position: absolute;
-  position: fixed;
-  width:100%;
-  height:100%;
-  display:block;
-  margin: 0;
-}
+// #base-map{
+//   top:0;
+//   left:0;
+//   position: absolute;
+//   position: fixed;
+//   width:100%;
+//   height:100%;
+//   display:block;
+//   margin: 0;
+// }
 
 .filter-heading .btn.rotate{
   transition: all 0.2s;

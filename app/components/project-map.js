@@ -1,74 +1,10 @@
 import Ember from 'ember';
-
 /* globals L */
 
-// Service to hold the Leaflet object.
-
-export default Ember.Service.extend({
-
+export default Ember.Component.extend({
     dataColors: Ember.inject.service('data-colors'),
     vectorDetailContent: Ember.inject.service('vector-detail-content'),
-
-    init(){
-        this._super(...arguments);
-        this.set('map', '');
-    },
-
-    createMap(project){
-        try {
-            // Add some base layers
-            let osm = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors Georgia State University and Emory University',
-                detectRetina: true,
-                className: 'osm'
-            });
-
-            let satellite = L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
-                attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency contributors Georgia State University and Emory University',
-                subdomains: '1234',
-                detectRetina: true,
-                className: 'satellite'
-            });
-
-            let _map = L.map('map', {
-                center: [33.7489954,-84.3879824],
-                zoom: 13,
-                // zoomControl is a Boolean
-                // We add the zoom buttons just below to the top right.
-                zoomControl: false,
-                layers: [osm, satellite]
-            });
-
-            // Layer contorl, topright
-            L.control.zoom({ position: 'topright' }).addTo(_map);
-
-            // _map.on('click', function(){
-            //     Ember.$("div.info").remove();
-            //     Ember.$("div.marker-data").hide();
-            //     Ember.$(".active_marker").removeClass("active_marker");
-            // 	Ember.$(".browse-results").fadeOut();
-            //     // this.send('activateVectorCard');
-            // });
-
-            // TODO: Get rid of this. only here while we develop a way to bring the results back
-            _map.on('dblclick', function(){
-                Ember.$(".browse-results").fadeIn();
-            });
-
-            // let baseMaps = {
-            //     "satellite": satellite,
-            //     "street": osm
-            // }
-            //
-            // L.control.layers(baseMaps,null).addTo(_map);
-            // Create the object for Leafet in the mapObject service.
-            this.set('map', _map);
-            return _map;
-        }
-        catch(err){
-            // Map is likely already initialized
-        }
-    },
+    classNames: ['fullscreen-map'],
 
     mapLayer(layer){
         let _this = this;
@@ -81,13 +17,18 @@ export default Ember.Service.extend({
             return shapeColors[colorName];
         }
 
-        layer.get(layer.get('data_format')+'_layer_id').then(function(newLayer) {
+        console.log(layer.get('url'))
+
+        // layer.get(layer.get('data_format')+'_layer_id').then(function(newLayer) {
+
+        let newLayer = layer;
 
             let newLayerName = newLayer.get('name');
             let newLayerSlug = newLayer.get('slug');
             // let newLayerInst = newLayer.get('institution.geoserver');
             // let newLayerWorkspace = newLayer.get('workspace');
             let newLayerUrl = newLayer.get('url');
+            console.log(newLayerUrl)
             newLayer.set('active_in_project', true);
 
             switch(newLayer.get('data_type')) {
@@ -195,6 +136,10 @@ export default Ember.Service.extend({
                     }
                     break;
             }
-        });
+        // });
+    },
+
+    didInsertElement(){
+        let map = this.get('mapObject').createMap('project');
     }
 });
