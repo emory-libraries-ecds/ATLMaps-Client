@@ -25,6 +25,9 @@ export default Model.extend({
     raster_layer_project_ids: hasMany('raster_layer_project', {
         async: true
     }),
+    raster_layers: hasMany('raster_layer', {
+        async: true
+    }),
     vector_layer_project_ids: hasMany('vector_layer_project', {
         async: true
     }),

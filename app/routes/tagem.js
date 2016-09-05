@@ -30,22 +30,6 @@ export default Route.extend({
         let foo = this.get('currentUser.user');
         console.log('foo', this.get('currentUser.user.displayname'));
         return foo;
-
-        var Legend = L.Control.extend({
-          options: {
-            position: 'bottomright'
-          },
-
-          onAdd: function (map) {
-            var legend = L.DomUtil.create('div', 'map-legend', L.DomUtil.get('map'));
-
-            // here we can fill the legend with colors, strings and whatever
-
-            return legend;
-          }
-        });
-
-        map.addControl(new Legend());
     },
 
     model() {

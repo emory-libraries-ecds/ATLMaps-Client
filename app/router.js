@@ -24,23 +24,22 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-    this.route('projects', function() {
+    this.route('projects');//, function() {
         // TODO resource has been deprecated. make this a route.
         // Project needs to come out from under projects but we
         // will need to figure out redirects for the bad urls.
-        this.resource('project', {
-            path: '/:project_id'
-        }, function() {
-            this.route('view');
-            this.route('edit');
-            this.route('info');
-            this.route('vector-layers');
-            this.route('raster-layers');
-            this.route('base-layers');
-            this.route('help');
-            this.route('browse-layers');
-        });
+        // this.route('post', { path: '/post/:post_id' });
+    this.route('project', { path: '/project/:project_id' }, function() {
+        this.route('view');
+        this.route('edit');
+        this.route('info');
+        this.route('vector-layers');
+        this.route('raster-layers');
+        this.route('base-layers');
+        this.route('help');
+        this.route('browse-layers');
     });
+    // });
     this.route('about');
     this.route('login');
     this.route('explore');

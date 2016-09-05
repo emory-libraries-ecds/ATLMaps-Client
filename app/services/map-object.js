@@ -77,6 +77,8 @@ export default Service.extend({
     },
 
     setUpProjectMap(project) {
+        project.get('vector-layers');
+        console.log('project', project);
         let _map = get(this, 'map');
         console.log(get(this, 'map'));
         _map.on('click', function() {
@@ -92,16 +94,20 @@ export default Service.extend({
         let _this = this;
         project.get('vector_layer_project_ids').then(function(vectors) {
             vectors.forEach(function(vector) {
+                console.log('vector', vector);
                 _this.mapLayer(vector);
             });
         });
 
         // Add all the raster layers to the map.
-        project.get('raster_layer_project_ids').then(function(rasters) {
+        project.get('raster_layers').then(function(rasters) {
             rasters.forEach(function(raster) {
+                console.log('raster', raster);
                 _this.mapLayer(raster);
             });
         });
+
+        console.log('center_lat', project);
 
         _map.flyTo(
             L.latLng(

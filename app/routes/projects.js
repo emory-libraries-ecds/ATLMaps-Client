@@ -22,9 +22,9 @@ export default Route.extend({
                 mine: this.store.query('project', {
                     user_id: this.get('session.session.content.authenticated.user.id')
                 }),
-                collaborations: this.store.query('project', {
-                    collaborations: this.get('session.session.content.authenticated.user.id')
-                })
+                // collaborations: this.store.query('project', {
+                //     collaborations: this.get('session.session.content.authenticated.user.id')
+                // })
             });
         }
         // TODO is there a way to not have to do a single item hash without
