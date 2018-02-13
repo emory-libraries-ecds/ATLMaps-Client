@@ -1,20 +1,6 @@
-import Ember from 'ember';
-/* eslint new-cap: ["error", { "newIsCap": false }] */
-// Service to hold arrays of colors to be used for vector layers.
-// In `vector_layer_project` the `marker` attribute is used as an
-// index of the arrays.
-
-// Made a second one for shapes and lines. The lighter colors looked like crap.
-// Use the safe versions to set inline style.
-
-const {
-    Service,
-    String: {
-        htmlSafe
-    },
-    get,
-    set
-} = Ember;
+import Service from '@ember/service';
+import { htmlSafe } from '@ember/string';
+import { set, get } from '@ember/object';
 
 export default Service.extend({
     init() {

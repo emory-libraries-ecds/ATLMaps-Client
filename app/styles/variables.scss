@@ -1,4 +1,4 @@
-@fa-font-path: '../assets/font';
+// @fa-font-path: '../assets/font';
 $primary-color: color('blue-grey', 'darken-1');
 $primary-color-dark: color('blue-grey', 'darken-4');
 $primary-color-light: color('blue-grey', 'base');
@@ -40,4 +40,10 @@ $action-color: $secondary-color;
 $base-font-size: 16px;
 $base-line-height: 18px;
 $navigation-height: 44px;
+$project-nav-width: 55px;
 $error: #f44336;
+
+// UIkit Overrides
+$offcanvas-bar-background: rgba(255, 255, 255, .9);
+$offcanvas-bar-color-mode: dark;
+$global-primary-background: $secondary-color;

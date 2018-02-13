@@ -1,8 +1,7 @@
+import { get, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import DS from 'ember-data';
-import Ember from 'ember';
 import LayerProject from './layer-project';
-
-const { computed, get, inject: { service } } = Ember;
 
 const {
     attr,

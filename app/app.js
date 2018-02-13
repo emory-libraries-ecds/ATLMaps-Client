@@ -1,11 +1,8 @@
+import Application from '@ember/application';
 import Ember from 'ember';
 import loadInitializers from 'ember-load-initializers';
 import Resolver from './resolver';
 import config from './config/environment';
-
-const {
-    Application
-} = Ember;
 
 Ember.MODEL_FACTORY_INJECTIONS = true;
 

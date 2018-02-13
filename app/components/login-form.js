@@ -1,14 +1,7 @@
-import Ember from 'ember';
-
-const {
-    get,
-    run,
-    set,
-    inject: {
-        service
-    },
-    Component
-} = Ember;
+import { run } from '@ember/runloop';
+import { set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
 export default Component.extend({
     session: service(),

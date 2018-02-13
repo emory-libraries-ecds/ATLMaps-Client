@@ -1,12 +1,7 @@
-import Ember from 'ember';
-
-const {
-    Component,
-    Object: EmberObject,
-    computed,
-    get,
-    $
-} = Ember;
+import { filterBy } from '@ember/object/computed';
+import Component from '@ember/component';
+import EmberObject, { get } from '@ember/object';
+import $ from 'jquery';
 
 export default Component.extend({
     routes: null,
@@ -46,12 +41,12 @@ export default Component.extend({
         ]);
     },
 
-    classNames: ['project-nav'],
-    classNameBindings: ['hideNav'],
-    tagName: 'ul',
+    // classNames: ['project-nav'],
+    // classNameBindings: ['hideNav'],
+    // tagName: 'ul',
     hideNav: false,
 
-    links: computed.filterBy('routes', 'show', true),
+    links: filterBy('routes', 'show', true),
 
     // TODO: This is bad. Make vector detail a proper component.
     click() {

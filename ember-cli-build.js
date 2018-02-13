@@ -11,7 +11,7 @@ module.exports = function(defaults) {
     var app = new EmberApp(defaults, {
 
         emberComposableHelpers: {
-            only: ['toggle', 'pipe']
+            only: ['toggle', 'pipe', 'next']
         },
 
         // fingerprint: {

@@ -4,18 +4,17 @@
 @import 'mixins';
 
 @import 'materialize-local';
-@import 'leaflet', 'trumbowyg', 'nouislider', 'font-awesome', 'swiper';
+@import 'trumbowyg', 'nouislider', 'font-awesome', 'swiper';
 
-@import 'bourbon', 'neat', 'bitters';
+@import 'bourbon', 'neat'; //, 'bitters';
 @import 'responsive-grid'; // local grid using bourbon neat.
-@import 'banner', 'admin', 'ember-modal-structure', 'ember-modal-appearance', 'main-footer', 'marker', 'extra-icons', 'login-form', 'slider', 'search-results', 'base-picker', 'project-pane', 'project-intro', 'search-pane', 'project-nav', 'user-menu', 'social-auth', 'layer-route', 'toggle-switch', 'waves', 'tagem', 'color-picker', 'article-container', 'md-input', 'embed', 'flash-message', 'layer-list-item', 'vector-info', 'table', 'loading', 'bios', 'grid' ; // Refills
+@import 'banner', 'admin', 'ember-modal-structure', 'ember-modal-appearance', 'main-footer', 'marker', 'extra-icons', 'login-form', 'slider', 'search-results', 'base-picker', 'project-pane', 'project-intro', 'project-nav', 'user-menu', 'social-auth', 'layer-route', 'toggle-switch', 'waves', 'tagem', 'color-picker', 'article-container', 'md-input', 'embed', 'flash-message', 'layer-list-item', 'vector-info', 'table', 'loading', 'bios', 'grid' ; // Refills
 
 :root {
   background-color: color('grey', 'lighten-4');
   color: material-color(md_grey, 600);
-  font-family: 'Roboto', sans-serif;
+  // font-family: 'Roboto', sans-serif;
   font-size: $base-font-size;
-  font-smoothing: antialiased;
   height: 100vh;
   line-height: $base-line-height;
 
@@ -198,7 +197,8 @@ $custom-grid--half: (
   width: 100vw;
 }
 
-.atlmap {
+.atlmap,
+.leaflet-container {
   height: 100%;
   width: 100%;
 }
@@ -478,5 +478,16 @@ textarea {
 
 .ember-tooltip,
 .ember-popover {
-z-index: 5000;
+  z-index: 5000;
 }
+
+.leaflet-div-icon {
+  background: transparent;
+  border: 0;
+
+  i {
+    font-size: 2em;
+  }
+}
+
+@import 'ember-uikit';

@@ -1,14 +1,6 @@
-import Ember from 'ember';
-
-/* globals interact */
-
-const {
-    get,
-    Component,
-    inject: {
-        service
-    }
-} = Ember;
+import { get } from '@ember/object';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
 

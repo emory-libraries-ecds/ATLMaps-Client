@@ -2,18 +2,10 @@
  * Component that inplamnets opacity sliders for raster layers
  * using noUiSlider (https://refreshless.com/nouislider/)/
 */
-import Ember from 'ember';
+import Component from '@ember/component';
 
-/* globals noUiSlider */
-
-const {
-    Component,
-    get,
-    inject: {
-        service
-    },
-    set
-} = Ember;
+import { inject as service } from '@ember/service';
+import { set, get } from '@ember/object';
 
 export default Component.extend({
 

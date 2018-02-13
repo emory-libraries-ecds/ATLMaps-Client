@@ -1,6 +1,12 @@
+import Route from '@ember/routing/route';
+import { get } from '@ember/object';
+import { run } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 import Ember from 'ember';
 
-const { Route, get, Logger, run, inject: { service } } = Ember;
+const {
+    Logger
+} = Ember;
 
 export default Route.extend({
     flashMessage: service(),

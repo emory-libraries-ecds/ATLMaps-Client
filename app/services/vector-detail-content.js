@@ -1,12 +1,6 @@
-import Ember from 'ember';
-/* globals Swiper */
-
-const {
-    $,
-    Service,
-    get,
-    set
-} = Ember;
+import $ from 'jquery';
+import Service from '@ember/service';
+import { set, get } from '@ember/object';
 
 // TODO this whole thing needs to be an objects and we need to ditch the jQuery inserts.
 

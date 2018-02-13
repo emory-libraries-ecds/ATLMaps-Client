@@ -1,13 +1,8 @@
-<a {{action 'searchBounds'}} class={{if hasBounds 'has-bounds'}}>
+{{!-- <a {{action 'searchBounds'}} class={{if hasBounds 'has-bounds'}}>
     <i class="fa {{if hasBounds 'has-bounds fa-check-square-o' 'fa-square-o'}}" aria-hidden="true"></i>
-</a> Search this area
+</a> Search this area --}}
 
-{{!-- <a {{action 'checkSingleTag' tag category}} class='checkbox-link'>
-  <i class="material-icons {{if tag.checked 'active'}}">
-    {{if tag.checked 'check_box' 'check_box_outline_blank'}}
-  </i>
-  {{tag.name}}
-</a> --}}
+{{input type='checkbox' id='toggle-bounds' change=(action 'searchBounds')}} <label for='toggle-bounds'>Search this area</label>
 
 {{#if this.moved}}
 <button {{action 'updateBounds'}} class='update-bounds'>Search this area</button>

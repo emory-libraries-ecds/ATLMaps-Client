@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Route from '@ember/routing/route';
+import { run } from '@ember/runloop';
+import { set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 import MapLayerMixin from '../mixins/map-layer';
-/* globals L */
-const { $, Route, get, run, set, inject: { service } } = Ember;
 
 export default Route.extend(MapLayerMixin, {
     dataColors: service(),

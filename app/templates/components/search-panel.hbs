@@ -1,0 +1,67 @@
+<div class='uk-offcanvas-content'>
+<button class='uk-button show-search' type='button' uk-toggle='target: #offcanvas-flip'>
+  <i class="fa fa-chevron-left" aria-hidden="true"></i><i class="fa fa-chevron-left" aria-hidden="true"></i> Find Layers
+</button>
+
+
+
+    <div id='offcanvas-flip' uk-offcanvas='flip: true; overlay: false; bg-close: false'>
+        <div class='uk-offcanvas-bar'>
+
+            <button class='uk-offcanvas-close' type='button' uk-close></button>
+
+              {{!-- <ul class='uk-tab uk-child-width-expand search-result-tabs' uk-tab> --}}
+                {{#uk-switcher class='search-result-tabs' as |switcher|}}
+                {{#switcher.nav type='tab' as |nav|}}
+                {{#nav.component as |tab|}}
+                  {{#tab.item active=true}}
+                      <i class='fa fa-filter' aria-hidden='true'></i>
+                      <br />
+                      Search
+                  {{/tab.item}}
+                  {{#tab.item}}
+                      {{#if searchingRasters}}
+                        <i class='fa fa-circle-o-notch fa-spin fa-fw'></i>
+                        <span class='sr-only'>Searching...</span>
+                      {{else}}
+                        <i class='fa fa-map' aria-hidden='true'></i>
+                        <br />
+                        maps <span class="uk-badge">{{if model.rasters model.rasters.meta.total_count '0'}}</span>
+                      {{/if}}
+                  {{/tab.item}}
+                  {{#tab.item}}
+                      {{#if searchingVectors}}
+                        <i class='fa fa-circle-o-notch fa-spin fa-fw'></i>
+                        <span class='sr-only'>Searching...</span>
+                      {{else}}
+                        <i class='fa fa-database' aria-hidden='true'></i>
+                        <br />
+                        data <span class="uk-badge">{{if model.vectors model.vectors.meta.total_count '0'}}</span>
+                      {{/if}}
+                  {{/tab.item}}
+                {{/nav.component}}
+                {{/switcher.nav}}
+
+                {{#switcher.content as |content|}}
+                  {{#content.item}}
+                    {{search-panel/text getResults=(route-action 'getResults')}}
+                    <hr />
+                    {{search-panel/bounds getResults=(route-action 'getResults')}}
+                    <hr />
+                    {{search-panel/tags model=model.categories getResults=(route-action 'getResults')}}
+                    <hr />
+                    {{search-panel/provider model=model.institutions getResults=(route-action 'getResults')}}
+                  {{/content.item}}
+                  {{#content.item}}
+                    {{search-panel/results type='rasters' layers=model.rasters id='rasters'}}
+                  {{/content.item}}
+                  {{#content.item}}
+                    {{search-panel/results type='vectors' layers=model.vectors id='vectors'}}
+                  {{/content.item}}
+              {{/switcher.content}}
+              {{/uk-switcher}}
+
+        </div>
+    </div>
+
+</div>

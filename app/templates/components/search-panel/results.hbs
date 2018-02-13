@@ -1,0 +1,22 @@
+<dl class='uk-panel-scrollable uk-height-1-1 uk-description-list uk-description-list-divider atl-search-results-list'>
+  {{#each layers as |layer|}}
+    <dt>
+      {{input type='checkbox' style='opacity: 0;' id=(concat 'add-remove-' layer.slug) checked=layer.active_in_project change=(route-action 'addRemoveLayer' layer project)}}
+      <label for={{concat 'add-remove-' layer.slug}}>
+        <i class="fa {{if layer.active_in_project 'active fa-check-square-o active' 'fa-square-o'}}"></i>
+        {{if layer.title layer.title "Loading..."}}
+      </label>
+    </dt>
+    <dd>
+      {{#if layer.description}}
+        {{{layer.safe_description}}}
+      {{else}}
+        <span>Description missing.</span>
+      {{/if}}
+    </dd>
+  {{else}}
+    <h4>No layers found</h4>
+    <h5>Use the filters under the search tab to find layers.</h5>
+  {{/each}}
+</dl>
+{{pagination-links meta=layers.meta layerType=this.id class='pagination-bar'}}

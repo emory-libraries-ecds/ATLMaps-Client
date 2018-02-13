@@ -1,16 +1,9 @@
 /* eslint arrow-body-style: ["error", "as-needed"] */
-import Ember from 'ember';
+import { get } from '@ember/object';
+
+import { inject as service } from '@ember/service';
 import Torii from 'ember-simple-auth/authenticators/torii';
 import ENV from '../config/environment';
-/**
- * WTF
- */
-const {
-    get,
-    inject: {
-        service
-    }
-} = Ember;
 
 export default Torii.extend({
     torii: service(),

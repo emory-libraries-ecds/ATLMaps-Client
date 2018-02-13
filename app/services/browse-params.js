@@ -1,12 +1,5 @@
-import Ember from 'ember';
-
-// Service to keep track of what a user is browsing so they are persistent
-// while she is in the route. `clearAll` is called when the user leavs the
-// project route.
-const {
-    Service,
-    get
-} = Ember;
+import Service from '@ember/service';
+import { get } from '@ember/object';
 
 export default Service.extend({
 

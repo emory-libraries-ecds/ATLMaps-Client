@@ -1,19 +1,14 @@
-import Ember from 'ember';
-
-const {
-    $,
-    on,
-    Component,
-    inject: { service },
-    get,
-    getOwner,
-    set
-} = Ember;
+import $ from 'jquery';
+import { on } from '@ember/object/evented';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { getOwner } from '@ember/application';
+import { set, get } from '@ember/object';
 
 export default Component.extend({
-    activateKeyboard: on('init', () => {
-        set(this, 'keyboardActivated', true);
-    }),
+    // activateKeyboard: on('init', () => {
+    //     set(this, 'keyboardActivated', true);
+    // }),
 
     cookies: service(),
     tagName: '',

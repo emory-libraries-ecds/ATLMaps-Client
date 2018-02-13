@@ -1,15 +1,11 @@
 // app/serializers/application.js
-import Ember from 'ember';
+import { underscore } from '@ember/string';
+
 import DS from 'ember-data';
 
 const {
     JSONAPISerializer
 } = DS;
-const {
-    String: {
-        underscore
-    }
-} = Ember;
 
 export default JSONAPISerializer.extend({
     keyForAttribute: function remvoeDashes(attr) {

@@ -2,10 +2,10 @@
  * @private
  * Component to set a range of years to search.
  */
-import Ember from 'ember';
-/* globals noUiSlider */
+import Component from '@ember/component';
 
-const { Component, inject: { service }, set, get } = Ember;
+import { inject as service } from '@ember/service';
+import { get, set } from '@ember/object';
 
 export default Component.extend({
 

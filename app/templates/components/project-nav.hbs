@@ -1,4 +1,4 @@
-<li class='hide-nav-button'>
+{{!-- <li class='hide-nav-button'>
   <a {{action "toggleNav"}}>
     <i class="fa fa-chevron-down" aria-hidden="true"></i>
     <label>{{if hideNav 'MENU' 'HIDE'}}</label>
@@ -24,14 +24,37 @@
 {{/link-to}}
 {{/if}}
 
-{{!-- {{#link-to 'project.base-layers' tagName='li'}}
-  <i class="fa fa-globe" aria-hidden="true"></i>
-  {{link-to 'Base' 'project.base-layers' tagName='label'}}
-{{/link-to}} --}}
-
 {{#if model.may_edit}}
 {{#link-to 'project.settings' tagName='li'}}
   <i class="fa fa-cog" aria-hidden="true"></i>
   {{link-to 'Settings' 'project.settings' tagName='label'}}
 {{/link-to}}
-{{/if}}
+{{/if}} --}}
+
+{{#uk-switcher left=true animation='uk-animation-fade' as |switcher|}}
+  {{#switcher.nav type='tab' as |nav|}}
+    {{! nav.component is either a uk-tab or a uk-subnav component }}
+    {{#nav.component as |tab|}}
+      {{#tab.item}}<i class="fas fa-info-circle"></i> Hide{{/tab.item}}
+      {{#tab.item}}<i class="fas fa-info-circle"></i> Info{{/tab.item}}
+      {{#if model.hasRasters}}
+        {{#tab.item}}<i class="fas fa-map"></i> Maps{{/tab.item}}
+      {{/if}}
+      {{#if model.hasVectors}}
+        {{#tab.item}}<i class="fas fa-database"></i> Data{{/tab.item}}
+      {{/if}}
+      {{#if model.may_edit}}
+        {{#tab.item}}<i class="fa fa-cog" aria-hidden="true"></i> Settings{{/tab.item}}
+      {{/if}}
+    {{/nav.component}}
+  {{/switcher.nav}}
+
+  {{#switcher.content as |content|}}
+    {{#content.item}}
+      <h5>Content 1</h5>
+    {{/content.item}}
+    {{#content.item}}
+      <h5>Content 2</h5>
+    {{/content.item}}
+  {{/switcher.content}}
+{{/uk-switcher}}

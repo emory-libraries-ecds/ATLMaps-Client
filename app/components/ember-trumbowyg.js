@@ -1,6 +1,9 @@
-import Ember from 'ember';
+// Currently, this is only used for the vector layer admin form.
+// Either use actuall addon, or make our own.
+import Component from '@ember/component';
 
-const { Component, set, $ } = Ember;
+import { set } from '@ember/object';
+import $ from 'jquery';
 
 export default Component.extend({
     // onCh

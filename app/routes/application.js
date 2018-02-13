@@ -1,19 +1,12 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { set, get } from '@ember/object';
 /**
  * Ember application route.
  *
  */
 
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-
-const {
-    Route,
-    get,
-    inject: {
-        service
-    },
-    set
-} = Ember;
 
 export default Route.extend(ApplicationRouteMixin, {
     flashMessage: service(),

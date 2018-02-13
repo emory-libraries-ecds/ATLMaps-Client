@@ -1,8 +1,8 @@
-import Ember from 'ember';
-
-/* globals L */
-
-const { Mixin, RSVP, get, run, set, inject: { service } } = Ember;
+import Mixin from '@ember/object/mixin';
+import RSVP from 'rsvp';
+import { run } from '@ember/runloop';
+import { set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Mixin.create({
     mapObject: service(),

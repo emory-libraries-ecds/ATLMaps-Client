@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { run, set, Service } = Ember;
+import { run } from '@ember/runloop';
+import { set } from '@ember/object';
+import Service from '@ember/service';
 
 export default Service.extend({
 

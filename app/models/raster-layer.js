@@ -1,20 +1,14 @@
 /* eslint new-cap: ["error", { "newIsCapExceptions": ['htmlSafe'] }] */
+import { get, computed } from '@ember/object';
+
+import { htmlSafe } from '@ember/string';
 import DS from 'ember-data';
-import Ember from 'ember';
 import Layer from './layer';
 
 const {
     attr,
     belongsTo
 } = DS;
-
-const {
-    computed,
-    get,
-    String: {
-        htmlSafe
-    }
-} = Ember;
 
 export default Layer.extend({
     workspace: attr('string'),

@@ -1,15 +1,9 @@
 /* eslint no-mixed-operators: ["error", {"allowSamePrecedence": true}] */
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
-const {
-    Route,
-    get,
-    inject: {
-        service
-    },
-    run,
-    set
-} = Ember;
+import { inject as service } from '@ember/service';
+import { run } from '@ember/runloop';
+import { set, get } from '@ember/object';
 
 export default Route.extend({
     mapObject: service(),

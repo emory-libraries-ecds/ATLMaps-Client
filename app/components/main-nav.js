@@ -1,13 +1,7 @@
-import Ember from 'ember';
-
-const {
-    $,
-    Component,
-    inject: {
-        service
-    },
-    get
-} = Ember;
+import $ from 'jquery';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
 
 export default Component.extend({
     session: service(),
@@ -61,7 +55,7 @@ export default Component.extend({
     },
 
     willDestroyElement() {
-        $(document).off('click');
+        // $(document).off('click');
     },
 
     actions: {

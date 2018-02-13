@@ -1,99 +1,85 @@
-.project-pane {
-  background-color: $white;
-  left: 5em;
-  position: absolute;
+.project-title {
+  font-size: 2em;
+  height:  52px;
+  left: $project-nav-width;
   top: $navigation-height;
-  transform: scaleY(1);
-  transform-origin: top;
-  transition: transform $rabbit;
-  width: 34vw;
-  will-change: transform;
-  z-index: 401;
+  width: 30vw;
+  z-index: 445;
 }
 
-// Styles an empty div that acts as the fixed header that content scrolls beneth.
-.fixer {
-  @include scrollable-top;
-}
+.project-card {
+  padding-left: 0 !important;
 
-.pane-container {
-  @include scrollable-container;
-  // Calculate the full height of the screen minus the heights of
-  // the top nav bar, the pane title height, and the base map thumbnails.
-  max-height: calc(100vh - (#{$navigation-height} + 5.5em + 75px));
-  transition: max-height $rabbit;
-  will-change: max-height;
-}
+  .uk-switcher {
+    width: 30vw !important;
+  }
 
-.hide-nav {
-  &+ .project-pane {
-    transform: scaleY(0);
-    transform-origin: top;
+  .uk-card-body {
+    max-height: calc(100vh - 175px);
+    width: 100% !important;
+  }
+
+  .uk-active {
+    margin-top: $navigation-height;
   }
 }
 
-.pane-content {
-  @include scrollable-content;
-  width: 100%;
+.uk-accordion-title {
+  cursor: pointer;
+
+  &::after {
+    // Get rid of the UIkit +/- icon.
+    background-image: none !important;
+  }
 }
 
-.pane {
+.sortable-raster-list {
+  border-color: color('blue-grey', 'lighten-4');
+  border-radius: 10px;
+  border-style: solid;
   padding: 1em;
 
-  .action {
-    cursor: pointer;
+  .uk-card-header,
+  .uk-card-body {
+    padding: 0 !important;
   }
 }
 
-.project-pane-header {
-  @include grid-container;
-  background-color: $blue-grey-100;
-  min-height: 5.25em;
-  padding-top: 1rem;
+.slider-label {
+  margin-top: .5rem;
 }
 
-.project-pane-title {
-  @include grid-column(10);
-}
 
-.project-pane-subtitle {
-  text-transform: uppercase;
-}
+.project-pane {
+  display: none;
+// // Very literal code for the HOLC layer.
+// .color-key {
+//   // sass-lint:disable-block no-color-literals
+//   display: flex;
+//   font-size: 1.2em;
+//   padding: 1em 0;
+//   text-transform: capitalize;
 
-.project-pane-action {
-  @include grid-column(2);
-  cursor: pointer;
-  text-align: center;
-}
+//   ul {
+//     list-style: none;
+//   }
 
-// Very literal code for the HOLC layer.
-.color-key {
-  // sass-lint:disable-block no-color-literals
-  display: flex;
-  font-size: 1.2em;
-  padding: 1em 0;
-  text-transform: capitalize;
+//   li {
+//     border: 0;
+//     float: left;
+//     margin-right: 10px;
+//   }
 
-  ul {
-    list-style: none;
-  }
+//   span {
+//     border: 1px solid #ccc;
+//     float: left;
+//     height: .75em;
+//     margin: 2px;
+//     width: .75em;
+//   }
 
-  li {
-    border: 0;
-    float: left;
-    margin-right: 10px;
-  }
-
-  span {
-    border: 1px solid #ccc;
-    float: left;
-    height: .75em;
-    margin: 2px;
-    width: .75em;
-  }
-
-  .color-key-0 { background-color: #4caf50; }
-  .color-key-1 { background-color: #1e88e5; }
-  .color-key-2 { background-color: #ffeb3b; }
-  .color-key-3 { background-color: #f44336; }
+//   .color-key-0 { background-color: #4caf50; }
+//   .color-key-1 { background-color: #1e88e5; }
+//   .color-key-2 { background-color: #ffeb3b; }
+//   .color-key-3 { background-color: #f44336; }
 }

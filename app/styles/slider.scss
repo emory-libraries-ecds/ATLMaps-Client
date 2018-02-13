@@ -1,66 +1,66 @@
-.opacity-slider {
-  margin-left: 1em;
+// .opacity-slider {
+//   margin-left: 1em;
 
-  & input {
-    display: none;
-  }
+//   & input {
+//     display: none;
+//   }
 
-  h6 {
-    color: color('grey', lighten-1);
-    font-size: .85em;
-    margin-top: .5em;
-  }
-}
+//   h6 {
+//     color: color('grey', lighten-1);
+//     font-size: .85em;
+//     margin-top: .5em;
+//   }
+// }
 
-.slider {
-  background-color: $secondary-color;
-  border: 0;
-  box-shadow: none;
-  height: .1em;
-  top: .5em;
-  width: 100%;
-}
+// .slider {
+//   background-color: $secondary-color;
+//   border: 0;
+//   box-shadow: none;
+//   height: .1em;
+//   top: .5em;
+//   width: 100%;
+// }
 
-.noUi-origin {
-  background-color: color('grey', 'lighten-2');
+// .noUi-origin {
+//   background-color: color('grey', 'lighten-2');
 
-  // Turn the handles grey whe faded all the way out.
-  &[style^='left: 0'] {
-    .noUi-handle {
-      background: color('grey', lighten-2);
-    }
-  }
-}
+//   // Turn the handles grey whe faded all the way out.
+//   &[style^='left: 0'] {
+//     .noUi-handle {
+//       background: color('grey', lighten-2);
+//     }
+//   }
+// }
 
-.noUi-stacking {
-  background-color: color('grey', 'lighten-2');
-}
+// .noUi-stacking {
+//   background-color: color('grey', 'lighten-2');
+// }
 
-.noUi-horizontal {
+// .noUi-horizontal {
 
-  .noUi-handle {
-    background: $secondary-color;
-    border: 0;
-    border-radius: 50%;
-    box-shadow: none;
-    cursor: ew-resize;
-    height: 1em;
-    left: -.25em;
-    top: -.45em;
-    width: 1em;
+//   .noUi-handle {
+//     background: $secondary-color;
+//     border: 0;
+//     border-radius: 50%;
+//     box-shadow: none;
+//     cursor: ew-resize;
+//     height: 1em;
+//     left: -.25em;
+//     top: -.45em;
+//     width: 1em;
 
-    &::before,
-    &::after {
-      content: unset;
-    }
+//     &::before,
+//     &::after {
+//       content: unset;
+//     }
 
-    &:hover {
-      height: 1.5em;
-      top: -.7em;
-      width: 1.5em;
-    }
-  }
-}
+//     &:hover {
+//       height: 1.5em;
+//       top: -.7em;
+//       width: 1.5em;
+//     }
+//   }
+// }
 
 ////
 //// HTML SLIDER
@@ -77,35 +77,38 @@
   }
 }
 
-input[type=range] {
+input[type='range'] {
   -webkit-appearance: none;
-  width: 100%;
+  cursor: ew-resize;
   margin: 10.2px 0;
+  width: 100%;
 }
+
 input[type=range]:focus {
   outline: none;
 }
+
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 5px;
-  cursor: pointer;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
   background: #f58320; /* For browsers that do not support gradients */
- background: -webkit-linear-gradient(left, #ddd , #f58320); /* For Safari 5.1 to 6.0 */
- background: -o-linear-gradient(right, #ddd, #f58320); /* For Opera 11.1 to 12.0 */
- background: -moz-linear-gradient(right, #ddd, #f58320); /* For Firefox 3.6 to 15 */
- background: linear-gradient(to right, #ddd , #f58320); /* Standard syntax */
+  background: -webkit-linear-gradient(left, #ddd , #f58320); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #ddd, #f58320); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #ddd, #f58320); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #ddd , #f58320); /* Standard syntax */
   border-radius: 5.6px;
   border: 0px solid #010101;
 }
+
 input[type=range]::-webkit-slider-thumb {
   // box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
   border: 0px solid #eceff1;
+  cursor: ew-resize;
   height: 24px;
   width: 24px;
   border-radius: 24px;
   background: #f58320;
-  cursor: pointer;
   -webkit-appearance: none;
   margin-top: -9px;
 }
@@ -125,7 +128,6 @@ input[type=range]:hover::-webkit-slider-thumb {
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 1.6px;
-  cursor: pointer;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
   background: #f58320;
   border-radius: 5.6px;
@@ -138,12 +140,10 @@ input[type=range]::-moz-range-thumb {
   width: 36px;
   border-radius: 36px;
   background: #f58320;
-  cursor: pointer;
 }
 input[type=range]::-ms-track {
   width: 100%;
   height: 1.6px;
-  cursor: pointer;
   background: transparent;
   border-color: transparent;
   color: transparent;
@@ -167,7 +167,6 @@ input[type=range]::-ms-thumb {
   width: 36px;
   border-radius: 36px;
   background: #f58320;
-  cursor: pointer;
   height: 1.6px;
 }
 input[type=range]:focus::-ms-fill-lower {

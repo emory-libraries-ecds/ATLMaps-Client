@@ -1,17 +1,5 @@
-import Ember from 'ember';
-
-/**
- * @public
- * Service to track currently logged in user.
- * @type {Object}
- */
-const {
-    get,
-    inject: {
-        service
-    },
-    Service
-} = Ember;
+import { get } from '@ember/object';
+import Service, { inject as service } from '@ember/service';
 
 export default Service.extend({
     session: service('session'),

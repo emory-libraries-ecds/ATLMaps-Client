@@ -1,13 +1,7 @@
-import Ember from 'ember';
-
-const {
-    Component,
-    get,
-    run,
-    inject: {
-        service
-    }
-} = Ember;
+import Component from '@ember/component';
+import { get } from '@ember/object';
+import { run } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
     // classNames: ['base-map-selector'],

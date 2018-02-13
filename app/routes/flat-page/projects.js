@@ -1,17 +1,12 @@
 /**
  * Route to display list of projects
  */
-import Ember from 'ember';
+import $ from 'jquery';
 
-const {
-    $,
-    get,
-    Route,
-    RSVP,
-    inject: {
-        service
-    }
-} = Ember;
+import { get } from '@ember/object';
+import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
     session: service(),

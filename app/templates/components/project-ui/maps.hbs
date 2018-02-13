@@ -1,0 +1,44 @@
+{{show-hide-layers toggleAll=true layers=model.project.raster_layers type='raster-layer'}}
+
+<h3 class='uk-card-title'>Maps</h3>
+
+{{#uk-sortable tagName='ul' id='sortable-maps' class='uk-overflow-auto' on-stop=(action 'reorder')}}
+  {{#each model.project.sortedRasterLayers as |layer|}}
+  <li class='sortable-raster-list uk-card uk-card-default uk-width-1-1@m' data-id={{layer.id}} data-model={{layer.constructor.modelName}}>
+
+    <div class='uk-accordion-title uk-card-header'>
+      <div class= 'uk-grid-small' uk-grid uk-height-match>
+        <div class= 'uk-width-auto'>
+          <img src={{layer.raster_layer.thumb.url}} width='60' height='60' alt='Preview image of {{layer.raster_layer.title}}' />
+        </div>
+        <div class='uk-width-expand'>
+          {{layer.raster_layer.title}}
+        </div>
+        <div class='uk-width-auto'>
+          <i class='fa fa-drag-handle reorder-handle' aria-hidden='true'></i>
+        </div>
+      </div>
+    </div>
+
+      <div class='slider-label uk-text-meta'>Opacity</div>
+      {{!-- TODO: with ember-leaflet, we can just use the mut helper}}
+      {{!-- <input class='embed-slider' id={{layer.raster_layer.name}} type='range' min='0' max='1' step='0.1' value={{layer.raster_layer.opacity}} oninput={{action (mut layer.raster_layer.opacity) value='target.value'}} /> --}}
+      <input class='embed-slider' id={{layer.raster_layer.name}} type='range' min='0' max='1' step='0.1' value={{layer.raster_layer.opacity}} oninput={{action 'setOpacity' layer.raster_layer}} />
+
+    <div class='uk-accordion-content'>
+      <div class='uk-card-body'>
+        {{layer.raster_layer.description}}
+        <section class='uk-text-meta uk-margin-bottom'>
+          Layer Provided by: {{layer.raster_layer.institution.name}} {{layer.raster_layer.attribution}}
+        </section>
+      </div>
+      <div class='uk-card-footer'>
+        {{shareable-link layer=layer.raster_layer}}
+        {{#if project.may_edit}}
+          {{remove-layer-button model=model layer=layer.raster_layer tagName='button'}}
+        {{/if}}
+      </div>
+    </div>
+  </li>
+  {{/each}}
+{{/uk-sortable}}

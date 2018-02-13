@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import { set } from '@ember/object';
 
 const limits = [
     { value: 10, label: 'Show: 10 Per Page' },
@@ -6,8 +8,6 @@ const limits = [
     { value: 50, label: 'Show: 50 Per Page' },
     { value: 100, label: 'Show: 100 Per Page' }
 ];
-
-const { Component, inject: { service }, set } = Ember;
 
 export default Component.extend({
     classNames: ['valign-wrapper'],

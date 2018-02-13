@@ -1,5 +1,6 @@
 {
   "git.enableSmartCommit": true,
+  "editor.tabSize": 2,
   "files.exclude": {
     ".DS_Store": "explorerExcludedFiles",
     "dist": "explorerExcludedFiles",
@@ -19,6 +20,7 @@
     "Untitled": "explorerExcludedFiles",
     "esdoc": "explorerExcludedFiles",
     "yarn-error.log": "explorerExcludedFiles",
-    "tests/puppeteer": "explorerExcludedFiles"
+    "tests/puppeteer": "explorerExcludedFiles",
+    ".vscode": "explorerExcludedFiles"
   }
 }

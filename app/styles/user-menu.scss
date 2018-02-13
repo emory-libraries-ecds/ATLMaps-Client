@@ -1,38 +1,8 @@
-// .user-menu {
-//   // background-color: color('grey', 'lighten-3');
-//   background-color: color('blue-grey', 'lighten-5');
-//   font-size: 16px;
-//   max-height: 0;
-//   overflow: hidden;
-//   padding: 0 1em;
-//   position: absolute;
-//   right: 0;
-//   top: 60px;
-//   transition: max-height $turtle ease-in-out, overflow $turtle ease-in-out, padding $turtle ease-in-out;
-//   width: 300px;
-//
-//   section {
-//     @include grid-container;
-//
-//     span {
-//       @include grid-column(12);
-//       padding: .25em 0;
-//     }
-//
-//     .toggle-action {
-//       width: 100%;
-//     }
-//   }
-//
-//   .sign-btn {
-//     color: $primary-color-dark;
-//   }
-//
-//   label {
-//     color: color('blue-grey', 'darken-4');
-//   }
-//
-//
+.uk-navbar-dropdown {
+  .fa-li {
+    position: unset;
+  }
+}
 
 .login-form {
   @include grid-container;

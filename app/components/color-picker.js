@@ -2,16 +2,10 @@
  * @public
  * Component to set color for a vector layer.
  */
-import Ember from 'ember';
+import Component from '@ember/component';
 
-const {
-    Component,
-    get,
-    set,
-    inject: {
-        service
-    }
-} = Ember;
+import { set, get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
 

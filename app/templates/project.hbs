@@ -1,12 +1,86 @@
 {{vector-info}}
 {{main-nav model=model}}
 
-{{! FIXME This is a little disjointed. The search button and head
-are in the `main-nav` component. }}
-{{browse-results model=model rasters=rasters vectors=vectors rasters_diffResults=rasters_diffResults vectors_diffResults=vectors_diffResults searchingRasters=searchingRasters searchingVectors=searchingVectors}}
+{{search-panel model=model rasters=rasters vectors=vectors rasters_diffResults=rasters_diffResults vectors_diffResults=vectors_diffResults searchingRasters=searchingRasters searchingVectors=searchingVectors}}
 
-{{project-nav model=model.project current=current class='navbar-fixed' raster-updated=raster-updated vector-updated=vector-updated}}
-{{outlet}}
+<header class='uk-panel uk-padding-small uk-background-muted project-title'>{{model.project.name}}</header>
+{{#uk-switcher animation='uk-animation-fade' animationDuration=200 class='project-nav uk-grid' as |switcher|}}
+
+  <div class='uk-width-auto@m project-nav-buttons'>
+    {{#switcher.nav type='tab' as |nav|}}
+      {{#nav.component left=true as |tab|}}
+        {{#tab.item class='uk-text-center uk-text-large'}}<i class="fa fa-chevron-left"></i><br />Hide{{/tab.item}}
+        {{#tab.item class='uk-text-center uk-text-large'}}<i class="fa fa-info-circle"></i><br />Info{{/tab.item}}
+        {{#if model.project.hasRasters}}
+          {{#tab.item
+            class='uk-text-center uk-text-large (if raster-updated "uk-animation-shake")'}}
+            <i class="fa fa-map"></i><br />Maps
+          {{/tab.item}}
+        {{/if}}
+        {{#if model.project.hasVectors}}
+          {{#tab.item class='uk-text-center uk-text-large'}}<i class="fa fa-database"></i><br />Data{{/tab.item}}
+        {{/if}}
+        {{#if model.project.may_edit}}
+          {{#tab.item class='uk-text-center uk-text-large'}}<i class="fa fa-cog" aria-hidden="true"></i><br />Settings{{/tab.item}}
+        {{/if}}
+      {{/nav.component}}
+    {{/switcher.nav}}
+  </div>
+
+  <div class='uk-width-expand@m project-card'>
+    {{#switcher.content tagName='div' as |content|}}
+      {{#content.item}}
+      {{/content.item}}
+
+      {{#content.item tagName='div'}}
+        {{#uk-card class='uk-width-1-2@m uk-card-body' as |card|}}
+          {{project-ui/info}}
+        {{/uk-card}}
+      {{/content.item}}
+
+      {{#if model.project.hasRasters}}
+        {{#content.item tagName='div'}}
+          {{#uk-card class='uk-width-1-2@m uk-card-body uk-flex uk-flex-column uk-overflow-hidden' as |card|}}
+            {{project-ui/maps model=model}}
+          {{/uk-card}}
+        {{/content.item}}
+      {{/if}}
+
+      {{#if model.project.hasVectors}}
+        {{#content.item tagName='div'}}
+          {{#uk-card id='item3' as |card|}}
+            {{#card.header}}
+              {{#card.title}}Title{{/card.title}}
+            {{/card.header}}
+            {{#card.body}}
+              Content
+            {{/card.body}}
+            {{#card.footer}}
+              {{uk-button color='text' label='Read more'}}
+            {{/card.footer}}
+          {{/uk-card}}
+        {{/content.item}}
+      {{/if}}
+
+      {{#if model.project.may_edit}}
+        {{#content.item tagName='div'}}
+          {{#uk-card id='item3' as |card|}}
+            {{#card.header}}
+              {{#card.title}}Title{{/card.title}}
+            {{/card.header}}
+            {{#card.body}}
+              Content
+            {{/card.body}}
+            {{#card.footer}}
+              {{uk-button color='text' label='Read more'}}
+            {{/card.footer}}
+          {{/uk-card}}
+        {{/content.item}}
+      {{/if}}
+
+    {{/switcher.content}}
+  </div>
+{{/uk-switcher}}
 
 {{#if (or model.project.hasIntro model.project.may_edit)}}
   {{#if (xor model.project.hasIntro model.project.suppressIntro)}}
@@ -15,9 +89,37 @@ are in the `main-nav` component. }}
     {{/tether-dialog}}
   {{/if}}
 {{/if}}
-<div id='base-map' class='fullscreen-map'>
+
+{{!-- <div id='base-map' class='fullscreen-map'>
   <div id='map' class='atlmap'></div>
   <div class='base-layer-controls'></div>
   {{flash-message}}
   {{base-map-selector class='base-map-selector'}}
+</div> --}}
+
+{{#if model.project.center_lat}}
+{{log model.project.center_lat}}
+<div id='base-map' class='fullscreen-map'>
+{{#leaflet-map
+  lat=model.project.center_lat
+  lng=model.project.center_lng
+  zoom=model.project.zoom_level
+  onLoad=(action 'initMap') as |layers|}}
+  {{layers.tile url='https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'}}
+  {{!-- {{layers.tile url='https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_only_labels/{z}/{x}/{y}.png'}} --}}
+
+  {{#each model.project.sortedRasterLayers as |wms|}}
+    {{wms-tile-layer url=wms.raster_layer.url layers=wms.raster_layer.layers format='image/png' transparent=true zIndex=wms.position opacity=wms.raster_layer.opacity}}
+  {{/each}}
+
+  {{#each model.project.vector_layer_project as |data|}}
+
+    {{#each data.vector_layer.vector_feature as |feature|}}
+      {{layers.geoJSON
+        geoJSON=feature.geojson
+        pointToLayer=(action 'pointToLayer' data)}}
+    {{/each}}
+  {{/each}}
+{{/leaflet-map}}
 </div>
+{{/if}}
