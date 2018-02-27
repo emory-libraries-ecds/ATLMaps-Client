@@ -1,3 +1,7 @@
-<div class='uk-card-badge uk-label'>Badge</div>
-<h3 class='uk-card-title'>Title</h3>
-<p>Lorem ipsum color sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>
+  {{model.project.description}}
+</p>
+
+{{#if model.project.hasIntro}}
+  {{project-intro-modal model=model.project}}
+{{/if}}

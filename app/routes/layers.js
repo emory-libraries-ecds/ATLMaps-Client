@@ -12,7 +12,7 @@ import { get } from '@ember/object';
 import { run } from '@ember/runloop';
 import MapLayerMixin from '../mixins/map-layer';
 
-export default Route.extend(MapLayerMixin, {
+export default Route.extend({
   setupController(controller, model, params) {
     this._super(controller, model, params);
     run.scheduleOnce('afterRender', () => {

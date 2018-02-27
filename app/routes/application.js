@@ -9,22 +9,22 @@ import { set, get } from '@ember/object';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 export default Route.extend(ApplicationRouteMixin, {
-    flashMessage: service(),
+  flashMessage: service(),
 
-    sessionAuthenticated() {
-        this._super(...arguments);
-        set(this.controller, 'showingLogin', false);
+  sessionAuthenticated() {
+    this._super(...arguments);
+    set(this.controller, 'showingLogin', false);
+  },
+
+  actions: {
+    error(error /* , transition */) {
+      const flash = get(this, 'flashMessage');
+      flash.setProperties({ message: error.message });
+      this.transitionTo('error');
     },
 
-    actions: {
-        error(error /* , transition */) {
-            const flash = get(this, 'flashMessage');
-            flash.setProperties({ message: error.message });
-            this.transitionTo('error');
-        },
-
-        toggleShowingLogin() {
-            this.controller.toggleProperty('showingLogin');
-        }
+    toggleShowingLogin() {
+      this.controller.toggleProperty('showingLogin');
     }
+  }
 });

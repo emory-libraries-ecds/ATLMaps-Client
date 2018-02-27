@@ -12,8 +12,8 @@ button {
 
 // Actual Pane
 .uk-offcanvas-bar {
-  top: $navigation-height !important;
   padding: 0 !important;
+  top: $navigation-height !important;
 
   .uk-tab {
     background: $white !important;
@@ -33,21 +33,55 @@ button {
 }
 
 // Tabs
-.search-result-tabs > ul > li {
-  flex: 1;
+.search-results {
+  .uk-tab {
+      position: fixed;
+      width: 100%;
+  }
+
+  ul {
+    &.uk-switcher {
+      margin-bottom: calc(#{$navigation-height} + 2em);
+      // margin-top: calc(#{$navigation-height} + #{$search-tab-height});
+    }
+
+    li {
+      flex: 1;
+
+      a {
+        i {
+          font-size: 2em;
+          margin-bottom: .5rem;
+        }
+
+        .uk-badge {
+          margin-top: -2rem;
+          position: absolute;
+        }
+      }
+    }
+  }
+
+  .scroll-anchor {
+    height: calc(#{$navigation-height} + #{$search-tab-height});
+  }
+
+  .uk-pagination {
+    background: $white;
+    bottom: 0;
+    height: calc(#{$navigation-height} + 1em);
+    left: 0;
+    margin: 0;
+    padding-top: 1em;
+  }
+
+  label {
+    display: inline-block;
+  }
 }
 
 .search-result-tabs > ul > li > a {
   font-size: 1.5rem;
-
-  i {
-    margin-bottom: .5rem;
-  }
-
-  .uk-badge {
-    margin-top: -2rem;
-    position: absolute;
-  }
 }
 
 // Results
@@ -74,3 +108,4 @@ button {
 .uk-description-list > dt {
   text-transform: none !important;
 }
+

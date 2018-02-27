@@ -1,6 +1,6 @@
 /**
  * @private
- * TODO: Do we need a component for this or can this be handled by the `browseParams`
+ * TODO: Do we need a component for this or can this be handled by the `layerSearch`
  * service? Honestly, this is smelly.
  * Component to maintain state for a search by institution.
  */
@@ -11,7 +11,7 @@ import { get } from '@ember/object';
 
 export default Component.extend({
 
-  browseParams: service(),
+  layerSearch: service(),
 
   classNames: ['browse-by-institution'],
 
@@ -21,13 +21,13 @@ export default Component.extend({
      */
     checkInstitution(institution) {
       if (institution) {
-        get(this, 'browseParams').addInstitution(institution);
+        get(this, 'layerSearch').addInstitution(institution);
         this.sendAction('getResults');
       }
     },
 
     removeInstitution(institution) {
-      this.get('browseParams').removeInstution(institution);
+      this.get('layerSearch').removeInstution(institution);
       this.sendAction('getResults');
     }
   }

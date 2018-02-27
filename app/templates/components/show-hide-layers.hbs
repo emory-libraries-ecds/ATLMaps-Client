@@ -1,12 +1,3 @@
-  {{!-- <label  class='label-switch'>
-    {{#if toggleAll}}
-    <input type="checkbox" {{action 'toggleAll' layers type on="change"}} checked={{checked}} id='toggle-all'>
-    {{else}}
-    <input type="checkbox" {{action 'toggleOne' layer on="change"}} checked={{layer.showing}} />
-    {{/if}}
-    <div class="checkbox"></div>
-  </label> --}}
-
-<button class='uk-card-badge uk-label' {{action 'toggleAll' layers type}}>
-  {{if showingAll 'Hide All' 'Show All'}}
-</button>
+{{#uk-button class='uk-card-badge uk-label' on-click=(action 'toggleAll' layers type)}}
+  {{yield}}
+{{/uk-button}}

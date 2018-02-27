@@ -1,6 +1,6 @@
 /**
  * Component to track tags are currently being searched.
- * TODO: Would this be better in the `browseParams` service?
+ * TODO: Would this be better in the `layerSearch` service?
  */
 
 import { get } from '@ember/object';
@@ -9,7 +9,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
 
-  browseParams: service(),
+  layerSearch: service(),
 
   classNames: ['browse-by-tags'],
 
@@ -20,9 +20,9 @@ export default Component.extend({
       tag.toggleProperty('checked');
 
       if (get(tag, 'checked')) {
-        get(this, 'browseParams').addTag(tag);
+        get(this, 'layerSearch').addTag(tag);
       } else {
-        get(this, 'browseParams').removeTag(tag);
+        get(this, 'layerSearch').removeTag(tag);
         category.setProperties(
           {
             allChecked: false
@@ -40,9 +40,9 @@ export default Component.extend({
       category.toggleProperty('allChecked');
 
       if (allChecked === false) {
-        get(this, 'browseParams').addAllTags(tags);
+        get(this, 'layerSearch').addAllTags(tags);
       } else {
-        get(this, 'browseParams').removeAllTags(tags);
+        get(this, 'layerSearch').removeAllTags(tags);
       }
 
       tags.forEach((tag) => {

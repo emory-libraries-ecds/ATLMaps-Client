@@ -1,0 +1,17 @@
+{{#if feature}}
+    <div class='uk-card uk-card-default'>
+      {{#if feature.image}}
+        <div class='uk-card-media-top'>
+          <img src={{feature.image}} alt='Image for {{feature.title}}'>
+        </div>
+      {{/if}}
+      <div class='uk-card-body feature-popup uk-flex uk-flex-column uk-overflow-hidden'>
+      <button class="uk-modal-close-default" type="button" onclick={{action 'closeFeature'}} uk-close></button>
+        <article class='uk-article uk-overflow-auto'>
+          <span class='uk-text-meta'>{{{data-icon feature.vector_layer.dataTypeSlug feature.colorHex}}} {{feature.vector_layer.title}}</span>
+          <h3 class='uk-card-title'>{{feature.name}}</h3>
+          <p>{{{feature.safeDescription}}}</p>
+        </article>
+      </div>
+    </div>
+{{/if}}

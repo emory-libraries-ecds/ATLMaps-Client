@@ -1,1 +1,68 @@
-{{yield}}
+{{!-- <div class='uk-card-badge uk-label'>Badge</div> --}}
+
+<form class='uk-overflow-auto'>
+  <div class='uk-margin'>
+
+  <h3 class='uk-card-title'>Metadata</h3>
+
+  <label class='uk-form-label' for='edit-project-title'>Title</label>
+  <div class='uk-form-controls'>
+    {{input id='edit-project-title' value=model.project.name}}
+  </div>
+
+  <label class='uk-form-label' for='form-stacked-select'>Short Description</label>
+  <div class='uk-form-controls'>
+    {{textarea value=model.project.description rows=8}}
+  </div>
+
+  {{#extras/fa-checkbox checked=model.project.published change=(action (mut model.project.published) model.project.published)}}
+    Published
+  {{/extras/fa-checkbox}}
+
+  <hr />
+
+  <h3 class='uk-card-title'>Intro Modal</h3>
+
+  <label class='uk-form-label' for='intro-video'>Video</label>
+  <div class='uk-form-controls'>
+    {{input value=model.project.media id='intro-video'}}
+  </div>
+
+  <label class='uk-form-label' for='intro-photo'>Photo</label>
+  <div class='uk-form-controls'>
+    {{input value=model.project.photo id='intro-photo'}}
+  </div>
+
+  <label class='uk-form-label' for='intro-text'>Intro Text</label>
+  {{pell-editor class='wysiwyg-container' value=model.project.intro onChange=(action (mut model.project.intro value))}}
+
+  <hr />
+
+  <h3 class='uk-card-title'>Map Defaults</h3>
+
+  {{!-- <label class='uk-form-lavel' for ='project-center-lat'>Center Latitude</label>
+  <div class='uk-form-controls'>
+    {{input id='project-center-lat' value=model.project.center_lat}}
+  </div>
+
+  <label class='uk-form-label' for ='project-center-lat'>Center Longitude</label>
+  <div class='uk-form-controls'>
+    {{input id='project-center-lng' value=model.project.center_lng}}
+  </div> --}}
+
+  {{#uk-button color='primary' size='small' on-click=(action 'setCenterZoom' model.project)}}Set Center/Zoom{{/uk-button}}
+
+  <hr />
+
+  {{#base-map-selector project=model.project}}
+    <label class='uk-form-label'>Base Map</label>
+  {{/base-map-selector}}
+
+  <div>
+    {{#uk-button color='primary' on-click=(route-action 'updateProject' model.project)}}save{{/uk-button}}
+    {{#uk-button}}Cancel{{/uk-button}}
+  </div>
+
+</div>
+
+</form>

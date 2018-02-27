@@ -52,12 +52,7 @@ Router.map(function() {
 
   this.route('project', {
     path: '/project/:project_id'
-  }, function() {
-    this.route('info');
-    this.route('vector-layers');
-    this.route('raster-layers');
-    this.route('settings');
-  });
+  }, function() {});
 
   this.route('explore');
   this.route('layers', {

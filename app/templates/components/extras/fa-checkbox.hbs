@@ -1,0 +1,6 @@
+
+{{input id=(concat 'checkbox-' this.element.id) type='checkbox' style='display: none;' checked=checked change=(toggle 'checked' this)}}
+<label for={{concat 'checkbox-' this.element.id}}>
+  <i class="fa {{if checked 'fa-check-square-o active' 'fa-square-o'}}"></i>
+  {{yield}}
+</label>

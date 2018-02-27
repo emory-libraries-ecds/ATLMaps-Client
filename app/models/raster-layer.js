@@ -6,24 +6,26 @@ import DS from 'ember-data';
 import Layer from './layer';
 
 const {
-    attr,
-    belongsTo
+  attr,
+  belongsTo
 } = DS;
 
 export default Layer.extend({
-    workspace: attr('string'),
-    slider_value_id: attr('string'),
-    position_in_project: attr(''),
-    raster_layer_project: belongsTo('raster_layer_project', {
-        async: true,
-        inverse: null
-    }),
-    layers: attr('string'),
-    sliderObject: attr(),
-    tagem: attr('boolean'),
-    position: attr('number'),
-    thumb: attr(),
-    safe_background_thumb: computed(function safeBackgroundPhoto() {
-        return new htmlSafe(`background-image: url("${get(this, 'thumb.url')}");`);
-    }).property('photo')
+  workspace: attr('string'),
+  raster_layer_project: belongsTo('raster_layer_project', {
+    async: true,
+    inverse: null
+  }),
+
+  layers: attr('string'),
+
+  thumb: attr(),
+
+  safe_background_thumb: computed('photo', function safeBackgroundPhoto() {
+    return new htmlSafe(`background-image: url("${get(this, 'thumb.url')}");`);
+  }),
+
+  showing: computed('opacity', function visiableLayer() {
+    return get(this, 'opacity') === 0 ? false : true;
+  })
 });

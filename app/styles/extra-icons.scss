@@ -12,39 +12,36 @@
   &::before {
     content: '\e802';
     font-family: 'atlmaps-ext';
-    font-size: .8em;
   }
 }
 
-i.atlmaps-ext {
-  font-family: 'atlmaps-ext';
-}
-
-i.material-icons.atlmaps-ext.database::before{
-  content: '\e800';
+i {
+  &.atlmaps-ext {
+    font-family: 'atlmaps-ext';
+  }
 }
 
 .layer-list-item-icon {
+  font-style: normal;
 
-  &.GeometryCollection {
+  &.geometry-collection {
     @include polygon;
   }
 
-  &.MultiPolygon {
+  &.multi-olygon {
     @include polygon;
   }
 
-  &.Polygon {
+  &.polygon {
     @include polygon;
   }
-}
 
-.layer-list-item-icon.LineString::before {
-  content: '\e803';
-  font-family: 'atlmaps-ext';
-  font-size: .7em;
-  position: relative;
-  right: .2em;
+  &.line-string {
+    &::before {
+      content: '\e803';
+      font-family: 'atlmaps-ext';
+    }
+  }
 }
 
 .atls-logo::before {
@@ -57,8 +54,11 @@ i.material-icons.atlmaps-ext.database::before{
   vertical-align: text-bottom;
 }
 
-.fa-drag-handle:before {
+.fa-drag-handle {
+  &::before {
+    content: '\f142 \f142';
     font-family: 'FontAwesome';
-    content: "\f142 \f142";
-    letter-spacing: 0.1em;
+    font-size: 2rem;
+    letter-spacing: .1em;
+  }
 }

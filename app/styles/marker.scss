@@ -1,141 +1,17 @@
-// general marker style
-
-// $marker-icon is defined in variables
-.Point {
-  &::before {
-    content: $marker-icon;
-    font-family: 'FontAwesome';
-  }
-}
-
-// span.line-data {
-//   &::before {
-//     content: $line-icon;
-//     font-family: 'atlmaps-ext';
-//     font-size: .8em;
-//     // letter-spacing: .25em;
-//   }
-// }
-
-.wms {
-  &::before {
-    content: $layer-icon;
-    font-family: 'FontAwesome';
-    letter-spacing: .25em;
-  }
-}
-
-.database {
-  &::before {
-    content: $data-icon;
-  }
-}
-
-.dataset {
-  &::before {
-    content: $dataset-icon;
-    font-family: 'FontAwesome';
-  }
-}
-
-// on the map
 .leaflet-marker-icon {
-  border-radius: 26px;
-  font-size: 22px;
-  font-weight: bold;
-  height: 26px;
-  line-height: 22px;
-  margin-left: -12px; // shift by half the marker width
-  margin-top: -34px; // shift by arrow top+height
-  position: absolute;
-  text-align: center;
-  width: 26px;
-}
+  font-size: 44px;
 
-.leaflet-marker-pane .map-marker div.icon {
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 22px;
-  display: block;
-  font-size: 46px;
-  height: 22px; // same as marker height
-  left: 0;
-  margin-left: 0;
-  margin-top: 0;
-  position: relative;
-  top: -28px;
-  width: 22px; // same as marker width
-}
+  .shadow {
+    background-image: url('/assets/images/marker-shadow.png');
+    height: 40px;
+    position: absolute;
+    width: 40px;
 
-.map-marker div.icon {
-  font-family: 'FontAwesome';
-  font-size: 32px;
-  font-smoothing: antialiased;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 1;
-  speak: none;
-  text-shadow: 0 0 2px $white;
-  text-stroke: 1px lighten($white, 50%);
-  text-transform: none;
-  transition: color .2s;
-}
-
-.map-marker div.icon:before{
-  content: $marker-icon;
-}
-
-// .layer-marker div.icon:before {
-//   content: $layer-icon;
-//   font-family: 'material-design-icons';
-// }
-
-// .laoding div.icon:before {
-//   content: "\e8c0";
-// }
-
-.map-marker div.shadow {
-  background-image:url('/assets/images/marker-shadow.png');
-  bottom: 11px;
-  height: 40px;
-  opacity: .75;
-  position: absolute;
-  right: -16px;
-  width: 40px;
-}
-
-// marker states
-.map-marker {
-  &.inactive {
-    opacity: .6;
-  }
-}
-
-.map-marker.active_marker{
-  // z-index: 1000000!important;
-  // pointer-events: none;
-}
-
-.active-marker {
-  fill-opacity: 1 !important;
-  stroke-width: 6px !important;
-
-  .icon {
-    &::before {
-      content: $marker-icon;
-      font-size: 80px;
-      left: -18px;
-      position: absolute;
-      top: -22px;
-
+    i {
+      text-shadow: 0 0 2px $white;
     }
   }
 }
-
-// .map-marker.highlighted div.arrow{
-//   border-color: #000 transparent transparent transparent;
-// }
 
 // TODO Make getting the colors a function.
 .layer-red, .leaflet-zoom-animated.layer-red {

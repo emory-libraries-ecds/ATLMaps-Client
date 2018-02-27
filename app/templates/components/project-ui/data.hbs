@@ -1,1 +1,39 @@
-{{yield}}
+{{#uk-button class='uk-card-badge uk-label' on-click=(action 'toggleAll' model)}}
+  {{if model.project.allVectorsHidden 'Show' 'Hide'}}
+{{/uk-button}}
+
+<h3 class='uk-card-title'>Data Layers</h3>
+<ul class='uk-overflow-auto' id='data-layers'>
+  {{#each model.project.vector_layer_project as |layer|}}
+    <li class='data-layer uk-card uk-card-default uk-width-1-1@m'>
+      <div class='uk-accordion-title uk-card-header'>
+        <div class= 'uk-grid-small' uk-grid uk-height-match>
+          <div class= 'uk-width-auto'>
+            {{{data-icon layer.vector_layer.dataTypeSlug layer.colorHex}}}
+          </div>
+          <div class='uk-width-expand'>
+            {{layer.vector_layer.title}}
+          </div>
+          <div class='uk-width-auto'>
+            {{#uk-button size='small' on-click=(action 'toggleLayer' layer model.project)}}{{if layer.vector_layer.showing 'Hide' 'Show'}}{{/uk-button}}
+          </div>
+        </div>
+      </div>
+
+      <div class='uk-accordion-content'>
+        <div class='uk-card-body'>
+          {{layer.vector_layer.description}}
+          <section class='uk-text-meta uk-margin-bottom'>
+            Layer Provided by: {{layer.vector_layer.institution.name}} {{layer.vector_layer.attribution}}
+          </section>
+        </div>
+        <div class='uk-card-footer'>
+          {{shareable-link layer=layer}}
+          {{#if project.may_edit}}
+            {{remove-layer-button model=model layer=layer tagName='button'}}
+          {{/if}}
+        </div>
+      </div>
+    </li>
+  {{/each}}
+</ul>

@@ -3,17 +3,13 @@
 @import 'variables';
 @import 'mixins';
 
-@import 'materialize-local';
-@import 'trumbowyg', 'nouislider', 'font-awesome', 'swiper';
-
-@import 'bourbon', 'neat'; //, 'bitters';
+@import 'bourbon', 'neat', 'bitters';
 @import 'responsive-grid'; // local grid using bourbon neat.
-@import 'banner', 'admin', 'ember-modal-structure', 'ember-modal-appearance', 'main-footer', 'marker', 'extra-icons', 'login-form', 'slider', 'search-results', 'base-picker', 'project-pane', 'project-intro', 'project-nav', 'user-menu', 'social-auth', 'layer-route', 'toggle-switch', 'waves', 'tagem', 'color-picker', 'article-container', 'md-input', 'embed', 'flash-message', 'layer-list-item', 'vector-info', 'table', 'loading', 'bios', 'grid' ; // Refills
+@import 'banner', 'admin', 'main-footer', 'marker', 'extra-icons', 'login-form', 'slider', 'search-results', 'base-picker', 'project-pane', 'project-nav', 'user-menu', 'social-auth', 'layer-route', 'color-picker', 'md-input', 'embed', 'feature-popup', 'loading', 'bios', 'grid' ; // Refills
 
 :root {
   background-color: color('grey', 'lighten-4');
   color: material-color(md_grey, 600);
-  // font-family: 'Roboto', sans-serif;
   font-size: $base-font-size;
   height: 100vh;
   line-height: $base-line-height;

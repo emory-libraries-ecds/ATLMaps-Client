@@ -1,14 +1,18 @@
 .project-title {
   font-size: 2em;
   height:  52px;
-  left: $project-nav-width;
-  top: $navigation-height;
+  // left: calc(#{$project-nav-width} * 1.5);
+  margin-left: 132px;
+  top: calc(#{$navigation-height} * 2);
   width: 30vw;
   z-index: 445;
 }
 
 .project-card {
+  margin-left: $navigation-height !important;
+  margin-top: $navigation-height !important;
   padding-left: 0 !important;
+
 
   .uk-switcher {
     width: 30vw !important;
@@ -22,6 +26,12 @@
   .uk-active {
     margin-top: $navigation-height;
   }
+
+  .uk-drop {
+    &.uk-open {
+      background: lightgray;
+    }
+  }
 }
 
 .uk-accordion-title {
@@ -33,20 +43,58 @@
   }
 }
 
-.sortable-raster-list {
+.sortable-raster-list,
+.data-layer {
   border-color: color('blue-grey', 'lighten-4');
   border-radius: 10px;
   border-style: solid;
   padding: 1em;
 
+  .uk-accordion-title {
+    &::after {
+      height: auto !important;
+    }
+  }
+
   .uk-card-header,
   .uk-card-body {
+    border-bottom: 0 !important;
     padding: 0 !important;
+  }
+
+  &.uk-open {
+    .uk-card-header {
+      border-bottom: 1px solid #e5e5e5 !important;
+    }
+
+    .uk-accordion-title {
+      padding-bottom: 1em !important;
+    }
   }
 }
 
 .slider-label {
   margin-top: .5rem;
+}
+
+.fa-checkbox {
+  input {
+    display: none;
+  }
+}
+
+.wysiwyg-container {
+  width: 95%;
+
+  .pell-actionbar {
+    button {
+      color: $primary-color;
+
+      &:hover {
+        background: unset;
+      }
+    }
+  }
 }
 
 

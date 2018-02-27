@@ -5,12 +5,39 @@
   z-index: 444;
 
   .uk-tab {
+    left: $navigation-height;
+    top: $navigation-height;
     width: $project-nav-width;
   }
 
-  .project-nav-buttons {
+  .project-nav-bar {
+    ul {
+      li:first-of-type {
+        border-top-left-radius: 10px;
+
+        i {
+          transition: all 300ms ease-in-out;
+        }
+
+        &.uk-active {
+          i {
+            transform: rotateY(180deg);
+          }
+        }
+      }
+
+      li:last-of-type {
+        border-bottom-left-radius: 10px;
+      }
+    }
+
     li {
       background-color: color('blue-grey', 'darken-1');
+      font-size: 1em;
+
+      i {
+        font-size: 1.5em;
+      }
 
       a {
         color: color('grey', 'lighten-5');
@@ -58,6 +85,17 @@ header {
           max-height: calc(#{$navigation-height} - .5em);
           padding-right: .5em;
         }
+      }
+    }
+  }
+}
+
+.project-nav-buttons {
+  li:first-of-type {
+    opacity: 0;
+    &.uk-active {
+      i {
+        transform: rotate(90deg);
       }
     }
   }

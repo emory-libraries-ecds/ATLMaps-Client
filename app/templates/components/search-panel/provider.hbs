@@ -1,5 +1,5 @@
 <div class='remove-institutions'>
-  {{#each browseParams.institutions as |institution|}}
+  {{#each layerSearch.institutions as |institution|}}
     <span class='z-depth-1 remove-institution-button'>
       <i class="fa fa-times" aria-hidden="true" onclick={{action 'removeInstitution' institution}}></i> {{institution}}</span>
   {{/each}}

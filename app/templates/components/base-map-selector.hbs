@@ -1,16 +1,22 @@
 {{#if hasBlock}}
-<a {{action 'setBase' base}} title="Open Street Map">
-  {{yield}}
-</a>
+{{yield}}
+<ul class='uk-thumbnav' uk-margin>
+  {{#each project.baseMaps as |base|}}
+    <li class='base-map-thumb uk-active {{if (eq base.name project.default_base_map) 'current-base'}}'>
+      <a {{action 'setBase' base}}>
+        <img src={{base.thumbnail}} width='100' alt='Thumbnail preview of base layer {{base.name}}'>
+      </a>
+    </li>
+  {{/each}}
+</ul>
 {{else}}
-<a {{action 'setBase' 'street'}} title="Open Street Map">
-  <div class='base-preview street z-depth-3' />
-</a>
-<a {{action 'setBase' 'satellite'}} title="Satellite">
-  <div class='base-preview satellite z-depth-3' />
-</a>
-
-<a {{action 'setBase' 'greyscale'}} title="Greyscale">
-  <div class='base-preview greyscale z-depth-3' />
-</a>
+<ul class='uk-thumbnav base-map-selector' uk-margin>
+  {{#each project.baseMaps as |base|}}
+    <li class='base-map-thumb uk-box-shadow-xlarge uk-active'>
+      <a {{action 'setBase' base}}>
+        <img src={{base.thumbnail}} width='100' alt='Thumbnail preview of base layer {{base.name}}'>
+      </a>
+    </li>
+  {{/each}}
+</ul>
 {{/if}}

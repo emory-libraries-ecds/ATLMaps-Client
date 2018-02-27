@@ -1,0 +1,61 @@
+<div id='base-map' class='fullscreen-map'>
+    {{#leaflet-map
+      lat=model.center_lat
+      lng=model.center_lng
+      zoom=model.zoom_level
+      onClick=(action 'closeFeature')
+      onLoad=(action 'initMap')
+      onMoveend=(action 'updateBounds') as |layers|}}
+
+      {{#if model.baseMap}}
+      {{layers.tile
+        url=model.baseMap.url
+        zIndex=10
+        attribution=model.baseMap.attribution}}
+      {{/if}}
+      {{#each model.sortedRasterLayers as |wms|}}
+        {{wms-tile-layer
+        url=wms.raster_layer.url
+        layers=wms.raster_layer.layers
+        format='image/png'
+        transparent=true
+        zIndex=wms.position
+        onLoad=(action 'mapLayerAdded' wms.raster_layer)
+        opacity=wms.raster_layer.opacity}}
+      {{/each}}
+
+      {{#each model.vector_layer_project as |data|}}
+        {{#each data.vector_layer.vector_feature as |feature|}}
+          {{#if (eq feature.geometry_type 'Point')}}
+            {{#layers.marker
+              location=feature.latLng
+              onClick=(action 'showFeature' feature)
+              icon=(
+                div-icon
+                html='<div class="shadow"><i class="fa fa-map-marker"></i></div>'
+                className=(concat 'layer-' data.colorName))
+              onAdd=(action 'dataLayerAdded' feature)
+              opacity=data.vector_layer.opacity
+              class=(if feature.active 'active-feature')
+              as |point|}}
+                {{!-- {{#point.popup}}
+                  <h1>{{feature.properties.name}}</h1>
+                {{/point.popup}} --}}
+            {{/layers.marker}}
+          {{else}}
+            {{geojson-layer
+              geoJSON=feature.geojson
+              fillOpacity=data.vector_layer.fillOpacity
+              opacity=data.vector_layer.opacity
+              color=feature.colorHex
+              fillColor=feature.colorHex
+              onAdd=(action 'dataLayerAdded' feature)
+              onEachFeature=(action 'showShapeFeature' feature)
+            }}
+          {{/if}}
+        {{/each}}
+      {{/each}}
+    {{/leaflet-map}}
+  </div>
+
+{{project-ui/feature-popup feature=activeFeature on-keydown=(action (mut activeFeature) null)}}
