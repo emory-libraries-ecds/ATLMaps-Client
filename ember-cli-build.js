@@ -66,6 +66,8 @@ module.exports = function(defaults) {
     // use HTML5 instead.
     app.import('bower_components/interact/dist/interact.js');
     app.import('bower_components/js-xlsx/dist/xlsx.full.min.js');
+    app.import('bower_components/wellknown/wellknown.js');
+    app.import('vendor/shims/wellknown.js');
 
     return app.toTree([leafletImages, trumbowyg, fa]);
 };
