@@ -1,14 +1,14 @@
 // @fa-font-path: '../assets/font';
-$primary-color: color('blue-grey', 'darken-1');
-$primary-color-dark: color('blue-grey', 'darken-4');
-$primary-color-light: color('blue-grey', 'base');
+$primary-color: #546e7a;
+$primary-color-dark: #263238;
+$primary-color-light: #eceff1;
 $primary-color-trans: rgba(3, 169, 244, 1);
 $blue-grey-100: #cfd8dc;
 $blue-grey-50: #eceff1;
 $secondary-color: #f58320;
 $secondary-color-dark: #f97a0c;
-$secondary-color-light: color('deep-orange', 'accent-1');
-$nav-button: color('grey', 'darken-4');
+$secondary-color-light: #ff9e80;
+$nav-button: #455a64;
 $mobile: new-breakpoint(max-width 500px 4);
 $font-stack-system: 'Roboto';
 $zero: 0;
@@ -43,8 +43,15 @@ $navigation-height: 44px;
 $project-nav-width: 5.5em;
 $error: #f44336;
 $search-tab-height: 100px;
+$project-title-height: 52px;
+$bottom-left-map-controls: 65px;
 
 // UIkit Overrides
 $offcanvas-bar-background: rgba(255, 255, 255, .9);
 $offcanvas-bar-color-mode: dark;
 $global-primary-background: $secondary-color;
+
+.uk-offcanvas {
+  width: auto;
+  z-index: 10001 !important;
+}

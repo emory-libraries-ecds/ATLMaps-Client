@@ -8,12 +8,7 @@ import { htmlSafe } from '@ember/string';
 import DS from 'ember-data';
 import ENV from '../config/environment';
 
-const {
-  Model,
-  attr,
-  belongsTo,
-  hasMany
-} = DS;
+const { Model, attr, belongsTo, hasMany } = DS;
 
 export default Model.extend({
   /*
@@ -24,7 +19,7 @@ export default Model.extend({
   title: attr('string'),
   slug: attr('string'),
   description: attr('string'),
-  safe_description: computed('description', function safeDescription() {
+  safeDescription: computed('description', function safeDescription() {
     return new htmlSafe(`${get(this, 'description')}`);
   }),
   layer: attr('string'),

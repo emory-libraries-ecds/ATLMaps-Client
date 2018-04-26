@@ -10,7 +10,6 @@ import $ from 'jquery';
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
 import { run } from '@ember/runloop';
-import MapLayerMixin from '../mixins/map-layer';
 
 export default Route.extend({
   setupController(controller, model, params) {

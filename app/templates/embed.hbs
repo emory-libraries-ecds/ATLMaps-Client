@@ -1,6 +1,6 @@
-<header class='embed-header'>
-  <div class="embed-menu-open {{if rasterOnly "with-raster"}}" onclick={{action (toggle "showing" this)}}>
-    <i class='fa {{if showing 'fa-times' 'fa-bars'}}' aria-hidden="true"></i>
+{{!-- <header class='embed-header'>
+  <div class='embed-menu-open {{if rasterOnly 'with-raster'}}' onclick={{action (toggle 'showing' this)}}>
+    <i class='fa {{if showing 'fa-times' 'fa-bars'}}' aria-hidden='true'></i>
   </div>
   <div class='embed-title-container'>
     <div class='embed-title-title'>
@@ -8,14 +8,59 @@
   </div>
     {{#if rasterOnly}}
       <div class='embed-slider-container'>
-        <input class='embed-slider' id={{raster.name}} type="range" min="0" max="100" value='100' oninput={{action (route-action 'setOpacity')}} onchange={{action (route-action 'setOpacity')}} />
+        <input class='embed-slider' id={{raster.name}} type='range' min='0' max='100' value='100' oninput={{action (route-action 'setOpacity')}} onchange={{action (route-action 'setOpacity')}} />
       </div>
     {{/if}}
   </div>
-</header>
-<div class='layer-menu {{if showing 'showing'}}'>
+</header> --}}
+
+<div uk-grid class='embed-header {{if raster 'embed-raster'}}'>
+  {{#if raster}}
+    <a href='#embed-menu-target' class='uk-logo' uk-toggle>
+      <i class='fa fa-bars uk-position-center-left' aria-hidden='true'></i>
+    </a>
+    <div uk-grid>
+      <div class='embed-title uk-width-1-1'>
+        {{layer.title}}
+      </div>
+        <input style='margin-top: 0' class='embed-slider' id={{layer.name}} type='range' min='0' max='1' step='0.1' value={{raster.opacity}} oninput={{action (mut raster.opacity) value='target.value'}} />
+    </div>
+  {{else}}
+    <span class='uk-position-center-left'>
+      <div>
+    <a href='#embed-menu-target' class='uk-logo' uk-toggle>
+      <i class='fa fa-bars uk-position-center-left' aria-hidden='true'></i>
+    </a>
+    </div>
+    {{layer.title}}
+    </span>
+  {{/if}}
+</div>
+
+<div id='embed-menu-target' class='embed-menu' uk-offcanvas>
+  <div class='uk-offcanvas-bar'>
+
+    <button class='uk-offcanvas-close' type='button' uk-close></button>
+
+    <h3 class='uk-heading'>{{layer.title}}</h3>
+    <p>
+      {{{layer.safeDescription}}}
+    </p>
+    <h4 class='uk-heading'>Select Base</h4>
+    <div uk-grid>
+      {{#each baseMaps.baseMaps as |base|}}
+        <div class='uk-width-1-3'>
+          <a {{action 'switchBase' base.label}}>
+            <img src='{{base.thumbnail}}' width='400' alt='Thumbnail image for base map {{base.label}}'>
+          </a>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{!-- <div class='layer-menu {{if showing 'showing'}}'>
   <h2>Select Base Layer</h2>
-  <span onclick={{action (toggle "showing" this)}}><i class="fa fa-times-circle-o" aria-hidden="true"></i></span>
+  <span onclick={{action (toggle 'showing' this)}}><i class='fa fa-times-circle-o' aria-hidden='true'></i></span>
 
   {{#if rasterOnly}}
   {{#base-map-selector base='greyscale' class='greyscale thumb'}}
@@ -23,7 +68,7 @@
   {{/base-map-selector}}
   {{else}}
   {{#base-map-selector base='greyscale' class='raster greyscale thumb'}}
-    <span class='clickable' style="{{raster.safe_background_thumb}}" />
+    <span class='clickable' style='{{raster.safe_background_thumb}}' />
   {{/base-map-selector}}
   {{/if}}
 
@@ -34,9 +79,70 @@
   {{#base-map-selector base='satellite' class='satellite thumb'}}
     <span class='clickable' />
   {{/base-map-selector}}
-</div>
+</div> --}}
 <div id='base-map' class='fullscreen-map'>
-  <div id='map' class='atlmap'></div>
+  {{#leaflet-map
+    lat=33.7489954
+    lng=-84.3879824
+    zoom=10
+    onLoad=(action 'initMap') as |layers|
+  }}
+
+    {{layers.tile
+      url=baseMap.url
+      attribution=baseMap.attribution
+      zIndex=1
+    }}
+
+    {{#each model.rasters as |wms|}}
+      {{wms-tile-layer
+        url=wms.url
+        layers=wms.layers
+        format='image/png'
+        transparent=true
+        zIndex=10
+        opacity=wms.opacity
+        onAdd=(action 'mapLayerAdded' wms)
+      }}
+    {{/each}}
+
+
+
+    {{#each model.vectors as |vector|}}
+      {{#each vector.vector_feature as |feature|}}
+        {{#if (eq feature.geometry_type 'Point')}}
+            {{layers.marker
+              location=feature.latLng
+              onClick=(action 'showFeature' feature)
+              icon=(
+                div-icon
+                html='<div class="shadow"><i class="fa fa-map-marker"></i></div>'
+                className=(concat 'layer-' color))
+              opacity=1
+              class=(if feature.active 'active-feature')
+            }}
+          {{else}}
+            {{geojson-layer
+              geoJSON=feature.geojson
+              fillOpacity=data.vector_layer.fillOpacity
+              opacity=data.vector_layer.opacity
+              color=feature.colorHex
+              fillColor=feature.colorHex
+              onEachFeature=(action 'showShapeFeature' feature)
+            }}
+          {{/if}}
+      {{/each}}
+    {{/each}}
+  {{/leaflet-map}}
+
   <a href='{{layer.shareUrl}}' target='_blank' title='Open in ATLMaps'><img class='watermark' src='/assets/images/logo-small.png' /></a>
 </div>
-{{vector-info}}
+
+
+<div id='embed-feature-detail' uk-offcanvas='flip: true; overlay: true'>
+  <div class='uk-offcanvas-bar'>
+    <button class='uk-offcanvas-close' type='button' uk-close></button>
+    <h3>{{feature.name}}</h3>
+    {{feature-content feature=feature}}
+  </div>
+</div>

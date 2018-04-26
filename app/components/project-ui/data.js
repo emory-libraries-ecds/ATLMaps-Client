@@ -12,30 +12,38 @@ export default Component.extend({
   },
 
   actions: {
-    toggleLayer(layer, project) {
+    toggleLayer(layer) {
       const vectorLayer = get(layer, 'vector_layer');
       vectorLayer.toggleProperty('showing');
-      get(vectorLayer, 'vector_feature').forEach((feature) => {
-        if (get(vectorLayer, 'showing') === false) {
-          get(feature, 'leafletObject').remove();
-        } else {
-          get(feature, 'leafletObject').addTo(get(project, 'leafletObject'));
-        }
+      get(vectorLayer, 'vector_feature').forEach(feature => {
+        feature.toggleProperty('show');
       });
-      get(project, 'allVectorsHidden');
+      // get(project, 'allVectorsHidden');
     },
 
     toggleAll(model) {
-      if(get(model, 'project.allVectorsHidden') === false) {
-        get(this, 'store').peekAll('vector_feature').forEach((vf)=> {
-          get(vf, 'leafletObject').remove();
-        });
-        get(this, 'store').peekAll('vector_layer').setEach('showing', false);
+      if (get(model, 'project.allVectorsHidden') === false) {
+        get(this, 'store')
+          .peekAll('vector_feature')
+          .forEach(vf => {
+            vf.setProperties({ show: false });
+          });
+        get(this, 'store')
+          .peekAll('vector_layer')
+          .forEach(vl => {
+            vl.setProperties({ showing: false });
+          });
       } else {
-        get(this, 'store').peekAll('vector_feature').forEach((vf)=> {
-          get(vf, 'leafletObject').addTo(get(model, 'project.leafletObject'));
-        });
-        get(this, 'store').peekAll('vector_layer').setEach('showing', true);
+        get(this, 'store')
+          .peekAll('vector_feature')
+          .forEach(vf => {
+            vf.setProperties({ show: true });
+          });
+        get(this, 'store')
+          .peekAll('vector_layer')
+          .forEach(vl => {
+            vl.setProperties({ showing: true });
+          });
       }
     }
   }

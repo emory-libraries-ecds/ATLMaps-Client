@@ -5,6 +5,7 @@
   z-index: 444;
 
   .uk-tab {
+    // background: $nav-button;
     left: $navigation-height;
     top: $navigation-height;
     width: $project-nav-width;
@@ -32,7 +33,7 @@
     }
 
     li {
-      background-color: color('blue-grey', 'darken-1');
+      background-color: $primary-color;
       font-size: 1em;
 
       i {
@@ -40,24 +41,20 @@
       }
 
       a {
-        color: color('grey', 'lighten-5');
+        color: $white;
         text-align: center;
         transition: background-color $rabbit;
         transition-timing-function: ease-in-out;
       }
 
       &:hover {
-        background-color: color('blue-grey', 'lighten-3');
+        background-color: $primary-color-light;
         box-shadow: $shadow;
         color: color('grey', 'darken-3');
       }
 
       &.uk-active {
         background: $secondary-color;
-
-        a {
-          color: color('grey', 'lighten-5');
-        }
       }
     }
   }
@@ -65,7 +62,6 @@
 
 header {
   &.navigation {
-    $navigation-color: transparentize($white, .3);
 
     background-color: $primary-color-dark;
     position: fixed;
@@ -73,7 +69,7 @@ header {
     z-index: 999;
 
     .uk-navbar-nav > li > a {
-      color: $navigation-color;
+      color: $white;
       max-height: $navigation-height;
       text-transform: none;
 

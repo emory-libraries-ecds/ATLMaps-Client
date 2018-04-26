@@ -25,15 +25,15 @@
 
     <div class='uk-accordion-content'>
       <div class='uk-card-body'>
-        {{layer.raster_layer.description}}
+        {{{layer.raster_layer.safeDescription}}}
         <section class='uk-text-meta uk-margin-bottom'>
           Layer Provided by: {{layer.raster_layer.institution.name}} {{layer.raster_layer.attribution}}
         </section>
       </div>
       <div class='uk-card-footer'>
         {{shareable-link layer=layer.raster_layer}}
-        {{#if project.may_edit}}
-          {{remove-layer-button model=model layer=layer.raster_layer tagName='button'}}
+        {{#if model.project.may_edit}}
+         {{#uk-button size='small' clolor='danger' on-click=(route-action 'removeLayer' layer)}}<i class='fa fa-trash' aria-hidden='true'></i> Remove{{/uk-button}}
         {{/if}}
       </div>
     </div>

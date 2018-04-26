@@ -1,7 +1,6 @@
 .project-title {
-  font-size: 2em;
-  height:  52px;
-  // left: calc(#{$project-nav-width} * 1.5);
+  font-size: 1.5em;
+  line-height: 1em;
   margin-left: 132px;
   top: calc(#{$navigation-height} * 2);
   width: 30vw;
@@ -19,8 +18,7 @@
   }
 
   .uk-card-body {
-    max-height: calc(100vh - 175px);
-    width: 100% !important;
+    max-height: calc((100vh - #{$project-title-height}) - (#{$bottom-left-map-controls} + (#{$navigation-height} * 2)));
   }
 
   .uk-active {
@@ -30,6 +28,7 @@
   .uk-drop {
     &.uk-open {
       background: lightgray;
+      display: contents;
     }
   }
 }
@@ -45,7 +44,7 @@
 
 .sortable-raster-list,
 .data-layer {
-  border-color: color('blue-grey', 'lighten-4');
+  border-color: $primary-color-light;
   border-radius: 10px;
   border-style: solid;
   padding: 1em;

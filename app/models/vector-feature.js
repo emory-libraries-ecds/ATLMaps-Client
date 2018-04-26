@@ -3,11 +3,7 @@ import { computed, get } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 import DS from 'ember-data';
 
-const {
-  Model,
-  attr,
-  belongsTo
-} = DS;
+const { Model, attr, belongsTo } = DS;
 
 export default Model.extend({
   vector_layer: belongsTo('vector_layer', { async: false }),
@@ -24,8 +20,9 @@ export default Model.extend({
   vimeo: attr('string'),
   audio: attr('string'),
   feature_id: attr('string'),
-  color_name: attr('string'),
-  color_hex: attr('string'),
+  show: attr('boolean', {
+    defaultValue: true
+  }),
 
   // Ember SafeString to render HTML
   safeDescription: computed('description', function safeDescription() {
@@ -33,21 +30,10 @@ export default Model.extend({
   }),
 
   latLng: computed('geojson', function latLng() {
-    return [get(this, 'geojson.coordinates')[1], get(this, 'geojson.coordinates')[0]];
-  }),
-
-  colorHex: computed('color_hex', '_colorHex', function() {
-    if (get(this, 'color_hex')) {
-      return get(this, 'color_hex');
-    }
-    return get(this, '_colorHex');
-  }),
-
-  colorName: computed('color_name', '_colorName', function() {
-    if (get(this, 'color_name')) {
-      return get(this, 'color_name');
-    }
-    return get(this, '_colorName');
+    return [
+      get(this, 'geojson.coordinates')[1],
+      get(this, 'geojson.coordinates')[0]
+    ];
   }),
 
   // Temporary properties for editing

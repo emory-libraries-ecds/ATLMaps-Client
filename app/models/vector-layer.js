@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { computed, get } from '@ember/object';
+import { filterBy } from '@ember/object/computed';
 import { dasherize } from '@ember/string';
 import Layer from './layer';
 
@@ -12,6 +13,9 @@ export default Layer.extend({
   }),
   // vector_feature: attr(),
   vector_feature: hasMany('vector-feature', { async: false }),
+  data_type: attr('string', {
+    defaultValue: 'GeometryCollection'
+  }),
   filters: attr(),
   data_format: attr('string', {
     defaultValue: 'vector'
@@ -23,9 +27,14 @@ export default Layer.extend({
     defaultValue: 3
   }),
   dataTypeSlug: computed('data_type', function() {
-    return dasherize(get(this, 'data_type'))
+    return dasherize(get(this, 'data_type'));
   }),
-  showing: attr('boolean', {
-    defaultValue: true
+  // showing: attr('boolean', {
+  //   defaultValue: true
+  // })
+  _hiddenFeatures: filterBy('vector_feature', 'show', true),
+  showing: computed(function() {
+    // get(this, '_hiddenFeatures');
+    return this.get('vector_feature').isEvery('show', true);
   })
 });

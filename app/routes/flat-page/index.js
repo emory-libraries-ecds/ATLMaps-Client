@@ -9,10 +9,6 @@ export default Route.extend({
     willTransition() {
       this._super(...arguments);
       this.store.unloadAll('project');
-    },
-
-    clickUserMenu() {
-      document.getElementById('user-menu-link').click();
     }
   }
 });

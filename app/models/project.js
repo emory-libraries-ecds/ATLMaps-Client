@@ -5,20 +5,16 @@ import { A } from '@ember/array';
 import { get, computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
 
-const {
-  Model,
-  attr,
-  hasMany
-} = DS;
+const { Model, attr, hasMany } = DS;
 
 export default Model.extend({
   name: attr('string'),
   description: attr('string'),
   center_lat: attr('number', {
-    defaultValue: 33.75440100
+    defaultValue: 33.75440111
   }),
   center_lng: attr('number', {
-    defaultValue: -84.3898100
+    defaultValue: -84.3898111
   }),
   zoom_level: attr('number', {
     defaultValue: 13
@@ -52,11 +48,9 @@ export default Model.extend({
   owner: attr(),
   mine: attr('boolean'),
   may_edit: attr('boolean'),
-  templateSlug: attr('string'),
   intro: attr('string'),
   media: attr('string'),
   photo: attr('string'),
-  template_id: attr('number'),
   card_url: attr('string'),
 
   // The following are non-API based attributes.
@@ -143,25 +137,30 @@ export default Model.extend({
   }),
 
   baseMaps: computed('', function() {
-    return A([
+    return new A([
       {
         name: 'street',
         url: 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
-        attribution: '&copy; Openstreetmap France | &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution:
+          '&copy; Openstreetmap France | &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         thumbnail: '/assets/images/street_map.png'
       },
       {
         name: 'greyscale',
-        url: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+        url:
+          'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
         thumbnail: '/assets/images/carto.png'
       },
       {
         name: 'satellite',
-        url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+        url:
+          'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        attribution:
+          'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         thumbnail: '/assets/images/satellite.png'
       }
-    ])
+    ]);
   })
 });

@@ -37,8 +37,8 @@
     }
 
     .center-align {
-      background-color: color('grey', 'lighten-4');
-      color: color('grey', 'darken-3');
+      // background-color: color('grey', 'lighten-4');
+      // color: color('grey', 'darken-3');
       margin: 120px auto 0;
       max-width: 800px;
       opacity: .9;
@@ -100,7 +100,7 @@
 
     header {
       h2 {
-        color: rgba($primary-color, .8);
+        color: $primary-color-dark;
         font-family: 'Open Sans', sans-serif;
         font-size: 5em;
         font-weight: 400;

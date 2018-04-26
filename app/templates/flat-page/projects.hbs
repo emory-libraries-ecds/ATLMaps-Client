@@ -1,39 +1,60 @@
-<div class="banner orange">
-  <div class="container">
+<div class='banner orange'>
+  <div class='container'>
     <header>
       <h2>Projects</h2>
     </header>
   </div>
 </div>
-<div class="banner orange blurred">
-  <div class="container">
-    {{#if model.currentUser.confirmed}}
-    <span class='button-new'>
-      <a {{action 'createProject'}} class="waves-effect waves-light btn"><i class="fa fa-plus" aria-hidden="true"></i> Start New Project</a>
-    </span>
-    {{/if}}
+<div class='banner orange blurred'>
 
-      {{#if model.isPending}}
-        <h2>Loading...</h2>
-      {{else}}
-        {{#if model.mine}}
-          <h3>My Projects</h3>
-          <hr />
-          <div class="cards">
-          {{#each model.mine as |myProject|}}
-            {{project-card project=myProject mine=true class='projects-page'}}
+  {{#if session.isAuthenticated}}
+  <div class='uk-section uk-preserve-color'>
+    <div class='uk-container'>
+      {{#if model.currentUser.confirmed}}
+      {{#uk-button color='primary' size='large' on-click=(action 'createProject')}}
+        <i class='fa fa-plus' aria-hidden='true'></i> Start New Project
+      {{/uk-button}}
+    {{/if}}
+        <div class='uk-panel uk-margin-medium'>
+            <h3>My Projects</h3>
+        </div>
+
+        <div class='uk-grid-match uk-child-width-1-1@s uk-child-width-1-2@m uk-child-width-1-3@l' uk-grid>
+          {{#each model.mine as |project|}}
+            <div>
+              {{#uk-card class='uk-card-body'}}
+                {{#uk-button class='uk-card-badge uk-label' on-click=(action 'deleteProject' project.id)}}
+                  <i class='fa fa-fw fa-trash' aria-hidden='true'></i> Delete
+                {{/uk-button}}
+                <h4 class='uk-card-title'>{{project.name}}</h4>
+                  <p>{{project.description}}</p>
+              {{/uk-card}}
+            </div>
           {{/each}}
         </div>
-        {{/if}}
-        <h3>Public Projects</h3>
-        <hr />
-        <div class="row">
-        {{#each model.featured as |project|}}
-          {{project-card project=project}}
-        {{else}}
-          <p>There are no projects visible at this time :(</p>
-        {{/each}}
+
+    </div>
+</div>
+{{/if}}
+
+  <div class='uk-section uk-preserve-color'>
+    <div class='uk-container'>
+        <div class='uk-panel uk-margin-medium'>
+            <h3>Featured Projects</h3>
         </div>
-      {{/if}}
+        <div class='uk-grid-match uk-child-width-1-1@s uk-child-width-1-2@m uk-child-width-1-3@l' uk-grid uk-height-match target='> div > a > .uk-card'>
+          {{#each model.featured as |project|}}
+            <div>
+              {{#link-to 'project' project.id class='card-link'}}
+              {{#uk-card class='uk-card-body uk-card uk-card-hover'}}
+                <h4 class='uk-card-title'>{{project.name}}</h4>
+                  <p>{{project.description}}</p>
+              {{/uk-card}}
+              {{/link-to}}
+            </div>
+          {{/each}}
+        </div>
+    </div>
   </div>
 </div>
+

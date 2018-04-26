@@ -3,10 +3,7 @@ import { inject as service } from '@ember/service';
 import DS from 'ember-data';
 import LayerProject from './layer-project';
 
-const {
-  attr,
-  belongsTo
-} = DS;
+const { attr, belongsTo } = DS;
 
 export default LayerProject.extend({
   vector_layer: belongsTo('vector_layer', {
@@ -14,7 +11,9 @@ export default LayerProject.extend({
     inverse: null
   }),
   marker: attr(),
-  data_type: attr('string'),
+  data_type: computed('vector_layer', function() {
+    return get(this, 'vector_layer.data_type');
+  }),
   data_format: attr('string', {
     defaultValue: 'vector'
   }),
@@ -22,20 +21,22 @@ export default LayerProject.extend({
 
   colorName: computed('marker', function colorName() {
     if (get(this, 'data_type') === 'Point') {
-      get(this, 'vector_layer.vector_feature').setEach('_colorName', get(this, 'dataColors.markerColors')[this.get('marker')].name || null);
-      return get(this, 'dataColors.markerColors')[this.get('marker')].name || null;
+      return (
+        get(this, 'dataColors.markerColors')[this.get('marker')].name || null
+      );
     }
-    get(this, 'vector_layer.vector_feature').setEach('_colorName', get(this, 'dataColors.shapeColors')[this.get('marker')].name || null);
-    return get(this, 'dataColors.shapeColors')[this.get('marker')].name || null;
+    return (
+      get(this, 'dataColors.shapeColors')[get(this, 'marker')].name || null
+    );
   }),
 
   colorHex: computed('marker', function colorName() {
     if (get(this, 'data_type') === 'Point') {
-      get(this, 'vector_layer.vector_feature').setEach('_colorHex', get(this, 'dataColors.markerColors')[this.get('marker')].hex || null);
-      return get(this, 'dataColors.markerColors')[this.get('marker')].hex || null;
+      return (
+        get(this, 'dataColors.markerColors')[get(this, 'marker')].hex || null
+      );
     }
-    get(this, 'vector_layer.vector_feature').setEach('_colorHex', get(this, 'dataColors.shapeColors')[this.get('marker')].hex || null);
-    return get(this, 'dataColors.shapeColors')[this.get('marker')].hex || null;
+    return get(this, 'dataColors.shapeColors')[get(this, 'marker')].hex || null;
   }),
 
   showing: computed('vector_layer.showing', function isShowing() {

@@ -1,12 +1,12 @@
 <div class='uk-offcanvas-content'>
-  <button class='uk-button show-search' type='button' uk-toggle target='#offcanvas-flip' {{action (action 'getResults')}}>
+  <button class='uk-button show-search' type='button' {{action (action 'getResults')}}>
     <i class='fa fa-chevron-left' aria-hidden='true'></i><i class='fa fa-chevron-left' aria-hidden='true'></i> Find Layers
   </button>
 
-  <div id='offcanvas-flip' uk-offcanvas flip='true' overlay='false' bg-close='false'>
+  <div id='offcanvas-search' class='search-panel-container'>
     <div class='uk-offcanvas-bar uk-flex uk-flex-column uk-overflow-hidden'>
 
-      <button class='uk-offcanvas-close' type='button' uk-close></button>
+      <button class='uk-offcanvas-close' type='button' uk-close onclick={{action 'hideSearchPanel'}}></button>
 
       {{#uk-switcher class='search-results uk-overflow-auto' as |switcher|}}
         {{#switcher.nav type='tab' as |nav|}}
@@ -54,12 +54,12 @@
           {{/content.item}}
           {{#content.item}}
             <div id='rasters' class='scroll-anchor' />
-            {{search-panel/results type='rasters' layers=model.rasters project=model.project}}
+            {{search-panel/results type='rasters' addRemoveLayer=addRemoveLayer layers=model.rasters project=model.project}}
             {{!pagination-links meta=model.rasters.meta layerType='rasters' class='pagination-bar'}}
           {{/content.item}}
           {{#content.item}}
             <div id='vectors' class='scroll-anchor' />
-            {{search-panel/results type='vectors' layers=model.vectors project=model.project}}
+            {{search-panel/results type='vectors' addRemoveLayer=addRemoveLayer layers=model.vectors project=model.project}}
             {{!pagination-links meta=model.vectors.meta layerType='vectors' class='pagination-bar'}}
           {{/content.item}}
         {{/switcher.content}}

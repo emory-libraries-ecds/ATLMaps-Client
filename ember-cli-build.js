@@ -21,9 +21,6 @@ module.exports = function(defaults) {
 
         sassOptions: {
             includePaths: [
-                'bower_components/bourbon/core',
-                'bower_components/bitters/core',
-                'bower_components/neat/core',
                 'bower_components/font-awesome/scss'
             ],
             nodeSass // Workaround for ember-cli-sass bug https://github.com/aexmachina/ember-cli-sass/issues/117

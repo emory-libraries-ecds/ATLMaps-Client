@@ -1,5 +1,5 @@
 <label class='uk-form-label' for='search-text'>Search</label>
-<div class='uk-form-controls'>
-    {{input type='search' class='uk-input' id='search-text' name='textsearch' value=searchTerms enter='search' placeholder='Search for terms...'}}
-    <button class='uk-button uk-button-default' {{action 'search'}}>search</button>
+<div class='uk-form-controls text-search' uk-grid>
+    {{input type='search' class='uk-input uk-width-expand@m' id='search-text' name='textsearch' value=searchTerms enter='search' placeholder='Search for terms...'}}
+    {{#uk-button color='primary' class='uk-width-auto@m' on-click=(action 'search')}}Search{{/uk-button}}
 </div>

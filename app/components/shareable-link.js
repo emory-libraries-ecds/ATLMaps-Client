@@ -1,10 +1,9 @@
 import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { run } from '@ember/runloop';
+import UIkit from 'uikit';
 
 export default Component.extend({
-  flashMessage: service(),
   dataColors: service(),
   baseMaps: service(),
   tagName: '',
@@ -19,35 +18,44 @@ export default Component.extend({
   },
   selectedColor: null,
 
-  actions: {
+  didInsertElement() {
+    const layer = get(this, 'layer');
+    let shareModal = UIkit.modal(
+      document.getElementById(`share-modal-${get(layer, 'name')}${layer.id}`)
+    );
+    let embedModal = UIkit.modal(
+      document.getElementById(`embed-modal-${get(layer, 'name')}${layer.id}`)
+    );
+    set(this, 'shareModal', shareModal);
+    set(this, 'embedModal', embedModal);
+  },
 
+  actions: {
     setColor(color) {
       set(this, 'embedParams.color', color.name);
       set(this, 'selectedColor', color);
     },
 
     success(type) {
-      const flash = get(this, 'flashMessage');
-      flash.setProperties({
-        message: `${type} COPIED TO CLIPBOARD`,
-        show: true,
-        success: true
+      UIkit.notification({
+        message: `${type} copied to clipboard`,
+        status: 'success'
       });
-      run.later(this, () => {
-        flash.setProperties({ message: '', show: false });
-      }, 3000);
     },
 
     error() {
-      const flash = get(this, 'flashMessage');
-      flash.setProperties({
-        message: 'FAILED TO COPY',
-        show: true,
-        success: false
+      UIkit.notification({
+        message: 'Error copying URL to clipboard',
+        status: 'danger'
       });
-      run.later(this, () => {
-        flash.setProperties({ show: false });
-      }, 300);
+    },
+
+    showModal(type) {
+      if (type === 'share') {
+        get(this, 'shareModal').show();
+      } else {
+        get(this, 'embedModal').show();
+      }
     }
   }
 });

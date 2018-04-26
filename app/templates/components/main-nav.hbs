@@ -1,13 +1,10 @@
-<nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
-    <div class="uk-navbar-left">
+<nav class='uk-navbar-container uk-navbar-transparent' uk-navbar>
+    <div class='uk-navbar-left'>
 
-        <ul class="uk-navbar-nav">
+        <ul class='uk-navbar-nav'>
             <li>{{#link-to 'flat-page' class='logo' }}
-                <img src="/assets/images/atl.png" alt="Logo Image"> <span style='font-weight:900'>ATL</span>Maps
+                <img src='/assets/images/atl.png' alt='Logo Image'> <span style='font-weight:900'>ATL</span>Maps
                 {{/link-to}}
-            </li>
-            <li>
-                {{#link-to 'flat-page.projects'}}Projects{{/link-to}}
             </li>
             <li>
                 {{#link-to 'flat-page.projects'}}Projects{{/link-to}}
@@ -21,13 +18,13 @@
         </ul>
 
     </div>
-    <div class="uk-navbar-right">
+    <div class='uk-navbar-right'>
 
-        <ul class="uk-navbar-nav">
+        <ul class='uk-navbar-nav'>
             <li>
-                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Account</a>
-                <div class="uk-navbar-dropdown">
-                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                <a href='#'><i class='fa fa-user' aria-hidden='true'></i> Account</a>
+                <div class='uk-navbar-dropdown' mode='click'>
+                    <ul class='uk-nav uk-navbar-dropdown-nav'>
                     {{#if session.isAuthenticated}}
                         <li>
                             <a href='{{action 'invalidateSession'}}'>
@@ -37,26 +34,25 @@
                         {{#if currentUser.user.confirmed}}
                             <li>
                                 {{currentUser.user.displayname}}
-                                {{!-- {{#ember-inline-edit
-                                    value=currentUser.user.displayname
-                                    onSave=(action 'updateDisplayName' currentUser.user)
-                                    onCancel=(action 'cancelUpdate' currentUser.user)
-                                    as |inline-edit|}}
-                                    {{#inline-edit.editable}}
-                                        <span><i>{{currentUser.user.displayname}}</i> <i class="fa-li fa fa-pencil-square" aria-hidden="true"></i></span>
-                                    {{/inline-edit.editable}}
-
-                                    {{#inline-edit.editor}}
-                                        {{input value=currentUser.user.displayname}}
-                                    {{/inline-edit.editor}}
-                                {{/ember-inline-edit}} --}}
                             </li>
                         {{else}}
                             <li>Your account has not been confirmed. Please check your email.</li>
                         {{/if}}
                     {{else}}
                         <li>
-                            {{#login-link}}<i class="fa fa-sign-in" aria-hidden="true"></i> Log in{{/login-link}}
+                            {{#uk-button on-click=(action 'showLoginModal')}}>
+                                <i class='fa fa-sign-in' aria-hidden='true'></i> Log in
+                            {{/uk-button}}
+
+                            <div id='login-modal' class='uk-flex-top' uk-modal>
+                                <div class='uk-modal-dialog uk-modal-body uk-margin-auto-vertical'>
+
+                                    <button class='uk-modal-close-default' type='button' uk-close></button>
+
+                                    {{login-form}}
+
+                                </div>
+                            </div>
                         </li>
                     {{/if}}
                     </ul>
@@ -65,5 +61,6 @@
         </ul>
     </div>
 </nav>
+
 {{!-- empty div is the wormhole --}}
-<div id='results' class='search-pane {{if model.project.showingSearch 'showing-search' 'collapse-pane'}}' />
+{{!-- <div id='results' class='search-pane {{if model.project.showingSearch 'showing-search' 'collapse-pane'}}' /> --}}

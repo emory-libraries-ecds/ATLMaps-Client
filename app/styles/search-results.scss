@@ -2,33 +2,44 @@
 button {
   &.show-search {
     background-color: $secondary-color;
+    border-radius: 10px;
     color: $white;
+    font-size: 1.25em;
     position: absolute;
-    right: 0;
-    top: $navigation-height;
+    right: $navigation-height;
+    top: calc(#{$navigation-height} * 2);
     z-index: 999;
   }
 }
 
 // Actual Pane
-.uk-offcanvas-bar {
-  padding: 0 !important;
-  top: $navigation-height !important;
+.search-panel-container {
+  .uk-offcanvas-bar {
+    padding: 0 !important;
+    top: $navigation-height !important;
 
-  .uk-tab {
-    background: $white !important;
-    padding-top: $navigation-height !important;
+    .uk-tab {
+      background: $white !important;
+      margin-left: 0;
+      padding-top: $navigation-height !important;
+    }
+
+    .uk-switcher {
+      padding-left: $navigation-height !important;
+      padding-right: $navigation-height !important;
+    }
   }
 
-  .uk-switcher {
-    padding-left: $navigation-height !important;
-    padding-right: $navigation-height !important;
+  @media (min-width: 960px) {
+    .uk-offcanvas-bar {
+      width: 33vw !important;
+    }
   }
 }
 
-@media (min-width: 960px) {
-  .uk-offcanvas-bar {
-    width: 33vw !important;
+.text-search {
+  &.uk-form-controls {
+    margin-left: 0;
   }
 }
 

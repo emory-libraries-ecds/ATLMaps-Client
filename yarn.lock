@@ -2765,7 +2765,7 @@ ember-cli-htmlbars-inline-precompile@^1.0.0, ember-cli-htmlbars-inline-precompil
     heimdalljs-logger "^0.1.7"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.0.8, ember-cli-htmlbars@^1.1.1:
+ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.1:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.3.4.tgz#461289724b34af372a6a0c4b6635819156963353"
   dependencies:
@@ -2822,7 +2822,7 @@ ember-cli-lodash-subset@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-2.0.1.tgz#20cb68a790fe0fde2488ddfd8efbb7df6fe766f2"
 
-ember-cli-node-assets@^0.1.1, ember-cli-node-assets@^0.1.6:
+ember-cli-node-assets@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.1.6.tgz#6488a2949048c801ad6d9e33753c7bce32fc1146"
   dependencies:
@@ -3246,13 +3246,7 @@ ember-invoke-action@1.4.0:
   dependencies:
     ember-cli-babel "^5.1.6"
 
-ember-keyboard@2.1.9:
-  version "2.1.9"
-  resolved "https://registry.yarnpkg.com/ember-keyboard/-/ember-keyboard-2.1.9.tgz#52a810b749d23ca5bafd4484fd101bf0b73811ab"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-
-ember-leaflet@~3.0.12:
+ember-leaflet@^3.0.13:
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/ember-leaflet/-/ember-leaflet-3.0.13.tgz#9e9d96e0a501bc713142e539399f9f182c09e0df"
   dependencies:
@@ -3297,15 +3291,6 @@ ember-metrics@0.6.3:
     ember-getowner-polyfill "^1.0.0"
     ember-runtime-enumerable-includes-polyfill "^1.0.1"
 
-ember-modal-dialog@0.8.8:
-  version "0.8.8"
-  resolved "https://registry.yarnpkg.com/ember-modal-dialog/-/ember-modal-dialog-0.8.8.tgz#ade57ea77f81a83c502c8005847e600449127bd9"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-    ember-cli-htmlbars "^1.0.8"
-    ember-cli-version-checker "^1.1.6"
-    ember-wormhole "~0.3.6"
-
 ember-native-dom-helpers@^0.3.9:
   version "0.3.12"
   resolved "https://registry.yarnpkg.com/ember-native-dom-helpers/-/ember-native-dom-helpers-0.3.12.tgz#034cb273056ac94914e7081925175357e4c37a81"
@@ -3319,12 +3304,6 @@ ember-native-dom-helpers@^0.4.0:
   dependencies:
     broccoli-funnel "^1.1.0"
     ember-cli-babel "^6.1.0"
-
-ember-new-computed@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/ember-new-computed/-/ember-new-computed-1.0.3.tgz#592af8a778e0260ce7e812687c3aedface1622bf"
-  dependencies:
-    ember-cli-babel "^5.1.5"
 
 ember-pell@^1.2.1:
   version "1.2.1"
@@ -3444,14 +3423,6 @@ ember-source@~2.18.0:
     jquery "^3.2.1"
     resolve "^1.3.3"
 
-ember-tether@0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ember-tether/-/ember-tether-0.3.1.tgz#dd30195aeeed78aad44a211011f0647924708c8d"
-  dependencies:
-    ember-cli-babel "^5.0.0"
-    ember-cli-node-assets "^0.1.1"
-    tether "^1.3.2"
-
 ember-tether@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/ember-tether/-/ember-tether-0.4.1.tgz#b3fa3910bb4c430e14007e016774f78ced478cf7"
@@ -3548,12 +3519,6 @@ ember-wormhole@^0.5.2:
   dependencies:
     ember-cli-babel "^6.10.0"
     ember-cli-htmlbars "^2.0.1"
-
-ember-wormhole@~0.3.6:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/ember-wormhole/-/ember-wormhole-0.3.6.tgz#bbe21bb5478ad254efe4fff4019ac6710f4ad85c"
-  dependencies:
-    ember-cli-babel "^5.0.0"
 
 ember@^1.0.3:
   version "1.0.3"
@@ -3719,6 +3684,12 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+eslint-config-prettier@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-2.9.0.tgz#5ecd65174d486c22dff389fe036febf502d468a3"
+  dependencies:
+    get-stdin "^5.0.1"
+
 eslint-import-resolver-node@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.1.tgz#4422574cde66a9a7b099938ee4d508a199e0e3cc"
@@ -3753,6 +3724,13 @@ eslint-plugin-import@^2.7.0:
     lodash.cond "^4.3.0"
     minimatch "^3.0.3"
     read-pkg-up "^2.0.0"
+
+eslint-plugin-prettier@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.6.0.tgz#33e4e228bdb06142d03c560ce04ec23f6c767dd7"
+  dependencies:
+    fast-diff "^1.1.1"
+    jest-docblock "^21.0.0"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -4107,6 +4085,10 @@ extsprintf@1.3.0, extsprintf@^1.2.0:
 fast-deep-equal@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-1.0.0.tgz#96256a3bc975595eb36d82e9929d060d893439ff"
+
+fast-diff@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.1.2.tgz#4b62c42b8e03de3f848460b639079920695d0154"
 
 fast-json-stable-stringify@^2.0.0:
   version "2.0.0"
@@ -4497,6 +4479,10 @@ get-size@~2.0.2:
 get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
+
+get-stdin@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
 
 get-stream@^3.0.0:
   version "3.0.0"
@@ -5369,6 +5355,10 @@ istextorbinary@2.1.0:
     binaryextensions "1 || 2"
     editions "^1.1.1"
     textextensions "1 || 2"
+
+jest-docblock@^21.0.0:
+  version "21.2.0"
+  resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
 
 jmespath@0.15.0:
   version "0.15.0"
@@ -6918,6 +6908,10 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
+prettier@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.11.1.tgz#61e43fc4cd44e68f2b0dfc2c38cd4bb0fccdcc75"
+
 printf@^0.2.3:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/printf/-/printf-0.2.5.tgz#c438ca2ca33e3927671db4ab69c0e52f936a4f0f"
@@ -8213,11 +8207,7 @@ testem@^1.18.0:
     tap-parser "^5.1.0"
     xmldom "^0.1.19"
 
-tether@1.3.7:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/tether/-/tether-1.3.7.tgz#65578104741694f9672c808eae04a9adae7b0304"
-
-tether@^1.3.2, tether@^1.4.0:
+tether@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/tether/-/tether-1.4.0.tgz#0f9fa171f75bf58485d8149e94799d7ae74d1c1a"
 

@@ -3,9 +3,6 @@
   "dependencies": {
     "jquery": "~3.1.1",
     "loader.js": "ember-cli/loader.js#3.2.1",
-    "materialize": "0.97.6",
-    "bourbon": "https://github.com/thoughtbot/bourbon.git#v5.0.0.beta.8",
-    "bitters": "^1.5.0",
     "corejs-typeahead": "~1.1.1"
   },
   "devDependencies": {

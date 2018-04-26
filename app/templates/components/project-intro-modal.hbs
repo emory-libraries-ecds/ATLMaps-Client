@@ -3,10 +3,10 @@
   learn more
 {{/uk-button}}
 
-<div id='project-intro-modal' class='uk-flex-top' class='uk-modal-container'>
+<div id='project-intro-modal' class='uk-flex-top uk-modal-container'>
   {{#if model.mediaOnly}}
-    <div class='uk-modal-dialog uk-width-auto'>
-      <iframe class='uk-width-1-1' src='{{model.media}}' frameborder='0' allowfullscreen align='center'></iframe>
+    <div class='uk-modal-dialog uk-margin-auto-vertical'>
+      <iframe class='uk-width-1-1 uk-height-large' src='{{model.media}}' frameborder='0' allowfullscreen align='center'></iframe>
     </div>
   {{else}}
     <div class='uk-modal-dialog'>
@@ -24,7 +24,6 @@
       </div>
 
       <div class='uk-modal-footer uk-text-right'>
-        {{log hasSuppressCookie}}
         {{#extras/fa-checkbox checked=hasSuppressCookie change=(action 'suppressIntro')}}
           Don't show every time.
         {{/extras/fa-checkbox}}

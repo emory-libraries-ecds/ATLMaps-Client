@@ -1,95 +1,57 @@
-{{!
-    The `shareable-link` class has `display: none;` When the layer title div is
-    clicked, it gets a class of `active`. When that div has the class of `active`
-    `shareable-link` class is set to `display: block`
-}}
+{{#uk-button size='small' on-click=(action 'showModal' 'share')}}
+  <i class='fa fa-link' aria-hidden='true'></i> Share
+{{/uk-button}}
 
-{{!-- <button class='uk-button uk-button-default uk-button-small'>
-{{#basic-dropdown as |link|}}
-  {{#link.trigger class="trigger-bootstrap-feel"}}<i class="fa fa-link" aria-hidden="true"></i> Share Layer{{/link.trigger}}
-
-  {{#link.content class="content-bootstrap-feel z-depth-3 shareable-link"}}
-      {{input type='text' value=layer.shareUrl id=shareUrlId}}
-      {{#copy-button clipboardTarget=(concat '#' shareUrlId) success=(action 'success' 'url') error=(action 'error') class='waves-effect waves-light btn' }}
-        <i class="fa fa-clipboard" aria-hidden="true"></i> copy link
-        {{/copy-button}}
-  {{/link.content}}
-{{/basic-dropdown}}
-</button>
-
-<button class='uk-button uk-button-default uk-button-small'>
-{{#basic-dropdown as |embed|}}
-  {{#embed.trigger class="trigger-bootstrap-feel"}}<i class="fa fa-code" aria-hidden="true"></i> Embed Layer{{/embed.trigger}}
-  {{#embed.content class="content-bootstrap-feel z-depth-3 shareable-link"}}
-  {{input type='text' size=100 value=(concat '<iframe height=' height ' width=' width ' src=' layer.embedUrl 'color=' embedParams.color '&' 'base=' embedParams.base ' />') id=embedCodeId}}
-  <hr />
-  {{#if showColorPicker}}
-  <section class='color-picker'><label>Pick a Color: </label>
-    {{#power-select
-      options=dataColors.safeEmbedColors
-      searchEnabled=false
-      selected=selectedColor
-      dropdownClass='color-picker'
-      class='set-color'
-      tagName='div'
-      onchange=(action 'setColor')
-      as |color|
+<div id={{concat 'share-modal-' layer.name layer.id}} class='uk-flex-top'>
+  <div class='uk-modal-dialog uk-modal-body uk-margin-auto-vertical'>
+    <h3>Link to layer {{layer.title}}</h3>
+    {{input class='uk-input' type='text' value=layer.shareUrl id=(concat 'share-' layer.name layer.id)}}
+    {{#copy-button
+      clipboardTarget=(concat '#share-' layer.name layer.id)
+      success=(action 'success' 'url') error=(action 'error')
+      class='uk-button uk-button-primary uk-margin'
     }}
-      <div style={{color.safe}} class='color' />
-    {{/power-select}}
-  </section>
-  {{/if}}
-  <!-- Base maps names are capitalized with CSS -->
-  <section class='base-picker'><label>Pick a Base: </label>
-    {{#power-select
-      options=baseMaps
-      selected=baseMaps.firstObject
-      dropdownClass='basemap-picker'
-      class='basemap-list'
-      searchEnabled=false
-      tagName='div'
-      onchange=(action (mut embedParams.base))
-      as |base|
-    }}
-      {{base}}
-    {{/power-select}}
-  </section>
-  <hr />
-    {{#copy-button clipboardTarget=(concat '#' embedCodeId) success=(action 'success' 'embed code') error=(action 'error') class='waves-effect waves-light btn' }}
-    <i class="fa fa-clipboard" aria-hidden="true"></i> copy link
+      <i class='fa fa-clipboard' aria-hidden='true'></i> copy link
     {{/copy-button}}
-  {{/embed.content}}
-{{/basic-dropdown}}
-</button> --}}
+  </div>
+</div>
 
-<div class="uk-inline">
-  {{#uk-button size='small'}}<i class="fa fa-link" aria-hidden="true"></i> Share Layer{{/uk-button}}
-    <div uk-drop mode='click' pos='bottom-left' class='uk-padding-small'>
-        {{input type='text' value=layer.shareUrl id=(concat 'share-' layer.name layer.id)}}
-      {{#copy-button clipboardTarget=(concat '#share-' layer.name layer.id) success=(action 'success' 'url') error=(action 'error') }}
-        <i class="fa fa-clipboard" aria-hidden="true"></i> copy link
-        {{/copy-button}}
+{{#uk-button size='small' on-click=(action 'showModal' 'embed')}}
+  <i class='fa fa-code' aria-hidden='true'></i> Embed
+{{/uk-button}}
+
+<div id={{concat 'embed-modal-' layer.name layer.id}} class='uk-flex-top'>
+  <div class='uk-modal-dialog uk-modal-body uk-margin-auto-vertical'>
+    <h3>Embed code for {{layer.name}}</h3>
+
+    <div class='uk-margin'>
+      <label>Embed Code</label>
+      {{input class='uk-input' type='text' size=100 value=(concat '<iframe height=' height ' width=' width ' src=' layer.embedUrl 'color=' embedParams.color '&' 'base=' embedParams.base ' />') id=(concat 'embed-' layer.name layer.id)}}
     </div>
 
-    {{#uk-button size='small'}}<i class="fa fa-code" aria-hidden="true"></i> Embed Layer{{/uk-button}}
-    <div uk-drop mode='click' pos='bottom-right' class='uk-padding-small'>
-        <div class="uk-margin">
-          {{input type='text' size=100 value=(concat '<iframe height=' height ' width=' width ' src=' layer.embedUrl 'color=' embedParams.color '&' 'base=' embedParams.base ' />') id=(concat 'embed-' layer.name layer.id)}}
-          <label for={{concat 'color-' layer.name layer.id}}>Color</label>
-          <select id={{concat 'color-' layer.name layer.id}} class="uk-select" onchange={{action (mut embedParams.color)  value='target.value'}}>
-              {{#each dataColors.safeEmbedColors as |color|}}
-                <option value={{color.name}}>{{color.name}}</option>
-              {{/each}}
-            </select>
-            <label for={{concat 'base-' layer.name layer.id}}>Base Map</label>
-            <select id={{concat 'base-' layer.name layer.id}} class="uk-select" onchange={{action (mut embedParams.base)  value='target.value'}}>
-              {{#each baseMaps.layers as |base|}}
-                <option value={{base.name}}>{{base.name}}</option>
-              {{/each}}
-            </select>
-        </div>
-      {{#copy-button clipboardTarget=(concat '#embed-' layer.name layer.id) success=(action 'success' 'embed code') error=(action 'error') class='waves-effect waves-light btn' }}
-    <i class="fa fa-clipboard" aria-hidden="true"></i> copy link
-    {{/copy-button}}
+    <div class='uk-margin'>
+      <label for={{concat 'color-' layer.name layer.id}}>Color</label>
+      <select id={{concat 'color-' layer.name layer.id}} class='uk-select' onchange={{action (mut embedParams.color)  value='target.value'}}>
+        {{#each dataColors.safeEmbedColors as |color|}}
+          <option value={{color.name}}>{{color.name}}</option>
+        {{/each}}
+      </select>
     </div>
+
+    <div class='uk-margin'>
+      <label for={{concat 'base-' layer.name layer.id}}>Base Map</label>
+      <select id={{concat 'base-' layer.name layer.id}} class='uk-select' onchange={{action (mut embedParams.base)  value='target.value'}}>
+        {{#each baseMaps.layers as |base|}}
+          <option value={{base.name}}>{{base.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    {{#copy-button
+      clipboardTarget=(concat '#embed-' layer.name layer.id)
+      success=(action 'success' 'embed code')
+      error=(action 'error') class='uk-button uk-button-primary uk-margin'}}
+      <i class='fa fa-clipboard' aria-hidden='true'></i> copy link
+    {{/copy-button}}
+  </div>
 </div>

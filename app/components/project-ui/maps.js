@@ -14,7 +14,7 @@ export default Component.extend({
   actions: {
     reorder(event) {
       let index = 1;
-      for( let item of event.target.children) {
+      for (let item of event.target.children) {
         set(this, 'modelToReorder', item.attributes['data-model'].value);
         let storeItem = get(this, 'store').peekRecord(
           get(this, 'modelToReorder'),
@@ -32,7 +32,7 @@ export default Component.extend({
 
     // TODO: once using ember-leaflet, this will be done using the mut helper. Remove this action.
     setOpacity(layer, event) {
-      layer.setProperties({opacity: event.target.value});
+      layer.setProperties({ opacity: event.target.value });
     }
   }
 });

@@ -1,10 +1,7 @@
 import DS from 'ember-data';
 import LayerProject from './layer-project';
 
-const {
-  attr,
-  belongsTo
-} = DS;
+const { attr, belongsTo } = DS;
 
 export default LayerProject.extend({
   position: attr('number'),

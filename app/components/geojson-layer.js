@@ -15,15 +15,38 @@ export default BaseLayer.extend(DivOverlayableMixin, StyleMixin, {
   leafletRequiredOptions: ['geoJSON'],
 
   leafletOptions: [
-    'stroke', 'color', 'weight', 'opacity', 'fill', 'fillColor',
-    'fillOpacity', 'fillRule', 'dashArray', 'lineCap', 'lineJoin',
-    'clickable', 'pointerEvents', 'className', 'pointToLayer',
-    'style', 'onEachFeature', 'filter', 'coordsToLatLng'
+    'stroke',
+    'color',
+    'weight',
+    'opacity',
+    'fill',
+    'fillColor',
+    'fillOpacity',
+    'fillRule',
+    'dashArray',
+    'lineCap',
+    'lineJoin',
+    'clickable',
+    'pointerEvents',
+    'className',
+    'pointToLayer',
+    'style',
+    'onEachFeature',
+    'filter',
+    'coordsToLatLng'
   ],
 
   leafletEvents: [
-    'click', 'dblclick', 'mousedown', 'mouseover', 'mouseout',
-    'contextmenu', 'add', 'remove', 'popupopen', 'popupclose'
+    'click',
+    'dblclick',
+    'mousedown',
+    'mouseover',
+    'mouseout',
+    'contextmenu',
+    'add',
+    'remove',
+    'popupopen',
+    'popupclose'
   ],
 
   // didUpdateAttrs() {

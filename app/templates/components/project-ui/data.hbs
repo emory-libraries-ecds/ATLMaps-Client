@@ -22,15 +22,15 @@
 
       <div class='uk-accordion-content'>
         <div class='uk-card-body'>
-          {{layer.vector_layer.description}}
+          {{{layer.vector_layer.safeDescription}}}
           <section class='uk-text-meta uk-margin-bottom'>
             Layer Provided by: {{layer.vector_layer.institution.name}} {{layer.vector_layer.attribution}}
           </section>
         </div>
         <div class='uk-card-footer'>
-          {{shareable-link layer=layer}}
-          {{#if project.may_edit}}
-            {{remove-layer-button model=model layer=layer tagName='button'}}
+          {{!shareable-link layer=layer.vector_layer}}
+          {{#if model.project.may_edit}}
+           {{#uk-button size='small' clolor='danger' on-click=(action (route-action 'removeLayer') layer)}}<i class='fa fa-trash' aria-hidden='true'></i> Remove{{/uk-button}}
           {{/if}}
         </div>
       </div>

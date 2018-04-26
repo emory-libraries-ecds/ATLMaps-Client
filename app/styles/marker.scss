@@ -1,3 +1,11 @@
+// Corrects the div markers beeing a little off.
+.leaflet-marker-pane {
+  .leaflet-marker-icon {
+    margin-left: -10px !important;
+    margin-top: -50px !important;
+  }
+}
+
 .leaflet-marker-icon {
   font-size: 44px;
 

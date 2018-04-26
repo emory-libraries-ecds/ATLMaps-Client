@@ -4,6 +4,10 @@
   position: fixed;
   width: auto;
   z-index: 999;
+
+  img {
+    height: $bottom-left-map-controls;
+  }
 }
 
 .project-card {
