@@ -39,7 +39,7 @@ module.exports = function setUp(environment) {
         ENV.APP.LOG_TRANSITIONS = true;
         // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
         // ENV.APP.LOG_VIEW_LOOKUPS = true;
-        ENV.APP.API_HOST = 'https://api.atlmaps-dev.com:3000';
+        ENV.APP.API_HOST = 'https://api.atlmaps.com';
         ENV.metricsAdapters[0].config.id = 'UA-71558106-1';
 
         ENV.torii.providers['facebook-oauth2'] = {
