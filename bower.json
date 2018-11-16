@@ -32,7 +32,7 @@
     "neat": "^2.0.0"
   },
   "resolutions": {
-    "ember": "^2.18..2",
+    "ember": "^2.18.2",
     "ember-cli-shims": "0.1.0",
     "ember-resolver": "~2.0.3",
     "qunit": "~2.0.1",
