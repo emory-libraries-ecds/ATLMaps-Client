@@ -1,20 +1,19 @@
 .project-title {
   font-size: 1.5em;
   line-height: 1em;
-  margin-left: 132px;
-  top: calc(#{$navigation-height} * 2);
+  margin-left: 98px;
+  top: calc(#{$navigation-height} + #{$control-left});
   width: 30vw;
   z-index: 445;
 }
 
 .project-card {
-  margin-left: $navigation-height !important;
-  margin-top: $navigation-height !important;
+  margin-left: $control-left !important;
+  margin-top: calc(#{$navigation-height + 5} + #{$control-left}) !important;
   padding-left: 0 !important;
-
+  width: 30vw !important;
 
   .uk-switcher {
-    width: 30vw !important;
   }
 
   .uk-card-body {

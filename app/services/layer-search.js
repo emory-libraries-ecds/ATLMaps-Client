@@ -3,10 +3,7 @@ import { get, set } from '@ember/object';
 import { A } from '@ember/array';
 
 export default Service.extend({
-
-  searchParams: {
-
-  },
+  searchParams: {},
   mapLayers: A([]),
   dataLayers: A([]),
   currentBounds: null,

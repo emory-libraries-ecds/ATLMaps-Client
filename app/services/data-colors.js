@@ -65,7 +65,7 @@ export default Service.extend({
       { name: 'orange-700', hex: '#F57C00' }
     ]);
 
-    this.set('shapeColors',[
+    this.set('shapeColors', [
       { name: 'red-600', hex: '#D81B60' },
       { name: 'red-700', hex: '#C2185B' },
       { name: 'pink-600', hex: '#D81B60' },
@@ -95,7 +95,14 @@ export default Service.extend({
       { name: 'orange-700', hex: '#F57C00' },
       { name: 'orange-800', hex: '#EF6C00' },
       { name: 'deep-orange-600', hex: '#F4511E' },
-      { name: 'deep-orange-700', hex: '#E64A19' }
+      { name: 'deep-orange-700', hex: '#E64A19' },
+      { name: 'red', hex: '#D81B60' },
+      { name: 'pink', hex: '#D81B60' },
+      { name: 'purple', hex: '#8E24AA' },
+      { name: 'indigo', hex: '#3949AB' },
+      { name: 'blue', hex: '#1E88E5' },
+      { name: 'green', hex: '#43A047' },
+      { name: 'orange', hex: '#FB8C00' }
     ]);
 
     this.set('embedColors', [

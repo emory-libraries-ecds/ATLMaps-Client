@@ -6,7 +6,9 @@ export default Route.extend({
   session: service(),
 
   model(params) {
-    return this.store.query('confirmation-token', { confirm_token: params.confirm_token });
+    return this.store.query('confirmation-token', {
+      confirm_token: params.confirm_token
+    });
   },
 
   afterModel() {

@@ -3,7 +3,7 @@
 @import 'mixins';
 
 // @import 'bourbon', 'neat', 'bitters';
-@import 'banner', 'admin', 'marker', 'extra-icons', 'login-form', 'slider', 'search-results', 'base-picker', 'project-pane', 'project-nav', 'social-auth', 'color-picker', 'feature-popup', 'loading', 'embed'; // Refills
+@import 'banner', 'admin', 'marker', 'extra-icons', 'login-form', 'slider', 'search-results', 'base-picker', 'project-pane', 'project-nav', 'social-auth', 'color-picker', 'feature-popup', 'loading', 'embed', 'layer-route'; // Refills
 
 :root {
   // background-color: color('grey', 'lighten-4');
@@ -104,14 +104,19 @@ form {
 // }
 
 .fullscreen-map {
+  bottom: 0;
   display: block;
-  height: 100vh;
-  left: 0;
+  //height: 100vh;
+  height: calc(100vh - #{$navigation-height});
   margin: 0;
   overflow: hidden;
   position: absolute;
-  top: 0;
+  right: 0;
   width: 100vw;
+}
+
+.embed-map {
+  height: 100vh;
 }
 
 .atlmap,
@@ -247,3 +252,29 @@ textarea {
 }
 
 @import 'ember-uikit';
+
+footer {
+  .partners {
+    background: $primary-color;
+
+    img {
+      height: 75px;
+    }
+  }
+
+  .sub-footer {
+    line-height: 0;
+
+    img {
+      height: 35px;
+    }
+
+    .atls-logo {
+      font-size: 2.5em;
+    }
+
+    .fa-2x {
+      font-size: 2em;
+    }
+  }
+}

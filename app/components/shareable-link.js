@@ -30,6 +30,11 @@ export default Component.extend({
     set(this, 'embedModal', embedModal);
   },
 
+  willDestroyElement() {
+    get(this, 'shareModal').destroy();
+    get(this, 'embedModal').destroy();
+  },
+
   actions: {
     setColor(color) {
       set(this, 'embedParams.color', color.name);

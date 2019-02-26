@@ -29,7 +29,7 @@ export default Component.extend({
 
   willDestroy() {
     UIkit.offcanvas(document.getElementById('offcanvas-search')).hide();
-    UIkit.offcanvas(document.getElementById('offcanvas-search')).$destroy();
+    UIkit.offcanvas(document.getElementById('offcanvas-search')).$destroy(true);
   },
 
   actions: {
@@ -46,7 +46,7 @@ export default Component.extend({
         // start_year: this.get('layerSearch.start_year'),
         // end_year: this.get('layerSearch.end_year'),
         bounds: this.get('layerSearch.bounds'),
-        // meta: this.get('controller.rasters.meta'),
+        meta: this.get('controller.rasters.meta'),
         page: page || 0,
         limit: get(this, 'layerSearch.searchLimit')
       };

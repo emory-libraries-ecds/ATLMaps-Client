@@ -29,6 +29,7 @@
       {{input class='uk-input' type='text' size=100 value=(concat '<iframe height=' height ' width=' width ' src=' layer.embedUrl 'color=' embedParams.color '&' 'base=' embedParams.base ' />') id=(concat 'embed-' layer.name layer.id)}}
     </div>
 
+    {{#if (not-eq layer.data_format 'raster')}}
     <div class='uk-margin'>
       <label for={{concat 'color-' layer.name layer.id}}>Color</label>
       <select id={{concat 'color-' layer.name layer.id}} class='uk-select' onchange={{action (mut embedParams.color)  value='target.value'}}>
@@ -37,12 +38,13 @@
         {{/each}}
       </select>
     </div>
+    {{/if}}
 
     <div class='uk-margin'>
-      <label for={{concat 'base-' layer.name layer.id}}>Base Map</label>
-      <select id={{concat 'base-' layer.name layer.id}} class='uk-select' onchange={{action (mut embedParams.base)  value='target.value'}}>
-        {{#each baseMaps.layers as |base|}}
-          <option value={{base.name}}>{{base.name}}</option>
+      <label for={{concat 'base-' layer.label layer.id}}>Base Map</label>
+      <select id={{concat 'base-' layer.label layer.id}} class='uk-select' onchange={{action (mut embedParams.base)  value='target.value'}}>
+        {{#each baseMaps.baseMaps as |base|}}
+          <option value={{base.label}}>{{base.label}}</option>
         {{/each}}
       </select>
     </div>

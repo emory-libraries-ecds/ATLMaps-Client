@@ -19,6 +19,7 @@ export default Model.extend({
   youtube: attr('string'),
   vimeo: attr('string'),
   audio: attr('string'),
+  color_name: attr('string'),
   feature_id: attr('string'),
   show: attr('boolean', {
     defaultValue: true
@@ -26,7 +27,7 @@ export default Model.extend({
 
   // Ember SafeString to render HTML
   safeDescription: computed('description', function safeDescription() {
-    return new htmlSafe(get(this, 'description'));
+    return new htmlSafe(get(this, 'properties.description'));
   }),
 
   latLng: computed('geojson', function latLng() {
@@ -38,5 +39,9 @@ export default Model.extend({
 
   // Temporary properties for editing
   lat: attr(),
-  lon: attr()
+  lon: attr(),
+
+  colorHex: computed('vector_layer.filterdColors', function colorHex() {
+    return get(this, 'vector_layer.filteredColors')[get(this, 'filters.grade')];
+  })
 });

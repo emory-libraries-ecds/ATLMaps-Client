@@ -13,20 +13,28 @@ export default Route.extend({
     save(layer) {
       const flash = get(this, 'flashMessage');
       const saveType = get(layer, 'dirtyType');
-      layer.save().then(() => {
-        if (saveType !== 'updated') {
-          get(layer, 'vector_feature').forEach((vf) => {
-            vf.save().then(() => {
-              flash.savedMessage('Feature Saved!');
-            }, (error) => {
-              flash.failedMessage(`Feature Did Not Save :( ${error.message}`);
+      layer.save().then(
+        () => {
+          if (saveType !== 'updated') {
+            get(layer, 'vector_feature').forEach(vf => {
+              vf.save().then(
+                () => {
+                  flash.savedMessage('Feature Saved!');
+                },
+                error => {
+                  flash.failedMessage(
+                    `Feature Did Not Save :( ${error.message}`
+                  );
+                }
+              );
             });
-          });
+          }
+          flash.savedMessage('Layer Saved!');
+        },
+        error => {
+          flash.failedMessage(`Layer Did Not Save :( ${error.message}`);
         }
-        flash.savedMessage('Layer Saved!');
-      }, (error) => {
-        flash.failedMessage(`Layer Did Not Save :( ${error.message}`);
-      });
+      );
     },
 
     delete(layer) {

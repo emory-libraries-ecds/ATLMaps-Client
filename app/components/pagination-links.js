@@ -18,7 +18,6 @@ export default Component.extend({
   limit: limits[0],
 
   actions: {
-
     updateLimt(newLimit) {
       set(this, 'layerSearch.searchLimit', newLimit.value);
       this.sendAction('getResults');

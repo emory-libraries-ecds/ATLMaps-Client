@@ -4,80 +4,89 @@
   {{search-panel model=model addRemoveLayer=(action 'addRemoveLayer')}}
 {{/if}}
 
-<header class='uk-panel uk-padding-small uk-background-muted project-title'>{{model.project.name}}</header>
-{{#uk-switcher animation='uk-animation-fade' animationDuration=200 class='project-nav uk-grid' as |switcher|}}
+<header class='uk-panel uk-padding-small uk-background-muted project-title'>
+  {{#if model.project.name}}{{model.project.name}}{{else}}Untitled{{/if}}
+</header>
 
-  <div class='uk-width-auto@m project-nav-bar'>
-    {{#switcher.nav class='project-nav-buttons' type='tab' as |nav|}}
-      {{#nav.component left=true as |tab|}}
+{{#uk-switcher
+  on-beforehide=(action 'setPrevious')
+  animation='uk-animation-fade'
+  animationDuration=200
+  active=1
+  class=(concat (if hide 'hide-nav' 'show-nav') ' project-nav uk-grid uk-margin-remove')
+  as |switcher|}}
+    {{#switcher.nav class='project-nav-buttons' type='tab' class='uk-width-auto@m project-nav-bar' as |nav|}}
+      {{#nav.component active=1 left=true as |tab|}}
 
-        {{#tab.item class='uk-text-center uk-text-large' onclick=(toggle hide this)}}
-          <i class="fa fa-chevron-left"></i><br />Hide {{hide}}
+        {{!-- {{#tab.item class=(concat (if hide 'hide' 'show') ' uk-text-center uk-text-large')}} --}}
+        {{#tab.item class='uk-text-center uk-text-large' id='hide-button'}}
+        <div onclick={{action 'hideNav'}}>
+            <i class="fa fa-chevron-up"></i><br />{{if hide 'Show' 'Hide'}}
+            </div>
         {{/tab.item}}
 
-        {{#tab.item class='uk-text-center uk-text-large' active=true}}<i class="fa fa-info-circle"></i><br />Info{{/tab.item}}
-
-        {{#if (gt model.project.raster_layer_project.length 0)}}
-        {{#tab.item
-          class='uk-text-center uk-text-large (if raster-updated "uk-animation-shake")'}}
-          <i class="fa fa-map"></i><br />Maps
+        {{#tab.item class='uk-text-center uk-text-large project-nav-button hideable' id='info-button'}}
+          <i class="fa fa-info-circle"></i><br />Info
         {{/tab.item}}
+
+        {{#if model.project.hasRasters}}
+          {{#tab.item class='uk-text-center uk-text-large project-nav-button hideable' id='maps-button'}}
+            <i class="fa fa-map"></i><br />Maps
+          {{/tab.item}}
         {{/if}}
 
-        {{#if (gt model.project.vector_layer_project.length 0)}}
-        {{#tab.item class='uk-text-center uk-text-large'}}
+      {{#if model.project.hasVectors}}
+        {{#tab.item class='uk-text-center uk-text-large project-nav-button hideable' id='data-button'}}
           <i class="fa fa-database"></i><br />Data
         {{/tab.item}}
-        {{/if}}
+      {{/if}}
 
         {{#if (and model.project.may_edit (not model.project.exploring))}}
-          {{#tab.item class='uk-text-center uk-text-large'}}
-            <i class="fa fa-cog" aria-hidden="true"></i><br />Settings{{/tab.item}}
+          {{#tab.item class='uk-text-center uk-text-large project-nav-button hideable' id='settings-button'}}
+            <i class="fa fa-cog" aria-hidden="true"></i><br />Settings
+          {{/tab.item}}
         {{/if}}
 
       {{/nav.component}}
     {{/switcher.nav}}
-  </div>
 
-  <div class='uk-width-expand@m project-card'>
-    {{#switcher.content tagName='div' as |content|}}
-      {{#content.item}}
+    {{#switcher.content as |content|}}
+      {{#content.item id='hide-content'}}
       {{/content.item}}
 
-      {{#content.item tagName='div'}}
-        {{#uk-card class='uk-width-1-1@m uk-card-body' as |card|}}
+      {{#content.item class='uk-width-expand@m project-card' id='info-content'}}
+        {{#uk-card class='uk-width-1-1@m uk-card-body uk-padding-small' as |card|}}
           {{project-ui/info model=model}}
         {{/uk-card}}
       {{/content.item}}
 
       {{#if model.project.hasRasters}}
-        {{#content.item tagName='div'}}
-          {{#uk-card class='uk-width-1-1@m uk-card-body uk-flex uk-flex-column uk-overflow-hidden' as |card|}}
+        {{#content.item class='uk-width-expand@m project-card' id='maps-content'}}
+          {{#uk-card class='uk-width-1-1@m uk-card-body uk-flex uk-flex-column uk-overflow-hidden uk-padding-small' as |card|}}
             {{project-ui/maps model=model}}
           {{/uk-card}}
         {{/content.item}}
       {{/if}}
 
       {{#if model.project.hasVectors}}
-        {{#content.item tagName='div'}}
-          {{#uk-card class='uk-width-1-1@m uk-card-body uk-flex uk-flex-column uk-overflow-hidden' as |card|}}
+        {{#content.item class='uk-width-expand@m project-card' id='data-content'}}
+          {{#uk-card class='uk-width-1-1@m uk-card-body uk-flex uk-flex-column uk-overflow-hidden uk-padding-small' as |card|}}
             {{project-ui/data model=model}}
           {{/uk-card}}
         {{/content.item}}
       {{/if}}
 
       {{#if (and model.project.may_edit (not model.project.exploring))}}
-        {{#content.item tagName='div'}}
-          {{#uk-card class='uk-width-1-1@m uk-card-body uk-flex uk-flex-column uk-overflow-hidden' as |card|}}
+        {{#content.item class='uk-width-expand@m project-card' id='settings-content'}}
+          {{#uk-card class='uk-width-1-1@m uk-card-body uk-flex uk-flex-column uk-overflow-hidden uk-padding-small' as |card|}}
             {{project-ui/settings model=model}}
           {{/uk-card}}
         {{/content.item}}
       {{/if}}
 
     {{/switcher.content}}
-  </div>
-{{/uk-switcher}}
 
+{{/uk-switcher}}
 {{#if model.project.center_lat}}
   {{project-ui/map model=model.project}}
 {{/if}}

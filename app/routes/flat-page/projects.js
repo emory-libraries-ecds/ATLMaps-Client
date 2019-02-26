@@ -23,19 +23,19 @@ export default Route.extend({
 
   model() {
     /**
-         * The API will only return featured projects when asked for all.
-         * We'll make seperate calls for a user's projects if a user is authenticated.
-         */
+     * The API will only return featured projects when asked for all.
+     * We'll make seperate calls for a user's projects if a user is authenticated.
+     */
 
     return RSVP.hash({
-      mine: get(this, 'session.isAuthenticated') ? this.store.query('project', { user_id: true }) : undefined,
+      mine: get(this, 'session.isAuthenticated')
+        ? this.store.query('project', { user_id: true })
+        : undefined,
       featured: this.store.findAll('project')
-      // currentUser: this.store.peekRecord('user', get(this, 'currentUser.user.id'))
     });
   },
 
   actions: {
-
     didTransition() {
       document.querySelector('head').setAttribute('title', 'ATLMaps: Projects');
     },
@@ -49,10 +49,7 @@ export default Route.extend({
     },
 
     deleteProject(project_id) {
-      // eslint-disable-next-line no-alert
-      const response = confirm(
-        'Are you sure you want to DELETE this project?'
-      );
+      const response = confirm('Are you sure you want to DELETE this project?');
 
       if (response === true) {
         this.store.peekRecord('project', project_id).destroyRecord();

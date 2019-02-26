@@ -6,8 +6,8 @@ button {
     color: $white;
     font-size: 1.25em;
     position: absolute;
-    right: $navigation-height;
-    top: calc(#{$navigation-height} * 2);
+    right: $control-left;
+    top: calc(#{$navigation-height} + #{$control-left});
     z-index: 999;
   }
 }

@@ -1,5 +1,4 @@
 <div id='base-map' class='fullscreen-map'>
-  {{log this}}
     {{#leaflet-map
       lat=model.center_lat
       lng=model.center_lng
@@ -27,34 +26,47 @@
       {{/each}}
 
       {{#each model.vector_layer_project as |data|}}
+        {{#if (eq data.vector_layer.vector_feature.length 0)}}
+            {{geojson-layer
+              geoJSON=data.vector_layer.remote_geojson
+              style=setColor
+              stroke=data.vector_layer.showing
+              fillOpacity=data.vector_layer.fillOpacity
+              onAdd=(action 'mapLayerAdded' data.vector_layer)
+              onEachFeature=(action 'showGeojsonFeature' feature data.vector_layer)
+            }}
+        {{else}}
         {{#each data.vector_layer.vector_feature as |feature|}}
           {{#if feature.show}}
-          {{#if (eq feature.geometry_type 'Point')}}
-            {{layers.marker
-              location=feature.latLng
-              onClick=(action 'showFeature' feature)
-              icon=(
-                div-icon
-                html='<div class="shadow"><i class="fa fa-map-marker"></i></div>'
-                className=(concat 'layer-' data.colorName))
-              opacity=data.vector_layer.opacity
-              class=(if feature.active 'active-feature')
-            }}
-          {{else}}
-            {{geojson-layer
-              geoJSON=feature.geojson
-              fillOpacity=data.vector_layer.fillOpacity
-              weight=data.vector_layer.weight
-              opacity=data.vector_layer.opacity
-              color=data.colorHex
-              fillColor=data.colorHex
-              onEachFeature=(action 'showShapeFeature' feature)
-            }}
-          {{/if}}
+            {{#if (eq feature.geometry_type 'Point')}}
+              {{layers.marker
+                location=feature.latLng
+                onClick=(action 'showFeature' feature data)
+
+                icon=(
+                  div-icon
+                  html='<div class="shadow"><i class="fa fa-map-marker"></i></div>'
+                  className=(concat (concat 'layer-' data.colorName) (if feature.active ' active-feature')))
+                opacity=data.vector_layer.opacity
+                class=(if feature.active 'active-feature')
+              }}
+            {{else}}
+              {{geojson-layer
+                geoJSON=feature.geojson
+                fillOpacity=data.vector_layer.fillOpacity
+                weight=data.vector_layer.weight
+                opacity=data.vector_layer.opacity
+                color=feature.colorHex
+                fillColor=feature.colorHex
+                onEachFeature=(action 'showShapeFeature' feature)
+              }}
+            {{/if}}
           {{/if}}
         {{/each}}
+        {{/if}}
+
       {{/each}}
     {{/leaflet-map}}
   </div>
 
-{{project-ui/feature-popup feature=activeFeature on-keydown=(action (mut activeFeature) null)}}
+{{project-ui/feature-popup feature=activeFeature closeFeature=(action 'closeFeature') on-keydown=(action (mut activeFeature) null)}}

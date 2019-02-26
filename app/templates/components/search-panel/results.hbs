@@ -1,19 +1,52 @@
 <dl class='uk-description-list uk-description-list-divider atl-search-results-list'>
+  {{#if searching}}
+  searching
+  {{else}}
   {{#each layers as |layer|}}
+    {{!-- <div class='uk-width-1-6'>{{extras/fa-checkbox checked=layer.activeInProject change=(action addRemoveLayer layer)}}</div>
+    <div class='uk-width-5-6'> --}}
     <dt>
       {{#extras/fa-checkbox checked=layer.activeInProject change=(action addRemoveLayer layer)}}
         {{if layer.title layer.title "Loading..."}}
       {{/extras/fa-checkbox}}
     </dt>
     <dd>
+      {{#if layer.thumb}}
+        <img class='uk-align-center uk-align-right' style='height: 4em;' src={{layer.thumb.url}} alt='Map Preview' />
+      {{/if}}
       {{#if layer.description}}
-        {{{layer.safe_description}}}
+        {{{layer.safeDescription}}}
       {{else}}
         <span>Description missing.</span>
       {{/if}}
     </dd>
+    {{!-- </div> --}}
   {{else}}
     <h4>No layers found</h4>
     <h5>Use the filters under the search tab to find layers.</h5>
   {{/each}}
+  {{/if}}
 </dl>
+<ul class='uk-pagination uk-flex-center' uk-margin>
+  {{#if (and meta.prev_page (gt meta.prev_page 1))}}
+    <li onclick={{action 'page' 1 layerType}}>
+      1
+    </li>
+    <li class='uk-disabled'><span>...</span></li>
+  {{/if}}
+  <li onclick={{action 'page' meta.prev_page layerType}}>
+    {{meta.prev_page}}
+  </li>
+  <li class='uk-active'>
+    {{meta.current_page}}
+  </li>
+  <li onclick={{action 'page' meta.next_page layerType}}>
+    {{meta.next_page}}
+  </li>
+  {{#if (and meta.next_page (lt meta.current_page meta.total_pages))}}
+    <li class='uk-disabled'><span>...</span></li>
+    <li onclick={{action 'page' meta.total_pages layerType}}>
+      {{meta.total_pages}}
+    </li>
+  {{/if}}
+</ul>

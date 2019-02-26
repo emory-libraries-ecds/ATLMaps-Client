@@ -2,11 +2,7 @@ import { filterBy, gt, sort } from '@ember/object/computed';
 import { get, computed } from '@ember/object';
 import DS from 'ember-data';
 
-const {
-  Model,
-  attr,
-  hasMany
-} = DS;
+const { Model, attr, hasMany } = DS;
 
 export default Model.extend({
   name: attr('string'),
@@ -31,5 +27,4 @@ export default Model.extend({
   // Property to sort the tags by name
   sortedTags: sort('tags', '_nameSort'),
   _nameSort: ['name:asc']
-
 });

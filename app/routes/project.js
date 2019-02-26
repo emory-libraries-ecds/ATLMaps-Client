@@ -65,7 +65,6 @@ export default Route.extend({
     categories.forEach(category => {
       category.setProperties({
         checked: false,
-        allChecked: false,
         clicked: false
       });
       // category.get('tag_ids').setEach('checked', false);

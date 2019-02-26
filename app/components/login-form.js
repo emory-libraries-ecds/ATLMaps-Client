@@ -24,39 +24,54 @@ export default Component.extend({
   actions: {
     authenticateWithOAuth2() {
       set(this, 'authenticating', true);
-      const {
-        identification,
-        password
-      } = this.getProperties('identification', 'password');
-      this.get('session').authenticate('authenticator:oauth2', identification, password).then(() => {
-        set(this, 'authenticating', false);
-        get(this, 'currentUser').load();
-      }, (e) => {
-        set(this, 'authenticating', false);
-        set(this, 'errorMessage', e.error || e);
-      });
+      const { identification, password } = this.getProperties(
+        'identification',
+        'password'
+      );
+      this.get('session')
+        .authenticate('authenticator:oauth2', identification, password)
+        .then(
+          () => {
+            set(this, 'authenticating', false);
+            get(this, 'currentUser').load();
+          },
+          e => {
+            set(this, 'authenticating', false);
+            set(this, 'errorMessage', e.error || e);
+          }
+        );
     },
 
     authenticateWithFacebook() {
       set(this, 'authenticating', true);
-      this.get('session').authenticate('authenticator:torii', 'facebook').then(() => {
-        set(this, 'authenticating', false);
-        get(this, 'currentUser').load();
-      }, (e) => {
-        this.set('authenticating', false);
-        this.set('errorMessage', e.error || e);
-      });
+      this.get('session')
+        .authenticate('authenticator:torii', 'facebook')
+        .then(
+          () => {
+            set(this, 'authenticating', false);
+            get(this, 'currentUser').load();
+          },
+          e => {
+            this.set('authenticating', false);
+            this.set('errorMessage', e.error || e);
+          }
+        );
     },
 
     authenticateWithGoogle() {
       set(this, 'authenticating', true);
-      this.get('session').authenticate('authenticator:torii', 'google').then(() => {
-        set(this, 'authenticating', false);
-        get(this, 'currentUser').load();
-      }, (e) => {
-        this.set('authenticating', false);
-        this.set('errorMessage', e.error || e);
-      });
+      this.get('session')
+        .authenticate('authenticator:torii', 'google')
+        .then(
+          () => {
+            set(this, 'authenticating', false);
+            get(this, 'currentUser').load();
+          },
+          e => {
+            this.set('authenticating', false);
+            this.set('errorMessage', e.error || e);
+          }
+        );
     },
 
     startSignUp() {
@@ -70,17 +85,27 @@ export default Component.extend({
     },
 
     signUpSubmit() {
-      get(this, 'newLogin').save().then(() => {
-        set(this, 'accountCreated', true);
-        run.later(this, () => {
-          // maybe we can not redirect
-        }, () => {
-          // Error callback
-          run.later(this, () => {
-            // clear
-          }, 3000);
-        });
-      }, 300);
+      get(this, 'newLogin')
+        .save()
+        .then(() => {
+          set(this, 'accountCreated', true);
+          run.later(
+            this,
+            () => {
+              // maybe we can not redirect
+            },
+            () => {
+              // Error callback
+              run.later(
+                this,
+                () => {
+                  // clear
+                },
+                3000
+              );
+            }
+          );
+        }, 300);
     },
 
     cancel() {

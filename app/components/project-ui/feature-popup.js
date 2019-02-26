@@ -3,10 +3,11 @@ import { set } from '@ember/object';
 /* global Draggabilly */
 
 export default Component.extend({
-  classNames: ['feature-popup', 'uk-box-shadow-large'],
+  classNames: ['feature-popup'],
+  classNameBindings: ['feature:has-feature'],
 
   didInsertElement() {
-    new Draggabilly( this.element, {
+    new Draggabilly(this.element, {
       // options...
     });
   },

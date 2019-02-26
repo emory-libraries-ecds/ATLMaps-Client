@@ -1,11 +1,15 @@
 {{#if feature}}
-  <div class='uk-card uk-card-default'>
-    <div class='uk-card-body feature-popup uk-flex uk-flex-column uk-overflow-hidden'>
-      <button class="uk-modal-close-default" type="button" onclick={{action 'closeFeature'}} uk-close></button>
-      <article class='uk-article uk-overflow-auto'>
-        <span class='uk-text-meta'>{{{data-icon feature.vector_layer.dataTypeSlug feature.colorHex}}} {{feature.vector_layer.title}}</span>
-        <h3 class='uk-card-title'>{{feature.name}}</h3>
-        {{feature-content feature=feature}}
+  <div class='uk-card uk-card-default uk-border-rounded'>
+    <div class='uk-card-body'>
+      <article class='uk-flex uk-flex-column uk-overflow-hidden popup-article-container'>
+        <header>
+          <button class="uk-modal-close-default" type="button" onclick={{closeFeature}} uk-close></button>
+        <span class='uk-text-meta'>{{{data-icon feature.vector_layer.dataTypeSlug feature.colorHex}}} {{if feature.vector_layer feature.vector_layer.title}}</span>
+        <h3 class='uk-card-title'>{{feature.name}}{{feature.properties.title}}</h3>
+        </header>
+        <section class='uk-overflow-auto'>
+        {{project-ui/feature-content feature=feature}}
+        </section>
       </article>
     </div>
   </div>

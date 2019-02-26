@@ -7,25 +7,26 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    // this.load();
   },
 
   load() {
     if (this.get('session.isAuthenticated')) {
-      return this.get('store').queryRecord('user', { me: true }).then((user) => {
-        this.set('user', user);
-      });
+      return this.get('store')
+        .queryRecord('user', { me: true })
+        .then(user => {
+          this.set('user', user);
+        });
     }
     return false;
   },
 
   reLoad() {
-    // get(this, 'store').unloadRecord(get(this, 'user'));
-    // this.load();
-    this.get('store').queryRecord('user', { me: true }).then((user) => {
-      get(this, 'store').unloadRecord(user);
-      this.load();
-    });
+    this.get('store')
+      .queryRecord('user', { me: true })
+      .then(user => {
+        get(this, 'store').unloadRecord(user);
+        this.load();
+      });
   },
 
   update() {

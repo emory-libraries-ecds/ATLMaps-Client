@@ -1,6 +1,21 @@
-<div class=''>Pick a color (click to save).</div>
-<div onmouseleave={{action "reset"}}>
-    {{#each colors as |color index|}}
-        <div style={{color.safe}} class='color' onmouseenter={{action "previewColor" color index}} onclick={{route-action "setColor" projectLayer}}></div>
+{{#uk-button size='small' on-click=(action 'showModal' 'color')}}
+  <i class='fa fa-paint-brush' aria-hidden='true'></i> Color
+{{/uk-button}}
+
+<div id={{concat 'color-modal-' projectLayer.id}} uk-modal>
+<div class='uk-modal-dialog'>
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+     <div class="uk-modal-header">
+    Pick a color (click to save).
+    </div>
+    <div class='uk-modal-body'>
+        <div class='uk-grid-small' uk-grid onmouseleave={{action "reset"}}>
+            {{#each colors as |color index|}}
+            <div aria-role='button' style='height: 1em;' class='uk-width-1-6' onmouseenter={{action "previewColor" color index}} onclick={{action "setColor" projectLayer}}>
+                <div style={{color.safe}} class='color uk-border-rounded'></div>
+            </div>
     {{/each}}
+    </div>
+</div>
+</div>
 </div>

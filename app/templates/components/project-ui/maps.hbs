@@ -1,42 +1,53 @@
-{{#show-hide-layers layers=model.project.raster_layers}}{{if model.project.allRastersHidden 'Show' 'Hide'}} All{{/show-hide-layers}}
+{{#show-hide-layers layers=model.project.raster_layers}}
+  {{if model.project.allRastersHidden 'Show' 'Hide'}} All
+{{/show-hide-layers}}
+
+{{!-- {{#uk-button class='uk-card-badge uk-label' on-click=(action 'toggleAll' model)}}
+  {{if model.project.allRastersHidden 'Show' 'Hide'}} All
+{{/uk-button}} --}}
 
 <h3 class='uk-card-title'>Maps</h3>
+{{#uk-accordion tagName='div' class='uk-overflow-auto' targets='> ul > li' toggle='> div > div > div > a' content='> .uk-accordion-content' as |accordion|}}
 
 {{#uk-sortable tagName='ul' id='sortable-maps' class='uk-overflow-auto' on-stop=(action 'reorder')}}
   {{#each model.project.sortedRasterLayers as |layer|}}
-  <li class='sortable-raster-list uk-card uk-card-default uk-width-1-1@m' data-id={{layer.id}} data-model={{layer.constructor.modelName}}>
+    <li class='sortable-raster-list uk-card uk-card-default uk-width-1-1@m' data-id={{layer.id}} data-model={{layer.constructor.modelName}}>
 
-    <div class='uk-accordion-title uk-card-header'>
-      <div class= 'uk-grid-small' uk-grid uk-height-match>
-        <div class= 'uk-width-auto'>
-          <img src={{layer.raster_layer.thumb.url}} width='60' height='60' alt='Preview image of {{layer.raster_layer.title}}' />
-        </div>
-        <div class='uk-width-expand'>
-          {{layer.raster_layer.title}}
-        </div>
-        <div class='uk-width-auto'>
-          <i class='fa fa-drag-handle reorder-handle' aria-hidden='true'></i>
+      <div class='uk-card-header' style='font-size: 1.5em;'>
+        <div class= 'uk-grid-small' uk-grid uk-height-match>
+          <div class= 'uk-width-auto'>
+            <img src={{layer.raster_layer.thumb.url}} width='60' height='60' alt='Preview image of {{layer.raster_layer.title}}' />
+          </div>
+          {{!-- <div class='uk-width-expand'> --}}
+          {{accordion.item tagName='div' class='uk-width-expand' title=layer.raster_layer.title}}
+            {{!-- {{layer.raster_layer.title}}
+          </div> --}}
+          <div class='uk-width-auto'>
+            <i class='fa fa-drag-handle reorder-handle' aria-hidden='true'></i>
+          </div>
         </div>
       </div>
-    </div>
 
-      <div class='slider-label uk-text-meta'>Opacity</div>
-      <input class='embed-slider' id={{layer.raster_layer.name}} type='range' min='0' max='1' step='0.1' value={{layer.raster_layer.opacity}} oninput={{action (mut layer.raster_layer.opacity) value='target.value'}} />
+        <div class='slider-label uk-text-meta'>Opacity</div>
+        <input class='embed-slider' id={{layer.raster_layer.name}} type='range' min='0' max='1' step='0.1' value={{layer.raster_layer.opacity}} oninput={{action (mut layer.raster_layer.opacity) value='target.value'}} />
 
-    <div class='uk-accordion-content'>
-      <div class='uk-card-body'>
-        {{{layer.raster_layer.safeDescription}}}
-        <section class='uk-text-meta uk-margin-bottom'>
-          Layer Provided by: {{layer.raster_layer.institution.name}} {{layer.raster_layer.attribution}}
-        </section>
-      </div>
-      <div class='uk-card-footer'>
-        {{shareable-link layer=layer.raster_layer}}
-        {{#if model.project.may_edit}}
-         {{#uk-button size='small' clolor='danger' on-click=(route-action 'removeLayer' layer)}}<i class='fa fa-trash' aria-hidden='true'></i> Remove{{/uk-button}}
-        {{/if}}
-      </div>
-    </div>
-  </li>
+      {{!-- <div class='uk-accordion-content'> --}}
+        {{#uk-accordion/content}}
+        <div class='uk-card-body'>
+          {{{layer.raster_layer.safeDescription}}}
+          <section class='uk-text-meta uk-margin-bottom'>
+            Layer Provided by: {{layer.raster_layer.institution.name}} {{layer.raster_layer.attribution}}
+          </section>
+        </div>
+        <div class='uk-card-footer'>
+          {{shareable-link layer=layer.raster_layer}}
+          {{#if model.project.may_edit}}
+          {{#uk-button size='small' clolor='danger' on-click=(route-action 'removeLayer' layer)}}<i class='fa fa-trash' aria-hidden='true'></i> Remove{{/uk-button}}
+          {{/if}}
+        </div>
+        {{/uk-accordion/content}}
+      {{!-- </div> --}}
+    </li>
   {{/each}}
 {{/uk-sortable}}
+{{/uk-accordion}}

@@ -14,9 +14,11 @@ export default Component.extend({
     resend() {
       const self = this;
       set(self, 'thinking', true);
-      get(this, 'store').findRecord('confirmation-token', 1).then(() => {
-        set(this, 'codeSent', true);
-      });
+      get(this, 'store')
+        .findRecord('confirmation-token', 1)
+        .then(() => {
+          set(this, 'codeSent', true);
+        });
     },
 
     editEmail() {
@@ -24,9 +26,11 @@ export default Component.extend({
     },
 
     updateEmail() {
-      get(this, 'store').findRecord('user', get(this, 'currentUser.user.id')).then((user) => {
-        set(user, 'identification', get(this));
-      });
+      get(this, 'store')
+        .findRecord('user', get(this, 'currentUser.user.id'))
+        .then(user => {
+          set(user, 'identification', get(this));
+        });
     }
   }
 });

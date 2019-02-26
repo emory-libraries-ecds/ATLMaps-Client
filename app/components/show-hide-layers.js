@@ -1,7 +1,7 @@
 /**
  * @public
  * Component that shows or hides all layers of a type.
-*/
+ */
 
 import Component from '@ember/component';
 import { get } from '@ember/object';

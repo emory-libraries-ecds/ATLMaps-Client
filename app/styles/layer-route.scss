@@ -1,13 +1,3 @@
-.layers-route {
-  background: $white;
-  position: absolute;
-  top: $navigation-height;
-  width: 33vw;
-  z-index: 999;
-
-  &.raster-layer-list-items {
-    .raster-middle {
-      @include grid-column(10);
-    }
-  }
+.layers-grid {
+  margin-top: $navigation-height !important;
 }

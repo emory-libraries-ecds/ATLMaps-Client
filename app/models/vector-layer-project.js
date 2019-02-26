@@ -10,7 +10,7 @@ export default LayerProject.extend({
     async: false,
     inverse: null
   }),
-  marker: attr(),
+  marker: attr({ defaultValue: 0 }),
   data_type: computed('vector_layer', function() {
     return get(this, 'vector_layer.data_type');
   }),
@@ -30,10 +30,10 @@ export default LayerProject.extend({
     );
   }),
 
-  colorHex: computed('marker', function colorName() {
+  colorHex: computed('marker', function colorHex() {
     if (get(this, 'data_type') === 'Point') {
       return (
-        get(this, 'dataColors.markerColors')[get(this, 'marker')].hex || null
+        get(this, 'dataColors.markerColors')[this.get('marker')].hex || null
       );
     }
     return get(this, 'dataColors.shapeColors')[get(this, 'marker')].hex || null;

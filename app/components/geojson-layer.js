@@ -76,7 +76,10 @@ export default BaseLayer.extend(DivOverlayableMixin, StyleMixin, {
   },
 
   createLayer() {
-    let geoj = this.L.geoJson(...this.get('requiredOptions'), this.get('options'));
+    let geoj = this.L.geoJson(
+      ...this.get('requiredOptions'),
+      this.get('options')
+    );
     return geoj;
   }
 });

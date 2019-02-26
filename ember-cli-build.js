@@ -10,7 +10,7 @@ module.exports = function(defaults) {
 
     var app = new EmberApp(defaults, {
 
-        emberComposableHelpers: {
+        'ember-composable-helpers': {
             only: ['toggle', 'pipe', 'next']
         },
 

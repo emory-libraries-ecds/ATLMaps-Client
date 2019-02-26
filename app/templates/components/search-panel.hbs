@@ -54,12 +54,12 @@
           {{/content.item}}
           {{#content.item}}
             <div id='rasters' class='scroll-anchor' />
-            {{search-panel/results type='rasters' addRemoveLayer=addRemoveLayer layers=model.rasters project=model.project}}
+            {{search-panel/results searching=searchingRasters type='rasters' addRemoveLayer=addRemoveLayer layers=model.rasters project=model.project getResults=(action 'getResults') meta=model.rasters.meta layerType='rasters'}}
             {{!pagination-links meta=model.rasters.meta layerType='rasters' class='pagination-bar'}}
           {{/content.item}}
           {{#content.item}}
             <div id='vectors' class='scroll-anchor' />
-            {{search-panel/results type='vectors' addRemoveLayer=addRemoveLayer layers=model.vectors project=model.project}}
+            {{search-panel/results searching=searchingVectors type='vectors' addRemoveLayer=addRemoveLayer layers=model.vectors project=model.project getResults=(action 'getResults') meta=model.vectors.meta layerType='vectors'}}
             {{!pagination-links meta=model.vectors.meta layerType='vectors' class='pagination-bar'}}
           {{/content.item}}
         {{/switcher.content}}

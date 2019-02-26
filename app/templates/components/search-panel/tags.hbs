@@ -1,8 +1,8 @@
-<ul uk-accordion='multiple: true'>
+<ul class='uk-text-uppercase uk-text-bold' id='category-accordion'>
   {{#each model as |category|}}
-    <li class={{if category.allChecked 'uk-open'}}>
+    <li class={{if category.allChecked 'uk-open'}} id={{category.slug}}>
       {{input type='checkbox' checked=category.checked class='uk-float-left uk-margin-small-right' change=(action 'checkAllTagsInCategory' category)}} <a class='uk-accordion-title' href='#'>{{category.name}}</a>
-      <ul class='uk-accordion-content'>
+      <ul class='uk-accordion-content uk-margin-left uk-list uk-text-capitalize'>
         {{#each category.sortedTags as |tag|}}
           <li class='listed-tag'>
             {{input type='checkbox' id=tag.slug checked=tag.checked change=(action 'checkSingleTag' tag category)}}

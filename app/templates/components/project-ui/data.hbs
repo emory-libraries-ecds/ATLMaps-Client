@@ -1,39 +1,36 @@
 {{#uk-button class='uk-card-badge uk-label' on-click=(action 'toggleAll' model)}}
-  {{if model.project.allVectorsHidden 'Show' 'Hide'}}
+  {{if model.project.allVectorsHidden 'Show' 'Hide'}} All
 {{/uk-button}}
 
 <h3 class='uk-card-title'>Data Layers</h3>
-<ul class='uk-overflow-auto' id='data-layers'>
+{{#uk-accordion class='uk-overflow-auto' id='data-layers' toggle='> div > div > a' as |accordion|}}
   {{#each model.project.vector_layer_project as |layer|}}
     <li class='data-layer uk-card uk-card-default uk-width-1-1@m'>
-      <div class='uk-accordion-title uk-card-header'>
-        <div class= 'uk-grid-small' uk-grid uk-height-match>
+        <div class= 'uk-grid-small' style='font-size: 1.5em;' uk-grid uk-height-match>
           <div class= 'uk-width-auto'>
             {{{data-icon layer.vector_layer.dataTypeSlug layer.colorHex}}}
           </div>
-          <div class='uk-width-expand'>
-            {{layer.vector_layer.title}}
-          </div>
+        {{accordion.item tagName='div' class='uk-width-expand' title=layer.vector_layer.title}}
           <div class='uk-width-auto'>
             {{#uk-button size='small' on-click=(action 'toggleLayer' layer model.project)}}{{if layer.vector_layer.showing 'Hide' 'Show'}}{{/uk-button}}
           </div>
         </div>
-      </div>
 
-      <div class='uk-accordion-content'>
+        {{#uk-accordion/content}}
         <div class='uk-card-body'>
           {{{layer.vector_layer.safeDescription}}}
           <section class='uk-text-meta uk-margin-bottom'>
             Layer Provided by: {{layer.vector_layer.institution.name}} {{layer.vector_layer.attribution}}
           </section>
         </div>
-        <div class='uk-card-footer'>
-          {{!shareable-link layer=layer.vector_layer}}
+        <div>
+          {{shareable-link layer=layer.vector_layer}}
           {{#if model.project.may_edit}}
+            {{color-picker projectLayer=layer}}
            {{#uk-button size='small' clolor='danger' on-click=(action (route-action 'removeLayer') layer)}}<i class='fa fa-trash' aria-hidden='true'></i> Remove{{/uk-button}}
           {{/if}}
         </div>
-      </div>
+      {{/uk-accordion/content}}
     </li>
   {{/each}}
-</ul>
+{{/uk-accordion}}

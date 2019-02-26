@@ -32,7 +32,6 @@ export default Component.extend({
     },
 
     showLoginModal() {
-      console.log('sup')
       get(this, 'modal').show();
     },
 

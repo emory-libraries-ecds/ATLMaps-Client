@@ -8,7 +8,9 @@ import { htmlSafe } from '@ember/string';
 const { Model, attr, hasMany } = DS;
 
 export default Model.extend({
-  name: attr('string'),
+  name: attr('string', {
+    defaultValue: 'Untitled'
+  }),
   description: attr('string'),
   center_lat: attr('number', {
     defaultValue: 33.75440111

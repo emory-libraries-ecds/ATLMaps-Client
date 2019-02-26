@@ -3,31 +3,43 @@
  * TODO: Would this be better in the `layerSearch` service?
  */
 
-import { get } from '@ember/object';
+import { get, set } from '@ember/object';
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import UIkit from 'uikit';
 
 export default Component.extend({
-
   layerSearch: service(),
-
   classNames: ['browse-by-tags'],
+  accordion: null,
+
+  didRender() {
+    if (get(this, 'accordion') === null) {
+      let accordion = UIkit.accordion(
+        document.getElementById('category-accordion'),
+        {
+          multiple: true
+        }
+      );
+      set(this, 'accordion', accordion);
+    }
+  },
+
+  willDestroyElement() {
+    get(this, 'accordion').$destroy(true);
+    set(this, 'accordion', null);
+  },
 
   actions: {
     // If the tag is already checked, we remove it from the qurey. Otherwise
     // we add it.
-    checkSingleTag(tag, category) {
+    checkSingleTag(tag) {
       tag.toggleProperty('checked');
 
       if (get(tag, 'checked')) {
         get(this, 'layerSearch').addTag(tag);
       } else {
         get(this, 'layerSearch').removeTag(tag);
-        category.setProperties(
-          {
-            allChecked: false
-          }
-        );
       }
 
       this.sendAction('getResults');
@@ -37,22 +49,19 @@ export default Component.extend({
     checkAllTagsInCategory(category) {
       let allChecked = get(category, 'allChecked');
       const tags = get(category, 'sortedTags');
-      category.toggleProperty('allChecked');
 
       if (allChecked === false) {
+        get(this, 'accordion').$emit((event = 'update'));
         get(this, 'layerSearch').addAllTags(tags);
+        tags.forEach(tag => {
+          tag.setProperties({ checked: true });
+        });
       } else {
         get(this, 'layerSearch').removeAllTags(tags);
+        tags.forEach(tag => {
+          tag.setProperties({ checked: false });
+        });
       }
-
-      tags.forEach((tag) => {
-        tag.setProperties(
-          {
-            checked: get(category, 'allChecked')
-          }
-        );
-      });
-
       this.sendAction('getResults');
     }
   }

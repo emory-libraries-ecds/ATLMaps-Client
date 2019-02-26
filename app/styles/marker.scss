@@ -9,6 +9,13 @@
 .leaflet-marker-icon {
   font-size: 44px;
 
+  &.active-feature {
+    font-size: 64px;
+    margin-left: -15px !important;
+    margin-top: -70px !important;
+    z-index: 999999 !important;
+  }
+
   .shadow {
     background-image: url('/assets/images/marker-shadow.png');
     height: 40px;

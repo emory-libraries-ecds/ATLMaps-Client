@@ -5,8 +5,30 @@ import UIkit from 'uikit';
 
 export default Controller.extend({
   dataColors: service(),
+  hide: false,
+  navTabs: null,
+  lastTab: 'info-content',
 
   actions: {
+    hideNav() {
+      this.toggleProperty('hide');
+      if (get(this, 'hide') === false) {
+        UIkit.switcher(this.navTabs).show(this.lastTab);
+      }
+    },
+
+    // The event target that gets passed from the switcher event
+    // is the content, not the items. To progrmatically swtict, we
+    // need the items. :(
+    setPrevious(event) {
+      this.setProperties({
+        navTabs: event.target.parentElement.parentElement.firstElementChild,
+        lastTab: document.getElementById(
+          `${event.target.id.split('-')[0]}-button`
+        )
+      });
+    },
+
     addRemoveLayer(layer) {
       const project = get(this, 'model.project');
       if (get(layer, 'activeInProject') === true) {
@@ -16,8 +38,7 @@ export default Controller.extend({
             'raster_layer_project',
             {
               project,
-              raster_layer: layer,
-              position: get(project, 'raster_layers.length') + 11
+              raster_layer: layer
             }
           );
           if (

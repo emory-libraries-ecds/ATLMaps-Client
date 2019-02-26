@@ -7,14 +7,14 @@
 </div>
 <div class='banner orange blurred'>
 
-  {{#if session.isAuthenticated}}
+  {{!-- {{#if session.isAuthenticated}} --}}
   <div class='uk-section uk-preserve-color'>
     <div class='uk-container'>
-      {{#if model.currentUser.confirmed}}
-      {{#uk-button color='primary' size='large' on-click=(action 'createProject')}}
+      {{!-- {{#if model.currentUser.confirmed}} --}}
+      {{#uk-button color='primary' size='large' on-click=(action 'makeNew')}}
         <i class='fa fa-plus' aria-hidden='true'></i> Start New Project
       {{/uk-button}}
-    {{/if}}
+    {{!-- {{/if}} --}}
         <div class='uk-panel uk-margin-medium'>
             <h3>My Projects</h3>
         </div>
@@ -35,7 +35,7 @@
 
     </div>
 </div>
-{{/if}}
+{{!-- {{/if}} --}}
 
   <div class='uk-section uk-preserve-color'>
     <div class='uk-container'>

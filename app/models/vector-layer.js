@@ -16,12 +16,20 @@ export default Layer.extend({
   data_type: attr('string', {
     defaultValue: 'GeometryCollection'
   }),
+  geojson: attr(),
+  remote_geojson: attr(),
   filters: attr(),
   data_format: attr('string', {
     defaultValue: 'vector'
   }),
-  fillOpacity: attr('number', {
-    defaultValue: 0.2
+  fillOpacity: computed('showing', function() {
+    if (get(this, 'showing') === false) {
+      return 0;
+    } else if (get(this, 'vector_feature').length > 0) {
+      return 0.2;
+    } else {
+      return 1;
+    }
   }),
   weight: attr('number', {
     defaultValue: 3
@@ -33,8 +41,17 @@ export default Layer.extend({
   //   defaultValue: true
   // })
   _hiddenFeatures: filterBy('vector_feature', 'show', true),
-  showing: computed(function() {
+  showing: computed('vector_feature', function() {
     // get(this, '_hiddenFeatures');
     return this.get('vector_feature').isEvery('show', true);
+  }),
+
+  filteredColors: attr({
+    defaultValue: {
+      A: '#4CAF50',
+      B: '#1E88E5',
+      C: '#FFEB3B',
+      D: '#F44336'
+    }
   })
 });

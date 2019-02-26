@@ -5,10 +5,7 @@ import { htmlSafe } from '@ember/string';
 import DS from 'ember-data';
 import Layer from './layer';
 
-const {
-  attr,
-  belongsTo
-} = DS;
+const { attr, belongsTo } = DS;
 
 export default Layer.extend({
   workspace: attr('string'),
